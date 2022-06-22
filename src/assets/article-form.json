@@ -1,0 +1,83 @@
+{
+    "controls": [{
+            "id": 1,
+            "name": "Libelle",
+            "label": "Libelle:",
+            "value": "",
+            "placeholder": "Libelle",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "minLength": 5
+            }
+        },
+        {
+            "id": 2.1,
+            "name": "Referance",
+            "label": "Referance:",
+            "value": "",
+            "placeholder": "Referance",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "minLength": 5
+            }
+        },
+        {
+            "id": 2.2,
+            "name": "CodeBare",
+            "label": "Code Bare:",
+            "value": "",
+            "placeholder": "Code Bare",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "minLength": 5
+            }
+        },
+        {
+            "id": 4,
+            "name": "Montant",
+            "label": "Prix(DH) HT:",
+            "value": "",
+            "placeholder": "Prix",
+            "type": "number",
+            "validators": {
+                "required": true,
+                "minLength": 1
+            }
+        },
+        {
+            "id": 3,
+            "name": "QuantiteMin",
+            "label": "Quantite min:",
+            "value": "",
+            "placeholder": "Quantite",
+            "type": "number",
+            "validators": {
+                "required": false,
+                "minLength": 1
+            }
+        },
+        {
+            "id": 7,
+            "name": "ImageAsString",
+            "label": "Image:",
+            "value": "",
+            "placeholder": "image",
+            "type": "file",
+            "validators": {
+                "required": false
+            }
+        },
+        {
+            "id": 8,
+            "name": "EnActivite",
+            "label": "En-Activite",
+            "value": "true",
+            "placeholder": "",
+            "type": "checkbox",
+            "validators": {}
+        }
+    ]
+}

@@ -1,0 +1,77 @@
+{
+    "controls": [{
+            "id": 2,
+            "name": "Nom",
+            "label": "Nom:",
+            "value": "",
+            "placeholder": "Nom",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "minLength": 5
+            }
+        },
+        {
+            "id": 1,
+            "name": "CIN",
+            "label": "CIN:",
+            "value": "",
+            "placeholder": "CIN",
+            "type": "text",
+            "validators": {
+                "required": false,
+                "minLength": 3
+            }
+        },
+   
+        {
+            "id": 3,
+            "name": "Adresse1",
+            "label": "Adresse-1:",
+            "value": "",
+            "placeholder": "Adresse-1",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "minLength": 5
+            }
+        },
+        {
+            "id": 4,
+            "name": "Adresse2",
+            "label": "Adresse-2:",
+            "value": "",
+            "placeholder": "Adresse-2",
+            "type": "text",
+            "validators": {
+                "required": false,
+                "minLength": 5
+            }
+        },
+        {
+            "id": 5,
+            "name": "Tel1",
+            "label": "Tel-1:",
+            "value": "",
+            "placeholder": "Tel-1",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "minLength": 5
+            }
+        },
+        {
+            "id": 6,
+            "name": "Tel2",
+            "label": "Tel-2:",
+            "value": "",
+            "placeholder": "Tel-2",
+            "type": "text",
+            "validators": {
+                "required": false,
+                "minLength": 5
+            }
+        }
+
+    ]
+}

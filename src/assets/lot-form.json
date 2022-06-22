@@ -1,0 +1,62 @@
+{
+    "controls": [{
+            "id": 1,
+            "name": "Numero",
+            "label": "Numero:",
+            "value": "",
+            "placeholder": "Numero",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "minLength": 5
+            }
+        },
+        
+        {
+            "id": 2.2,
+            "name": "Metre",
+            "label": "Metre:",
+            "value": "",
+            "placeholder": "Metre",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "minLength": 5
+            }
+        },
+        {
+            "id": 4,
+            "name": "Prix",
+            "label": "Prix(DH):",
+            "value": "",
+            "placeholder": "Prix",
+            "type": "number",
+            "validators": {
+                "required": true,
+                "minLength": 1
+            }
+        },
+        {
+            "id": 3,
+            "name": "TF",
+            "label": "TF:",
+            "value": "",
+            "placeholder": "TF",
+            "type": "text",
+            "validators": {
+                "required": false,
+                "minLength": 1
+            }
+        },
+    
+        {
+            "id": 8,
+            "name": "EnActivite",
+            "label": "En-Activite",
+            "value": "true",
+            "placeholder": "",
+            "type": "checkbox",
+            "validators": {}
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+
+<p>{{title}}</p>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header bg-info">
+                <h4 class="m-b-0 text-white">{{title}}</h4>
+            </div>
+            <div class="card-body">
+<app-json-form [jsonFormData]="formData" (submite)="submit($event)"></app-json-form>
+            </div>
+        </div>
+    </div>
+</div>
+       
+
+
+    </div>
+</div>

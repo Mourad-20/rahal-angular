@@ -1,0 +1,64 @@
+<h4>POUR MOBILE</h4>
+
+<select id="login" [(ngModel)]="loginValue">
+    <option>admin</option>
+	<option>gerant</option>
+	<option>serveur</option>
+	<option>boucher</option>
+</select>
+
+
+<input type="text" [(ngModel)]="passwordValue"/>
+
+
+<table class="table table-bordered">
+	<tr>
+		<td>
+			<button (click)="afficher(7)">7</button>
+		</td>
+		<td>
+			<button (click)="afficher(8)">8</button>
+		</td>
+		<td>
+			<button (click)="afficher(9)">9</button>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<button (click)="afficher(4)">4</button>
+		</td>
+		<td>
+			<button (click)="afficher(5)">5</button>
+		</td>
+		<td>
+			<button (click)="afficher(6)">6</button>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<button (click)="afficher(1)">1</button>
+		</td>
+		<td>
+			<button (click)="afficher(2)">2</button>
+		</td>
+		<td>
+			<button (click)="afficher(3)">3</button>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<button></button>
+		</td>
+		<td>
+			<button (click)="reset()">C</button>
+		</td>
+		<td>
+			<button (click)="afficher(0)">0</button>
+		</td>
+	</tr>
+	<tr>
+		<td col="3">
+			<button (click)="authentification()">OK</button>
+		</td>
+	</tr>
+</table>

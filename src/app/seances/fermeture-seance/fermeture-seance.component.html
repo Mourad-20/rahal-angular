@@ -1,0 +1,144 @@
+<!-- <div class="page-wrapper">
+    ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ==============================================================
+
+    <div class="container-fluid">
+        
+    
+        <table *ngIf="isSeanceExist && utilisateurSvc.isUtilisateurOnGroupes([GroupeCode.CAISSIER])">
+        <tr>
+            <td>montantDebut</td>
+            <td>{{ montantDebut }}</td>
+        </tr>
+            <tr>
+                <td>
+                    Montant Cloture
+                </td>
+                <td>
+                    <input type="text" [(ngModel)]="g.seance!.MontantFin" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+                <td>
+                    <button (click)="cloturerSeance()">Cloture seance</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div> -->
+
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid" *ngIf="utilisateurSvc.isUtilisateurOnGroupes(['CAISSIER'])">
+<div class="row" >
+    <!-- Column -->
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Montant Debut</h5>
+                <div class="d-flex no-block align-items-center m-t-20 m-b-20">
+                 
+                    <div class="ms-auto">
+                        <h2 class="text-purple "><span class="counter">{{ montantDebut }} DH</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div id="sparkline8" class="sparkchart"></div>
+        </div>
+    
+    
+    </div>
+    </div>
+<!-- Column -->
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Montant reglée au cours de la séance</h5>
+                    <div class="d-flex no-block align-items-center m-t-20 m-b-20">
+                        <div id="sparklinedash2"></div>
+                        <div class="ms-auto">
+                            <h2 class="text-success"><i class="ti-arrow-up"></i> <span class="counter">{{ montantSeance }}</span></h2>
+                        </div>
+                    </div>
+                </div>
+                <div id="sparkline8" class="sparkchart"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+    
+    
+    <div class="row">
+         <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Total en caisse</h5>
+                <div class="d-flex no-block align-items-center m-t-20 m-b-20">
+                    <div id="sparklinedash2"></div>
+                    <div class="ms-auto">
+                        <h2 class="text-info"><i class="ti-arrow-up"></i> <span class="counter">{{ montantTotal }}</span></h2>
+                    </div>
+                </div>
+            </div>
+            <div id="sparkline8" class="sparkchart"></div>
+        </div>
+    </div></div>
+   
+    <!-- Column -->
+   
+
+  
+    <!-- Column -->
+    <!-- Column -->
+<div class="row">
+    <div class="col-lg-8 col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Montant Cloture</h4>
+                <div id="education_fields"></div>
+                <div class="row">
+                    <div class="col-sm-6 nopadding">
+                        <div class="form-group">
+                        
+                               
+                                
+                                <input type="number" [(ngModel)]="g.seance!.MontantFin" id="demo-input-search2" placeholder="0" disabled><br>
+                                <br>
+                                <input type="button" class="btn btn-secondary btn-circle btn-lg" (click)="afficherOnCalculator(1)" value="1" name="next" />
+                                <input type="button" class="btn btn-secondary btn-circle btn-lg" (click)="afficherOnCalculator(2)" value="2" name="next" />
+                                <input type="button" class="btn btn-secondary btn-circle btn-lg" (click)="afficherOnCalculator(3)" value="3" name="next" />
+                                <input type="button" class="btn btn-secondary btn-circle btn-lg" (click)="afficherOnCalculator(4)" value="4" name="next" />
+                                
+                                <input type="button" class="btn btn-secondary btn-circle btn-lg" (click)="afficherOnCalculator(5)" value="5" name="next" />
+                                <input type="button" class="btn btn-secondary btn-circle btn-lg" (click)="afficherOnCalculator(6)" value="6" name="next" />
+                                <br><br>
+                                 <input type="button" class="btn btn-secondary btn-circle btn-lg" (click)="afficherOnCalculator(7)" value="7" name="next" />
+                                <input type="button" class="btn btn-secondary btn-circle btn-lg" (click)="afficherOnCalculator(8)" value="8" name="next" />
+                                <input type="button" class="btn btn-secondary btn-circle btn-lg" (click)="afficherOnCalculator(9)" value="9" name="next" />
+                                <input type="button" class="btn btn-secondary btn-circle btn-lg" (click)="afficherOnCalculator(0)" value="0" name="next" />
+                                <input type="button" class="btn btn-secondary btn-circle btn-lg" (click)="afficherOnCalculator('.')" value="." name="next">
+                                <input type="button" class="btn btn-secondary btn-circle btn-lg" (click)="resetCalculator()" value="C" name="next">
+                        </div>
+                        <button type="button" class="btn waves-effect waves-light btn-lg btn-primary" (click)="cloturerSeance()">Cloturer </button>
+                    </div>
+                   
+                   
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </div></div>
+
+     
+       

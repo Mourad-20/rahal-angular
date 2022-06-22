@@ -1,0 +1,371 @@
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="row page-titles bg-primary">
+            <h4 class="m-b-0 text-white">{{g.title}}</h4>
+        </div>
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+
+
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <div class="row">
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <!-- .left-right-aside-column-->
+                    <div class="row">
+                        <!-- .left-aside-column-->
+                        <div class="col-12 col-lg-8 col-sm-12">
+                            <div class="card-body">
+                                <div class="col-lg-12 col-sm-12">
+                                    <div class="card">
+
+                                        <div class="card-body bg-light">
+                                            <div class="card-body bg-light">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <h3>Totale TTC(DH)</h3>
+                                                    </div>
+                                                    <div class="col-6 align-self-center display-6 text-end">
+                                                        <h2 class="text-success">{{(TotaleHT+TotaleTVA)}}</h2>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <h3>Totale TVA(DH)</h3>
+                                                    </div>
+
+                                                    <div class="col-6 align-self-center display-3 text-end">
+                                                        <h2 class="text-info">{{(TotaleTVA)}}</h2>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <h3>Totale HT(DH)</h3>
+                                                    </div>
+
+                                                    <div class="col-6 align-self-center display-3 text-end">
+                                                        <h2 class="text-danger">{{(TotaleHT)}}</h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="table-responsive">
+                                            <table class="table table-hover no-wrap">
+                                                <thead>
+
+
+                                                    <tr>
+                                                        <th class="text-center">#</th>
+                                                        <th>N.Lot</th>
+                                                        <th>Libelle</th>
+                                                        <th>Quantite</th>
+                                                        <th>Unite</th>
+                                                        <th>P.U HT</th>
+                                                        <th>TVA</th>
+                                                        <th>Totale HT</th>
+                                                        <th>Totale TTC</th>
+                                                        <th>Description</th>
+                                                        <th>Option</th>
+                                                    </tr>
+
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let item of commande.DetailCommandes; index as i;">
+                                                        <td class="text-center">{{i+1}}</td>
+                                                        <td class="txt-oflo">{{ item.NumerodeLot }}</td>
+                                                        <td class="txt-oflo">{{ item.LibelleArticle }}</td>
+
+                                                        <td><span class="badge bg-success rounded-pill">{{ item.Quantite
+                                                                }}</span> </td>
+                                                        <td class="txt-oflo">{{ item.LibelleTypeUnite }}</td>
+                                                        <td class="txt-oflo">{{ item.Montant }}</td>
+                                                        <td class="txt-oflo">{{ item.TauxTVA }}</td>
+                                                        <td class="txt-oflo">{{ (item.Montant* item.Quantite)}}</td>
+                                                        <td class="txt-oflo">{{ (item.Montant* item.Quantite)+((item.Montant* item.Quantite)*(item.TauxTVA/100)) }}</td>
+                                                        <td><span class="text-success">{{ item.Description }}</span>
+                                                        </td>
+                                                        <td><button (click)="remove(i)" type="button" class="btn btn-outline-danger btn-circle  "><i class="ti-trash"></i>
+    </button></td>
+
+                                                    </tr>
+                                                    <!--      -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-12 " *ngIf="type!='CONTROLE'">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex no-block align-items-center">
+                                            <div>
+
+                                                <!--   <button (click)="remove()" type="button" class="btn btn-outline-danger btn-circle  "><i class="ti-trash"></i>
+                                                </button> -->
+
+                                            </div>
+
+                                            <div class="ms-auto">
+
+
+                                                <button (click)="valider()" type="button" class=" btn btn-outline-success btn-circle  "><i
+                                                        class="ti-check"></i> </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- /.left-aside-column-->
+
+
+
+                        <div class="col-12 col-lg-4 col-sm-12 formcaisse">
+                            <div class="card">
+                                <div class="card-body">
+
+                                    <h5 class="card-subtitle">Information Client</h5>
+
+                                    <form class="form pt-3">
+                                        <div class="row ">
+                                            <div class="form-group">
+                                                <label class="form-label">Client</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control" placeholder="Client" aria-label="Client" [(ngModel)]="commande.LibelleLocalite" name="client">
+                                                    <span class="input-group-text"><i class="ti-lock"></i></span>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Commercial</label>
+                                                    <div class="input-group mb-3" (click)="showcomercial()">
+                                                        <input type="text" class="form-control" placeholder="Articles" aria-label="Password" [(ngModel)]="article.Libelle" name="article">
+                                                        <span class="input-group-text" (click)="showcomercial()"><i class="ti-lock"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                            <hr class="m-t-0 m-b-40">
+                            <div class="card">
+                                <div class="card-body">
+
+                                    <h5 class="card-subtitle"> Detaile Commande</h5>
+
+                                    <form class="form pt-3">
+                                        <div class="row ">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Articles</label>
+                                                    <div class="input-group mb-3" (click)="showarticle()">
+                                                        <input type="text" class="form-control" placeholder="Articles" aria-label="Password" [(ngModel)]="article.Libelle" name="article">
+                                                        <span class="input-group-text"><i class="ti-lock"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Numero Lot</label>
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" class="form-control" placeholder="Numero Lot" aria-label="Username" [(ngModel)]="numlot" name="numlot" readonly>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Prix Unitaire</label>
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" class="form-control" placeholder="Numero Lot" aria-label="Username" [(ngModel)]="prix" name="pu">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">TVA</label>
+                                                    <div class="input-group mb-3">
+                                                        <input type="text" class="form-control" placeholder="Numero Lot" aria-label="Username" [(ngModel)]="tva" name="tva">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Quantite</label>
+                                                    <div class="input-group mb-3">
+                                                        <input type="number" class="form-control" placeholder="Quantite" aria-label="Password" [(ngModel)]="quantite" name="quantite">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--  <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Date Expiration</label>
+                                                    <div class="input-group mb-3">
+                                                        <input type="date" class="form-control" placeholder="Numero Lot" aria-label="Username" [(ngModel)]="dateexpiration" name="dexpiration">
+
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Description(courte)</label>
+                                            <div class="input-group mb-3">
+                                                <textarea class="form-control" rows="4" id="input7" [(ngModel)]="description" name="description"></textarea>
+
+                                            </div>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-success me-2 text-white" (click)="selectArticle()">Submit</button>
+                                        <button type="submit" class="btn btn-dark" (click)="initdetailcommande()">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- /.left-right-aside-column-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- reglementModal -->
+    <div class="modal" id="responsive-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Select Article</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="table-responsive m-t-40">
+                                        <table class="table table-striped table-bordered table-sm row-border hover" id="datatableexample">
+                                            <thead>
+                                                <tr>
+                                                    <th>Libelle</th>
+                                                    <th>Quantite</th>
+
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <tr *ngFor="let item of filter(commandedevis.DetailCommandes); index as i;" (click)="setarticle(item)">
+                                                    <td>{{(item.LibelleArticle)}}</td>
+                                                    <td>{{item.Quantite-item.QuantiteServi}}</td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="table-responsive m-t-40">
+                                        <table class="table table-striped table-bordered table-sm row-border hover" id="datatabledc">
+                                            <thead>
+                                                <tr>
+                                                    <th>Libelle</th>
+                                                    <th>N.Lot</th>
+                                                    <th>Quantite dispo</th>
+
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <tr *ngFor="let item of detailCommandes; index as i;" (click)="setdc(item)">
+                                                    <td>{{(item.LibelleArticle)}}</td>
+                                                    <td>{{(item.NumerodeLot)}}</td>
+                                                    <td>{{item.Quantite-item.QuantiteServi}}</td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!--    <button type="button" class="btn w-70 btn-lg btn-success" (click)="setarticle()">Valider<i class="icons-Dollar-Sign2"></i></button>
+ -->
+                    </div>
+
+
+
+
+
+
+
+
+
+
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =================================================================================== -->
+
+</div>

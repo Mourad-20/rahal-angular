@@ -1,0 +1,47 @@
+{
+  "controls": [
+    {
+      "id": "1",
+      "name": "Nom",
+      "label": "Nom:",
+      "value": "",
+      "placeholder":"Nom",
+      "type": "text",
+      "validators": {
+        "required": true,
+        "minLength": 5
+      }
+    },
+    {
+      "id": "1",
+      "name": "Prenom",
+      "label": "Prenom:",
+      "value": "",
+      "placeholder":"Prenom",
+      "type": "text",
+      "validators": {"required": true,
+        "minLength": 2}
+    },
+    {
+      "id": "1",
+        "name": "Login",
+      "label": "Login:",
+      "placeholder":"login",
+      "value": "",
+      "type": "text",
+      "validators": {"required": true,
+        "minLength": 5}
+    },
+       {
+      "id": "1",
+        "name": "Password",
+      "label": "Mot de passe:",
+      "placeholder":"Mot de passe",
+      "value": "",
+      "type": "text",
+      "validators": {"required": true,
+        "minLength": 5}
+    }
+   
+  ]
+}

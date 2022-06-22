@@ -1,0 +1,217 @@
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h4 class="text-themecolor">Dashboard 4</h4>
+            </div>
+            <div class="col-md-7 align-self-center text-end">
+                <div class="d-flex justify-content-end align-items-center">
+                    <ol class="breadcrumb justify-content-end">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                        <li class="breadcrumb-item active">Dashboard 4</li>
+                    </ol>
+                    <button type="button" class="btn btn-info d-none d-lg-block m-l-15 text-white"><i
+                            class="fa fa-plus-circle"></i> Create New</button>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Info box -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <!-- Column -->
+            <div class="col-lg-3 col-md-6" *ngFor="let item of total; index as i;">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{(item[0].Libelle)}}</h5>
+                        <div class="d-flex no-block align-items-center m-t-20 m-b-20">
+                            <div id="sparklinedash"></div>
+                            <div class="ms-auto">
+                                <h2 class="text-success"><i class="ti-arrow-up"></i> <span class="counter">{{(item[1])}}</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="sparkline8" class="sparkchart"></div>
+                </div>
+            </div>
+            <!-- Column
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">TOTAL PAGE VIEWS</h5>
+                        <div class="d-flex no-block align-items-center m-t-20 m-b-20">
+                            <div id="sparklinedash2"></div>
+                            <div class="ms-auto">
+                                <h2 class="text-purple"><i class="ti-arrow-up"></i> <span class="counter">7469</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="sparkline8" class="sparkchart"></div>
+                </div>
+            </div> -->
+            <!-- Column 
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">UNIQUE VISITOR</h5>
+                        <div class="d-flex no-block align-items-center m-t-20 m-b-20">
+                            <div id="sparklinedash3"></div>
+                            <div class="ms-auto">
+                                <h2 class="text-info"><i class="ti-arrow-up"></i> <span class="counter">6011</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="sparkline8" class="sparkchart"></div>
+                </div>
+            </div>-->
+            <!-- Column -->
+            <!-- Column
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">BOUNCE RATE</h5>
+                        <div class="d-flex no-block align-items-center m-t-20 m-b-20">
+                            <div id="sparklinedash4"></div>
+                            <div class="ms-auto">
+                                <h2 class="text-danger"><i class="ti-arrow-down"></i> <span class="counter">18%</span></h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="sparkline8" class="sparkchart"></div>
+                </div>
+            </div> -->
+            <!-- Column -->
+        </div>
+
+        <div class="row">
+            <!-- Column -->
+        <div class="col-lg-4">
+            <div class="card">
+
+           
+            <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12 m-t-20 text-center" *ngFor="let item of recaps| slice:0:nbr; index as i;">
+            
+                <div class="{{item.IdUtilisateur}} chart" [ngClass]="item.poucentage<=max? 'easy-pie-chart-1':'easy-pie-chart-2'"
+                    attr.data-percent="{{item.poucentage}}">
+                    <span class="percent">{{item.poucentage}}</span> <br>
+                    <h5>{{item.NomUtilisateur}}</h5>
+                    <h6>({{item.NombreCommande}}){{item.Montant}}DH</h6><canvas height="200" width="200"
+                        style="height: 100px; width: 100px;"></canvas>
+                </div>
+            </div>
+</div> </div>
+        </div>
+            <!-- Column -->
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Recap Articles</h5>
+                    <ul class="feeds mt-3">
+                        <li *ngFor="let item of detailsCommande| slice:0:nbr; index as i;">
+                            <div class="bg-success"></div> {{item.LibelleArticle}} <span
+                                class="text-muted ms-auto">{{item.Quantite}}</span>
+                        </li>
+                      
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+            <!-- Column -->
+          <!--   <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">FEEDS</h5>
+                        <ul class="feeds mt-3">
+                            <li>
+                                <div class="bg-info"><i class="far fa-bell"></i></div> You have 4 pending tasks. <span
+                                    class="text-muted ms-auto">Just Now</span>
+                            </li>
+                            <li>
+                                <div class="bg-success"><i class="ti-server"></i></div> Server #1 overloaded.<span
+                                    class="text-muted ms-auto">2 Hours ago</span>
+                            </li>
+                            <li>
+                                <div class="bg-warning"><i class="ti-shopping-cart"></i></div> New order received.<span
+                                    class="text-muted ms-auto">31 May</span>
+                            </li>
+                            <li>
+                                <div class="bg-danger"><i class="ti-user"></i></div> New user registered.<span
+                                    class="text-muted ms-auto">30 May</span>
+                            </li>
+                            <li>
+                                <div class="bg-dark"><i class="far fa-bell"></i></div> New Version just arrived. <span
+                                    class="text-muted ms-auto">27 May</span>
+                            </li>
+                            <li>
+                                <div class="bg-info"><i class="far fa-bell"></i></div> You have 4 pending tasks. <span
+                                    class="text-muted ms-auto">Just Now</span>
+                            </li>
+                            <li class="py-1">
+                                <div class="bg-danger"><i class="ti-user"></i></div> New user registered.<span
+                                    class="text-muted ms-auto">30 May</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- Review -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <!-- Column -->
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">ORDER STATUS</h5>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                               
+                                 
+                               
+
+                                <tr>
+                                    <th>Num de Commande</th>
+                                    <th>Montant</th>
+                                    <th>Serveur</th>
+                                    <th>Table</th>
+                                    <th class="text-center">Status</th>
+                                    <th class="text-center">caisse</th>
+                                </tr>
+                            </thead>
+                            <tbody >
+                                <tr *ngFor="let item of commandes| slice:0:10; index as i;">
+                                    <td><a href="javascript:void(0)" class="link"> {{item.Numero}}</a></td>
+                                    <td>{{item.Montant}}</td>
+                                    <td><span class="text-muted"><i class="fa fa-clock-o"></i> {{item.NomServeur}}</span></td>
+                                    <td>{{item.LibelleLocalite}}</td>
+                                    <td class="text-center">
+                                        <div class="label label-table label-success">{{item.CodeEtatCommande}}</div>
+                                    </td>
+                                    <td class="text-center">{{item.LibelleCaisse}}</td>
+
+
+                                </tr>
+                                
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+        </div>
+    </div>
+
+</div>

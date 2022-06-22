@@ -1,0 +1,33 @@
+.card-home {
+  flex: 1 1 auto;
+  padding: 0.05rem 0.05rem;
+ /* background-color: #353c48;*/
+  /*max-height: 400px;*/
+}
+.card-row {
+  flex: 1 1 auto;
+  padding: 0.05rem 0.05rem;
+  /* background-color: #353c48;*/
+  /*max-height: 400px;*/
+}
+.navbar-brand2 {
+  margin-top: 8rem;
+  margin-bottom: .53594rem;
+  margin-right: auto;
+  font-size: 1.09375rem;
+  text-decoration: none;
+  white-space: nowrap;
+  text-align: center;
+  width: 100%;
+}
+#msform .action-button2 {
+  width: 100px;
+  background: #01c0c8;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+}

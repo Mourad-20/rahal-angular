@@ -1,0 +1,116 @@
+<p>utilisateurs works!</p>
+<!-- ============================================================== -->
+<!-- wrapper -->
+<!-- ============================================================== -->
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h5 class="text-themecolor">{{ (g.seance != null) ? ('SESSION N°: ' + g.seance.Numero + ' - Ouverture
+                    depuis: ' + (g.seance!.DateDebut |
+                    date:'dd/MM/YYYY HH:mm:ss')) : '' }}
+                </h5>
+            </div>
+            <div class="col-md-7 align-self-center text-end">
+                <div class="d-flex justify-content-end align-items-center">
+                    <ol class="breadcrumb justify-content-end">
+
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">{{ (g.seance != null) ? (' Caisse : ' +
+                                g.seance.LibelleCaisse ) : '' }}</a></li>
+                        <li class="breadcrumb-item active">{{ (g.utilisateur != null ?
+                            g.utilisateur!.Nom : '' ) }}</li>
+                    </ol>
+
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card">
+
+                    <form *ngIf="mode">
+                    
+                        <div class="form-body">
+                            <h3 class="card-title">Message Formulaire</h3>
+                            <hr>
+                            <div class="row p-t-20">
+                                <div  class="col-md-6">
+                                    <div class="form-group"  >
+                    
+                                        <label class="form-label" >Libelle</label>
+                    
+                                        <input placeholder="Libelle" class="form-control"  type="text" [(ngModel)]="libelle"  name="libelle">
+                    
+                                    </div>
+                                    <!-- <small class="form-control-feedback"> This is inline help </small> -->
+                                </div>
+                            </div>
+                    
+                    
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-success text-white" (click)="valider()"> <i class="fa fa-check"></i>
+                                Save</button>
+                            <button type="cancel" class="btn btn-inverse" (click)="afficherforme()">Cancel</button>
+                        </div>
+                    </form>
+                    <div>
+
+        <button type="button" class="btn btn-info btn-rounded m-t-10 float-end text-white"  (click)="afficherforme()">Nouveau Message</button>
+
+                        <div class="table-responsive m-t-40">
+                            <table class="table table-striped table-bordered table-sm row-border hover"
+                                id="datatableexample">
+                                <thead>
+                                    <tr>
+                                        <th>Libelle</th>
+
+
+                                        <th>Option</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr *ngFor="let item of messages; index as i;">
+                                        <td>{{(item.Libelle)}}</td>
+
+                                        <td><i (click)="update(i)" class="ti-settings"></i> </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+</div>

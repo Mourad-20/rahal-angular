@@ -1,0 +1,499 @@
+<!-- 
+=====================================================================================================================
+===================================================================================================================== -->
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="row page-titles bg-primary">
+            <h4 class="m-b-0 text-white">{{g.title}}</h4>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <div class="card">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card overflow-hidden">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-4">
+                            <div class="card-body inbox-panel">
+
+
+                                <ul class="list-group list-group-full">
+                                    commandeoption
+                                    <li class="list-group-item d-flex no-block align-items-center " [ngClass]="commandeoption=='TOUS'? 'active':''" (click)="showCommande()"> <a href="javascript:void(0)" class="d-flex no-block align-items-center"><i
+                                            class="mdi mdi-gmail fs-4 me-2 d-flex align-items-center"></i> Tous </a>
+                                        <!-- <span
+                                        class="badge bg-success ms-auto">6</span> --></li>
+
+                                    <li class="list-group-item d-flex no-block align-items-center" [ngClass]="commandeoption=='CONTROLE'? 'active':''" (click)="showCommandeControle()">
+                                        <a href="javascript:void(0)" class="d-flex no-block align-items-center"> <i class="mdi mdi-star fs-4 me-2 d-flex justify-content-center"></i> a controle </a>
+                                        <span class="badge bg-danger ms-auto" *ngIf="countcontrole>0">{{countcontrole}}</span>
+                                    </li>
+
+                                    <!--  <li class="list-group-item d-flex no-block align-items-center" [ngClass]="commandeoption=='N-REGLEE'? 'active':''" (click)="showCommandeNonReglees()">
+                                    <a href="javascript:void(0)" class="d-flex  no-block align-items-center"> <i class="mdi mdi-send fs-4 me-2 d-flex align-items-center"></i> non reglees </a>
+                                    <span class="badge bg-danger ms-auto">{{countnonreglee}}</span>
+                                </li>
+ -->
+                                    <!-- <li class="list-group-item d-flex no-block align-items-center " [ngClass]="commandeoption=='REGLEE'? 'active':''">
+                                    <a href="javascript:void(0)" class="d-flex no-block align-items-center"> <i class="mdi mdi-file-document-box fs-4 me-2 d-flex align-items-center"></i> reglees </a>
+                                </li> -->
+
+                                    <!-- <li class="list-group-item d-flex no-block align-items-center">
+                                    <a href="javascript:void(0)" class="d-flex no-block align-items-center"> <i
+                                            class="fs-4 me-2 d-flex align-items-center mdi mdi-delete"></i> Trash </a>
+                                </li> -->
+
+                                </ul>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-10 col-md-8 bg-light border-start">
+                            <div class="card-body" *ngIf="commandeoption=='TOUS'">
+                                <div class="btn-group m-b-10 m-r-10" role="group" aria-label="Button group with nested dropdown">
+                                    <button type="button" class="btn btn-secondary font-18"><i
+                                        class="mdi mdi-inbox-arrow-down"></i></button>
+
+                                    <button type="button" class="btn btn-secondary font-18"><i
+                                        class="mdi mdi-alert-octagon"></i></button>
+
+                                    <button type="button" class="btn btn-secondary font-18"><i
+                                        class="mdi mdi-delete"></i></button>
+
+                                </div>
+                                <div class="btn-group m-b-10 m-r-10" role="group" aria-label="Button group with nested dropdown">
+
+                                    <div class="btn-group" role="group">
+                                        <input class="form-control" type="datetime-local" id="example-datetime-local-input" [(ngModel)]="datedebut">
+                                    </div>
+
+                                    <span class="input-group-text bg-info b-0 text-white">TO</span>
+
+                                    <div class="btn-group" role="group">
+                                        <input class="form-control" type="datetime-local" [(ngModel)]="datefin" id="example-datetime-local-input">
+                                    </div>
+
+
+
+                                </div>
+                                <button type="button " class="btn btn-secondary m-r-10 m-b-10"><i
+                                    class="mdi mdi-reload font-18" (click)="showCommande()"></i></button>
+
+                            </div>
+
+
+                            <div class="card-body p-t-0">
+                                <div class="card b-all ">
+
+                                    <div class="table-responsive m-t-40" *ngIf="commandeoption=='TOUS'">
+                                        <table datatable [dtOptions]="dtOptions" class="display nowrap table table-hover table-striped border" id="datatableexample">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Date/Heur</th>
+                                                    <th>Num de Commande</th>
+                                                    <th>Montant</th>
+                                                    <th>COM</th>
+                                                    <th>Etat</th>
+                                                    <th>Client</th>
+                                                    <th>Option</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <tr *ngFor="let item of commandes; index as i;" (click)="getRowIndex(i,item.Identifiant)" [ngClass]="idxOne === i ?'table-danger01':'table-init'">
+                                                    <td>{{i+1}}</td>
+                                                    <td>{{(item!.DateCommande | date:'dd/MM/YYYY')}}</td>
+                                                    <td>{{item.Numero}}</td>
+                                                    <td>{{item.Montant}}</td>
+                                                    <td>{{item.NomServeur}}</td>
+                                                    <td>{{item.CodeEtatCommande}}</td>
+                                                    <td>{{item.LibelleLocalite}}</td>
+                                                    <td>
+                                                        <!-- <button (click)="update(item.Identifiant)" type="button" class="btn btn-outline-warning btn-circle  "><i class="ti-pencil"></i>
+                                                    </button> --></td>
+                                                    <!-- <td><i class="ti-settings" (click)="modale(item.Identifiant)"></i> </td> -->
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- ===============================================================================================
+                                    =============================================================================================== -->
+                                    <div class="table-responsive m-t-40" *ngIf="commandeoption=='CONTROLE'">
+                                        <table datatable [dtOptions]="dtOptions" class="table table-striped table-bordered table-sm row-border hover" id="datatableexample">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Date/Heur</th>
+                                                    <th>Num de Commande</th>
+                                                    <th>Montant</th>
+                                                    <th>COM</th>
+                                                    <th>Etat</th>
+                                                    <th>Client</th>
+                                                    <!--  <th>Option</th> -->
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <tr *ngFor="let item of commandes; index as i;" (click)="getRowIndex(i,item.Identifiant)" [ngClass]="idxOne === i ?'table-danger01':'table-init'">
+                                                    <td>{{i+1}}</td>
+                                                    <td>{{(item!.DateCommande | date:'dd/MM/YYYY ')}}</td>
+                                                    <td>{{item.Numero}}</td>
+                                                    <td>{{item.Montant}}</td>
+                                                    <td>{{item.NomServeur}}</td>
+                                                    <td>{{item.CodeEtatCommande}}</td>
+                                                    <td>{{item.LibelleLocalite}}</td>
+                                                    <td>
+                                                        <button (click)="update(item.Identifiant)" type="button" class="btn btn-outline-warning btn-circle  "><i class="ti-pencil"></i>
+                                                                                                        </button>
+                                                    </td>
+                                                    <!--   <td><i class="ti-settings" (click)="modale(item.Identifiant)"></i> </td> -->
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!--  ======================================================================================================
+                                    ====================================================================================================== -->
+                                    <div class="table-responsive m-t-40" *ngIf="commandeoption=='N-REGLEE'">
+                                        <table datatable [dtOptions]="dtOptions" class="table table-striped table-bordered table-sm row-border hover" id="datatableexample">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Date/Heur</th>
+                                                    <th>Num de Commande</th>
+                                                    <th>Montant</th>
+                                                    <th>COM</th>
+                                                    <th>Etat</th>
+                                                    <th>Client</th>
+                                                    <!--   <th>Option</th> -->
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <tr *ngFor="let item of commandes; index as i;" (click)="getRowIndex(i,item.Identifiant)" [ngClass]="idxOne === i ?'table-danger01':'table-init'">
+                                                    <td>{{i+1}}</td>
+                                                    <td>{{(item!.DateCommande | date:'dd/MM/YYYY ')}}</td>
+                                                    <td>{{item.Numero}}</td>
+                                                    <td>{{item.Montant}}</td>
+                                                    <td>{{item.NomServeur}}</td>
+                                                    <td>{{item.CodeEtatCommande}}</td>
+                                                    <td>{{item.LibelleLocalite}}</td>
+                                                    <!--  <td><i class="ti-settings" (click)="modale(item.Identifiant)"></i> </td> -->
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body p-b-0">
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-tabs customtab2" role="tablist">
+                                        <li class="nav-item"> <a class="nav-link active" data-bs-toggle="tab" href="#home7" role="tab"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Details</span></a> </li>
+                                        <!--                                     <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#profile7" role="tab"><span class="hidden-sm-up"><i class="icons-Dollar-Sign2"></i></span> <span class="hidden-xs-down">Profile</span></a> </li>
+ -->
+                                        <!--                                     <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#messages7" role="tab"><span class="hidden-sm-up"><i class="ti-email"></i></span> <span class="hidden-xs-down">Messages</span></a> </li>
+ -->
+                                    </ul>
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="home7" role="tabpanel">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="grid-title">Detail Commande</h4>
+                                                    <!--  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button> -->
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="container-fluid">
+                                                        <div class="row">
+                                                            <!-- .left-aside-column-->
+                                                            <div class="col-lg-10">
+                                                                <div class="card-body">
+                                                                    <div class="col-lg-12">
+                                                                        <div class="card">
+
+
+                                                                            <div class="table-responsive">
+                                                                                <table class="table table-hover no-wrap">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th class="text-center">#</th>
+                                                                                            <th>Libelle</th>
+                                                                                            <th>Quantite</th>
+                                                                                            <th>Unite</th>
+                                                                                            <th>P.U HT</th>
+                                                                                            <th>TVA</th>
+                                                                                            <th>Totale HT</th>
+                                                                                            <th>Totale TTC</th>
+
+                                                                                            <th>Description</th>
+                                                                                            <th>Option</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr *ngFor="let item of commande.DetailCommandes; index as i;">
+                                                                                            <td class="text-center">{{i+1}}</td>
+                                                                                            <td class="txt-oflo">{{ item.LibelleArticle }}</td>
+
+                                                                                            <td><span class="badge bg-success rounded-pill">{{ item.Quantite
+                                                                                                }}</span> </td>
+                                                                                            <td class="txt-oflo">{{ item.LibelleTypeUnite }}</td>
+                                                                                            <td class="txt-oflo">{{ item.Montant }}</td>
+                                                                                            <td class="txt-oflo">{{ item.TauxTVA }}</td>
+                                                                                            <td class="txt-oflo">{{ (item.Montant* item.Quantite)}}</td>
+                                                                                            <td class="txt-oflo">{{ (item.Montant* item.Quantite)+((item.Montant* item.Quantite)*(item.TauxTVA/100)) }}</td>
+                                                                                            <td><span class="text-success">{{ item.Description }}</span>
+                                                                                            </td>
+                                                                                            <td> </td>
+                                                                                        </tr>
+
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-info waves-effect text-white" data-bs-dismiss="modal" *ngIf="commandeoption=='CONTROLE'&& commande.Identifiant>0" (click)="goto('devistocommande/'+commande.Identifiant)">Valider</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane  p-20" id="profile7" role="tabpanel">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="grid-title">Detail Reglement</h4>
+                                                    <!--  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button> -->
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="container-fluid">
+                                                        <div class="row">
+                                                            <!-- .left-aside-column-->
+                                                            <div class="col-lg-12">
+                                                                <div class="card-body">
+                                                                    <div class="col-lg-12">
+                                                                        <div class="card">
+
+
+                                                                            <div class="table-responsive">
+                                                                                <table class="table table-hover no-wrap">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th class="text-center">#</th>
+                                                                                            <th>Date Reglement</th>
+                                                                                            <th>Mode Reglement</th>
+                                                                                            <th>Montant</th>
+                                                                                            <th>N.(cheque)</th>
+                                                                                            <th>Date(cheque)</th>
+                                                                                            <th>banque</th>
+                                                                                            <th>N.Compte</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr *ngFor="let item of lstReglements; index as i;">
+                                                                                            <td class="text-center">{{i+1}}</td>
+                                                                                            <td class="txt-oflo">{{ item.DateReglement| date:'dd/MM/YYYY' }}</td>
+                                                                                            <td><span class="badge bg-success rounded-pill">
+                                                                                            {{ item.LibelleModeReglement
+                                                                                                }}</span> </td>
+                                                                                            <td class="txt-oflo">{{ item.Montant }}</td>
+                                                                                            <td><span class="text-success">{{ item.Ncheque }}</span>
+                                                                                            </td>
+                                                                                            <td><span class="text-success">{{ item.Datecheque| date:'dd/MM/YYYY' }}</span>
+                                                                                            </td>
+                                                                                            <td><span class="text-success">{{ item.NomBanque }}</span>
+                                                                                            </td>
+                                                                                            <td><span class="text-success">{{ item.NCompte }}</span>
+                                                                                            </td>
+
+
+                                                                                        </tr>
+
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-info waves-effect text-white" data-bs-dismiss="modal" (click)="showReglements()">Ajouter Reglement</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane p-20" id="messages7" role="tabpanel">3</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================DetailcommandeModale================================== -->
+    <!-- <div id="grid-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="grid-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="grid-title">Detail Commande</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div id="table-wrapper">
+                            <div id="table-scroll">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 55%;"><span style="width: 70%;" class="text ">Name</span>
+                                            </th>
+                                            <th style="width: 15%;"><span style="width: 15%;" class="text">Qut</span>
+                                            </th>
+                                            <th style="width: 15%;"><span style="width: 15%;" class="text">P.U</span>
+                                            </th>
+                                            <th style="width: 15%;"><span style="width: 15%;" class="text">minute</span>
+                                            </th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        <tr *ngFor="let item of commande.DetailCommandes; index as i;" [ngClass]="idxOne === i ?'table-danger01':'table-init'">
+
+                                            <td style="width: 55%;"> {{ item.LibelleArticle }} </td>
+                                            <td style="width: 15%;"> {{ item.Quantite }} </td>
+                                            <td style="width: 15%;"> {{ item.Montant }} </td>
+                                            <td style="width: 15%;"> {{ datedif(item)}}min </td>
+
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info waves-effect text-white" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+           
+        </div>
+        
+    </div> -->
+    <!-- reglementModal -->
+    <div class="modal" id="responsive-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Reglements</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-6 formcaisse">
+
+                            <hr class="m-t-0 m-b-40">
+                            <div class="card">
+                                <div class="card-body">
+
+                                    <h5 class="card-subtitle">Detail Reglement</h5>
+
+                                    <form class="form pt-3">
+                                        <div class="form-group">
+                                            <label class="form-label">Mode Reglement </label>
+                                            <div class="input-group mb-3">
+                                                <select class="form-select col-12" id="example-month-input2" [(ngModel)]="_modereglementselect" name="EtatCommande" (change)="initreglement()">
+                                                ()">
+                                                <option selected="" value="">Choose...</option>
+                                                <option *ngFor="let item of _modereglement; index as i;">{{item}}</option>
+                                            
+                                            </select>
+
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="form-group">
+                                            <label class="form-label">Montant </label>
+                                            <div class="input-group mb-3">
+                                                <input type="number" class="form-control" placeholder="Banque" aria-label="Username" [(ngModel)]="Montant" name="Montant">
+
+                                            </div>
+                                        </div>
+
+                                        <div *ngIf="_modereglementselect!='ESPECE' && _modereglementselect!=''">
+                                            <div class="form-group">
+                                                <label class="form-label">Numero Cheque</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control" placeholder="Numero cheque" aria-label="Username" [(ngModel)]="Ncheque" name="Ncheque">
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Numero compte</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="number" class="form-control" placeholder="Numero compte" aria-label="Username" [(ngModel)]="NCompte" name="NCompte">
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Date Cheque</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="date" class="form-control" placeholder="Date cheque" aria-label="Username" [(ngModel)]="Datecheque" name="Datecheque">
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Banque </label>
+                                                <div class="input-group mb-3">
+                                                    <input type="text" class="form-control" placeholder="Banque" aria-label="Username" [(ngModel)]="NomBanque" name="NomBanque">
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <button type="submit" class="btn btn-success me-2 text-white" (click)="effectuerReglement()">Effectuer</button>
+                                        <!--  <button type="submit" class="btn btn-dark" (click)="initReglement()">Cancel</button> -->
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid" *ngIf="utilisateurSvc.isUtilisateurOnGroupes(['CAISSIER'])">
+ 
+
+        <!-- Column -->
+
+
+
+        <!-- Column -->
+        <!-- Column -->
+        <div class="row">
+            <div class="col-lg-8 col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Montant début</h4>
+                        <div id="education_fields"></div>
+                        <div class="row">
+                            <div class="col-sm-6 nopadding">
+                                <div class="form-group">
+
+
+
+                                    <input type="number" [(ngModel)]="seance!.MontantDebut" id="demo-input-search2"
+                                        placeholder="0" disabled><br>
+                                    <br>
+                                    <input type="button" class="btn btn-secondary btn-circle btn-lg"
+                                        (click)="afficherOnCalculator(1)" value="1" name="next" />
+                                    <input type="button" class="btn btn-secondary btn-circle btn-lg"
+                                        (click)="afficherOnCalculator(2)" value="2" name="next" />
+                                    <input type="button" class="btn btn-secondary btn-circle btn-lg"
+                                        (click)="afficherOnCalculator(3)" value="3" name="next" />
+                                    <input type="button" class="btn btn-secondary btn-circle btn-lg"
+                                        (click)="afficherOnCalculator(4)" value="4" name="next" />
+
+                                    <input type="button" class="btn btn-secondary btn-circle btn-lg"
+                                        (click)="afficherOnCalculator(5)" value="5" name="next" />
+                                    <input type="button" class="btn btn-secondary btn-circle btn-lg"
+                                        (click)="afficherOnCalculator(6)" value="6" name="next" />
+                                    <br><br>
+                                    <input type="button" class="btn btn-secondary btn-circle btn-lg"
+                                        (click)="afficherOnCalculator(7)" value="7" name="next" />
+                                    <input type="button" class="btn btn-secondary btn-circle btn-lg"
+                                        (click)="afficherOnCalculator(8)" value="8" name="next" />
+                                    <input type="button" class="btn btn-secondary btn-circle btn-lg"
+                                        (click)="afficherOnCalculator(9)" value="9" name="next" />
+                                    <input type="button" class="btn btn-secondary btn-circle btn-lg"
+                                        (click)="afficherOnCalculator(0)" value="0" name="next" />
+                                    <input type="button" class="btn btn-secondary btn-circle btn-lg"
+                                        (click)="afficherOnCalculator('.')" value="." name="next">
+                                    <input type="button" class="btn btn-secondary btn-circle btn-lg"
+                                        (click)="resetCalculator()" value="C" name="next">
+                                </div>
+                                <button type="button" class="btn waves-effect waves-light btn-lg btn-primary"
+                                    (click)="ouvrirSeance()">Ouvrir </button>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

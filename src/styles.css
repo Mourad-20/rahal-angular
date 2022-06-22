@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+/*@import './vendors/myCss/myStyle1.css';*/
+
+@import './vendors/myCss/pages/contact-app-page.css';
+@import './vendors/myCss/pages/footable-page.css';
+@import './vendors/myCss/pages/widget-page.css';
+@import './assets/node_modules/register-steps/steps.css';
+@import './assets/node_modules/bootstrap-table/dist/bootstrap-table.min.css';
+@import './assets/node_modules/footable/css/footable.bootstrap.min.css';
+@import './assets/node_modules/css-chart/css-chart.css';
+@import"./assets/node_modules/dropify/dist/css/dropify.min.css";
+@import './assets/node_modules/icheck/skins/all.css';
+
+/***************************************************************/
+
+@import './vendors/myCss/style.min.css';
+@import './vendors/myCss/pages/form-icheck.css';
+@import './vendors/myCss/pages/register3.css';
+@import './vendors/myCss/pages/inbox.css';
+@import './vendors/myCss/pages/easy-pie-chart.css';
+@import './vendors/myCss/pages/widget-page.css';
+@import './vendors/myCss/pages/contact-app-page.css';
+@import './vendors/myCss/pages/footable-page.css';
+@import './vendors/myCss/pages/widget-page.css';

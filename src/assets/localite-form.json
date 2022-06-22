@@ -1,0 +1,88 @@
+{
+    "controls": [{
+            "id": 2,
+            "name": "Libelle",
+            "label": "Nom:",
+            "value": "",
+            "placeholder": "Nom",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "minLength": 2
+            }
+        },
+        {
+            "id": 1,
+            "name": "Numero",
+            "label": "Code Societe:",
+            "value": "",
+            "placeholder": "Code Societe",
+            "type": "text",
+            "validators": {
+                "required": false,
+                "minLength": 5
+            }
+        },
+        {
+            "id": 2.1,
+            "name": "RC",
+            "label": "Numero RC:",
+            "value": "",
+            "placeholder": "Numero RC:",
+            "type": "text",
+            "validators": {
+                "required": false,
+                "minLength": 5
+            }
+        },
+        {
+            "id": 3,
+            "name": "Adresse1",
+            "label": "Adresse-1:",
+            "value": "",
+            "placeholder": "Adresse-1",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "minLength": 5
+            }
+        },
+        {
+            "id": 4,
+            "name": "Adresse2",
+            "label": "Adresse-2:",
+            "value": "",
+            "placeholder": "Adresse-2",
+            "type": "text",
+            "validators": {
+                "required": false,
+                "minLength": 5
+            }
+        },
+        {
+            "id": 5,
+            "name": "Tel1",
+            "label": "Tel-1:",
+            "value": "",
+            "placeholder": "Tel-1",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "minLength": 5
+            }
+        },
+        {
+            "id": 6,
+            "name": "Tel2",
+            "label": "Tel-2:",
+            "value": "",
+            "placeholder": "Tel-2",
+            "type": "text",
+            "validators": {
+                "required": false,
+                "minLength": 5
+            }
+        }
+
+    ]
+}

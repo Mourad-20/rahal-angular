@@ -1,0 +1,74 @@
+#table-wrapper {
+  position:relative;
+}
+#table-scroll {
+  height:300px;
+  overflow:auto;  
+  margin-top:40px;
+}
+#table-wrapper table {
+  width:100%;
+    
+}
+/* #table-wrapper table * {
+  background:#353c48;
+  color:rgb(255, 255, 255);
+  border:1px solid #4f5467;
+} */
+#table-wrapper table thead th .text{
+  position:absolute;   
+  top:-40px;
+  z-index:2;
+  height:40px;
+  
+  border:1px solid #4f5467;
+}
+
+#table-wrapper table tbody tr  {
+ 
+  height:40px;
+  
+}
+#table-wrapper table tbody td  {
+
+  border:1px solid #4f5467;
+}
+.online {
+    background: #00c292;
+}
+.offline {
+    background: #c21d00;
+}
+.attend {
+    background: #FFC300;
+}
+.profile-status {
+    border: 2px solid #fff;
+    border-radius: 50%;
+    display: inline-block;
+    height: 10px;
+    left: 33px;
+    
+    top: -1px;
+    width: 10px;
+}
+  /* Paragraphes actifs */
+  .xxx:hover{
+    background: red;
+  }
+  .table-danger01 {
+    background-color: #fae1e4;
+    /* --bs-table-striped-bg: #eed6d9;
+    --bs-table-striped-color: #000;
+    --bs-table-active-bg: #e1cbcd;
+    --bs-table-active-color: #000;
+    --bs-table-hover-bg: #e7d0d3;
+    --bs-table-hover-color: #000; */
+    color: #000;
+   
+}
+  .table-init {
+     background:#353c48;
+  color:rgb(255, 255, 255);
+  border:1px solid #4f5467;
+}

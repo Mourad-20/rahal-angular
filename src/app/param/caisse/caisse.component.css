@@ -1,0 +1,26 @@
+.icheckbox_line-green {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 15px 25px 15px 43px;
+    font-size: 13px;
+    line-height: 17px;
+    color: #fff;
+    background: #1b7e5a;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.icheckbox_line-red {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 15px 25px 15px 43px;
+    font-size: 13px;
+    line-height: 17px;
+    color: #fff;
+ background: #e56c69;
+     border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}

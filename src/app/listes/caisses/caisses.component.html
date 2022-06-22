@@ -1,0 +1,88 @@
+<p>utilisateurs works!</p>
+<!-- ============================================================== -->
+<!-- wrapper -->
+<!-- ============================================================== -->
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+    <div class="row page-titles bg-primary">
+        <h4 class="m-b-0 text-white">{{g.title}}</h4>
+    </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card">
+                    <div>
+
+
+                        <div class="table-responsive m-t-40">
+                            <table class="table table-striped table-bordered table-sm row-border hover"
+                                id="datatableexample">
+                                <thead>
+                                    <tr>
+                                        <th>Libelle</th>
+
+
+                                        <th>Option</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr *ngFor="let item of total; index as i;">
+                                        <td>{{(item[0].Libelle)}}</td>
+                                    
+                                        <td>
+                                            <div class="input-group-prepend">
+                                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="false">Action</button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="javascript:void(0)">Modifier</a>
+                                                    <div role="separator" class="dropdown-divider"></div>
+                                                  <!--   <a class="dropdown-item" href="javascript:void(0)" (click)="update(item[0],'commercialisation')">Commercialisation</a>
+                                                    <div role="separator" class="dropdown-divider"></div> -->
+                                                    <a class="dropdown-item" href="javascript:void(0)" (click)="update(item[0],'affectation')">Affectation</a>
+                                                 <!--    <div role="separator" class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="javascript:void(0)" (click)="update(item[0],'presence')">Presence</a> -->
+                                                </div>
+                                            </div>
+                                          <!--   <i (click)="update(item[0],'commercialisation')" class="ti-settings"></i>
+                                        <i (click)="update(item[0],'affectation')" class="ti-settings"></i> 
+                                        <i (click)="update(item[0],'presence')" class="ti-settings"></i>  -->
+                                    </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+</div>

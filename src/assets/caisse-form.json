@@ -1,0 +1,16 @@
+{
+  "controls": [
+    {
+      "name": "Libelle",
+      "label": "Libelle:",
+      "value": "",
+      "placeholder":"Libelle",
+      "type": "text",
+      "validators": {
+        "required": true,
+        "minLength": 5
+      }
+    }
+    
+  ]
+}

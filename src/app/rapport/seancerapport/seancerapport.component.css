@@ -1,0 +1,16 @@
+@media (min-width:576px) {
+    .chart1{
+display: none;
+    }
+}
+@media (min-width:768px) {
+    .chart1 {
+        display: none;
+    }
+}
+@media (min-width:992px) {
+
+    .chart1 {
+        display: block;
+    }
+}

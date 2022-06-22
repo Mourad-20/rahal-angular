@@ -1,0 +1,40 @@
+{
+  "controls": [
+    {
+      "id": "1",
+      "name": "Libelle",
+      "label": "Libelle:",
+      "value": "",
+      "placeholder":"Libelle",
+      "type": "text",
+      "validators": {
+        "required": true,
+        "minLength": 5
+      }
+    },
+       
+      {
+        "id": "3",
+      "name": "EnActivite",
+      "label": "En-Activite",
+      "value": "true",
+      "placeholder":"",
+      "type": "checkbox",
+      "validators": {}
+    },
+     {
+       "id": "2",
+      "name": "Nbrlot",
+      "label": "Nbrlot",
+      "value": "",
+      "placeholder":"Nbrlot",
+     "type": "number",
+      "validators": {
+        "required": true,
+        "minLength": 1
+      }
+    }
+   
+    
+  ]
+}

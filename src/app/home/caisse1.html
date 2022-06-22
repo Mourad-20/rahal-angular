@@ -1,0 +1,801 @@
+
+
+<div style="border:2px solid #0a9396;width:100%;display: block;overflow: auto;">
+	<div style="border:0px solid #0000FF;">
+		<div style="border:0px solid #0000FF;background:#a8dadc;height:50px;padding:0px;margin:0px;">
+			<div style="float:left;width:100%;border:0px solid #FF0000;">
+				<div style="background:#2a9d8f;color:#FFFFFF;padding-left:5px;height:25px;">
+					{{ (g.seance != null) ? ('SESSION N°: ' + g.seance.Numero + ' - Ouverture depuis: ' + (g.seance!.DateDebut | date:'dd/MM/YYYY HH:mm:ss') + ' - Caisse : ' + g.seance.LibelleCaisse ) : '' }} - {{ (g.utilisateur != null ? g.utilisateur!.Nom : '' )  }}
+				</div>
+				<div style="background:#264653;color:#FFFFFF;padding-left:5px;height:25px;">
+				   
+				</div>
+			 </div>
+		</div>
+	</div>
+	
+   <div style="border:0px solid #0000FF;">
+      <div style="border:0px solid #0000FF;background:#a8dadc;height:50px;padding:0px;margin:0px;">
+         <div style="float:left;width:30%;background:#e63946;color:#FFFFFF;border:0px solid #FF0000;padding:0px 0px 0px 20px;height:50px;line-height: 50px;font-weight : bold;">
+            Total : {{ totalVal }} DH
+         </div>
+         <div style="float:left;width:40%;border:0px solid #FF0000;">
+            <div style="background:#2a9d8f;color:#FFFFFF;padding-left:5px;height:25px;">
+               Localité : {{ commande.LibelleLocalite }}
+            </div>
+            <div style="background:#264653;color:#FFFFFF;padding-left:5px;height:25px;">
+               Serveur : {{ commande.NomServeur }}
+            </div>
+         </div>
+         <div style="float:left;width:30%;border:0px solid #FF0000;">
+            <div style="background:#264653;color:#FFFFFF;padding-left:5px;height:25px;">
+               N° Com. : {{ commande.Numero }}
+            </div>
+            <div style="background:#2a9d8f;color:#FFFFFF;padding-left:5px;height:25px;">
+               Date Com. : {{commande.DateCommande | date:'dd/MM/YYYY HH:mm:ss'}}
+            </div>
+         </div>
+         <div class="clearfix">
+         </div>
+      </div>
+   </div>
+   
+   
+   
+   
+   <div>
+      
+	  
+	  
+	  
+      <div style="float:left;width:65%;border:0px solid green;display: block;overflow: auto;">
+         <div style="border:0px solid #ff6d00;height:165px;">
+            <div style="width:100%;background:#2a9d8f;border:0px solid #FF00FF;height:165px">
+               <div style="width:10%;float:left;border:0px solid #FFFFFF;height:50px">
+                  <button class="btn2" (click)="previousCategorie()"><<</button>
+               </div>
+               <div style="background:#2a9d8f;width:80%;float:left;border:0px solid #FF0000;height:160px">
+                  <div (click)="chargerArticle(item.Identifiant)" style="background:#264653;float:left;border:1px solid #fefae0;width:32%;margin : 5px 0px 0px 5px;" *ngFor="let item of categories; index as i;">
+					  <div style="float:left;border:0px solid #FF0000;width:30%;height:100%">
+						 <img style="border:0px solid #000000;width:100%;height:70px" [src]= "imageSrcCat" />
+					  </div>
+					  <div style="float:left;border:0px solid #FF0000;;width:70%">
+						 <div style="border:0px solid #FF0000;color:#FFFFFF;text-align:center;font-size:14px;font-weight:bold">{{ item.Libelle }}</div>
+					  </div>
+				  </div>
+            </div>
+            <div style="width:10%;float:left;border:0px solid #FFFFFF;height:50px">
+               <button class="btn2" (click)="nextCategorie()">>></button>
+            </div>
+         </div>
+      </div>
+	  
+      <div style="border:0px solid #006d00;height:245px">
+         <div style="width:100%;background:#264653;border:0px solid #FF00FF;height:245px;">
+            <div style="width:10%;float:left;border:0px solid #FFFFFF;height:50px">
+               <button class="btn3" (click)="previousArticle()"><<</button>
+            </div>
+            <div style="width:80%;float:left;background:#264653;border:0px solid #FF0000;height:240px">
+               <div (click)="selectArticle(item.Identifiant)" style="float:left;border:1px solid #fefae0;background:#2a9d8f;width:32%;margin : 5px 0px 0px 5px;" *ngFor="let item of articles; index as i;">
+				   <div style="float:left;border:0px solid #FF0000;width:30%;height:100%">
+					  <img style="border:0px solid #000000;width:100%;height:70px" [src]= "imageSrcArt" />
+				   </div>
+				   <div style="float:left;border:0px solid #FF0000;;width:70%;font-size:14px;font-weight:bold">
+					  <div style="background:#2a9d8f;border:0px solid #FF0000;color:#FFFFFF;text-align:center;height:45px">{{ item.Libelle }}</div>
+					  <div style="background:#95D1CC;border:0px solid #FF0000;color:#FFFFFF;text-align:center;height:25px">{{ item.Montant }} DH</div>
+				   </div>
+				</div>
+         </div>
+         <div style="width:10%;float:left;border:0px solid #FFFFFF;height:50px">
+            <button class="btn3" (click)="nextArticle()">>></button>
+         </div>
+      </div>
+   </div>
+   
+   <div style="border:0px solid blue;background:#2a9d8f;">
+	<div style="border:0px solid purple">
+            <div style="background:#2a9d8f;border:0px solid #F0f0F0;height:200px">
+               <table style="height:180px;border:0px solid #00F0F0;border-collapse: collapse;">
+                  <tbody>
+                     <tr>
+                        <td style="border: 0px solid black;width:33.33%">
+                           <button class="btn1" (click)="showListeLocalite()">LOCALITE</button>
+                        </td>
+                        <td style="border: 0px solid black;width:33.33%">
+                           <button class="btn1" *ngIf="utilisateurSvc.isUtilisateurOnGroupes([GroupeCode.CAISSIER])" (click)="reglerTemporairement()">REGLER</button>
+                        </td>
+                        <td style="border: 0px solid black;width:33.33%">
+                           <button class="btn1" (click)="showCommandesNonReglees()">COM. EN ATTENTE</button>
+                        </td>
+                     </tr>
+                     <tr>                        
+                        <td style="border: 0px solid black;width:33.33%">
+                           <button class="btn1" (click)="imprimerPreparation()">IMPRIMER PREPA</button>
+                        </td>
+                        <td style="border: 0px solid black;width:33.33%">
+							<button *ngIf="utilisateurSvc.isUtilisateurOnGroupes(['CAISSIER'])" class="btn1" (click)="showListeServeur()" >SERVEURS</button>
+                        </td>
+                        <td style="border: 0px solid black;width:33.33%">
+							<button class="btn1" (click)="imprimerNote()">IMPRIMER NOTE</button>                           
+                        </td>
+                     </tr>
+                     <tr>
+                        <td style="border: 0px solid black;width:33.33%">
+                           <button class="btn1"  (click)="getGroupeTemporaire()">Groupes</button>
+                        </td>
+                        <td style="border: 0px solid black;width:33.33%">
+                           <button class="btn1"  (click)="showRecap()">RECAP.</button>
+                        </td>
+                        <td style="border: 0px solid black;width:33.33%">
+                           <button class="btn1" *ngIf="utilisateurSvc.isUtilisateurOnGroupes(['CAISSIER'])" (click)="cloturerSeance()">CLOTURER SEANCE</button>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+   </div>
+   
+</div>
+
+
+
+
+<div style="float:left;width:35%;border:0px solid green;display: block;overflow: auto;">
+   <div style="border: 0px solid green;height:310px;width:100%;">
+      
+	  
+	  <table id="montab" style="border:1px solid green;height:200px;display: block;width: 100%;overflow-x: auto;white-space: nowrap;">
+		   <tr style="width:100%;display: table;height:30px;">
+			  <th style="border: 1px solid black;width:48%">
+				 Art.
+			  </th>
+			  <th style="border: 1px solid black;;width:13%">
+				 Qte
+			  </th>
+			  <th style="border: 1px solid black;;width:13%">
+				 P.U
+			  </th>
+			  <th style="border: 1px solid black;;width:13%">
+				 Tot.
+			  </th>
+			  <th style="border: 1px solid black;;width:13%">
+				 CREE
+			  </th>
+		   </tr>
+		   <tr (click)="getRowIndex(i)" style="width:100%;display: table;height:30px;"  [ngClass]="{'dataSelected': idxOne === i}" *ngFor="let item of commande.DetailCommandes; index as i;">
+		   <td style="border: 1px solid black;width:48%" [ngClass]="{'dataSelected': idxOne === i}">{{ item.LibelleArticle }}</td>
+		   <td style="border: 1px solid black;width:13%" [ngClass]="{'dataSelected': idxOne === i}">{{ item.Quantite }}</td>
+		   <td style="border: 1px solid black;width:13%" [ngClass]="{'dataSelected': idxOne === i}">{{ item.Montant }}</td>
+		   <td style="border: 1px solid black;width:13%" [ngClass]="{'dataSelected': idxOne === i}">{{ (item.Quantite * item.Montant) }}</td>
+		   <td style="border: 1px solid black;width:13%" [ngClass]="{'dataSelected': idxOne === i}">{{ item.IdCreePar }}</td>
+		   </tr>
+		</table>
+	  
+	  
+	  
+   </div>
+   <div style="border: 0px solid red;height:50px;background:#00A19D">
+      
+	  <table style="border: 0px solid red;width:100%;height:50px">
+		<tr>
+			<td style="border: 0px solid black;width:25%">
+				<button style="background:#EC1900" class="btn4" (click)="remove()">SUPPRIMER</button>
+			</td>
+			<td style="border: 0px solid black;width:25%">
+				<button style="background:#00BEEC" class="btn4" (click)="nouvCommande()">NOUVELLE</button>
+			</td>
+			<td style="border: 0px solid black;width:25%">
+				<button style="background:#00c70f" class="btn4" (click)="valider()">VALIDER</button>
+			</td>
+			<td style="border: 0px solid black;width:25%">
+				<button class="btn4">-</button>
+			</td>
+		</tr>
+	  </table>
+	  
+	  
+   </div>
+   <div style="border:0px solid blue">
+            <div style="background:#2a9d8f;border:0px solid #FF0000;">
+               <div style="width:100%;background:#e63946;border:0px solid #FF0000;height:40px;line-height: 40px;padding:0px 0px 0px 20px;color:#FFFFFF;font-weight : bold;">
+                  {{ calcVal }}
+               </div>
+               <div>
+                  <table style="width:100%;height:150px;border:0px solid #00F0F0;border-collapse: collapse;">
+                     <tbody>
+                        <tr>
+                           <td style="border: 0px solid black;">
+                              <button class="btnCal" (click)="afficherOnCalculator(7)">7</button>
+                           </td>
+                           <td style="border: 0px solid black;">
+                              <button class="btnCal" (click)="afficherOnCalculator(8)">8</button>
+                           </td>
+                           <td style="border: 0px solid black;">
+                              <button class="btnCal" (click)="afficherOnCalculator(9)">9</button>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="border: 0px solid black;">
+                              <button class="btnCal" (click)="afficherOnCalculator(4)">4</button>
+                           </td>
+                           <td style="border: 0px solid black;">
+                              <button class="btnCal" (click)="afficherOnCalculator(5)">5</button>
+                           </td>
+                           <td style="border: 0px solid black;">
+                              <button class="btnCal" (click)="afficherOnCalculator(6)">6</button>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="border: 0px solid black;">
+                              <button class="btnCal" (click)="afficherOnCalculator(1)">1</button>
+                           </td>
+                           <td style="border: 0px solid black;">
+                              <button class="btnCal" (click)="afficherOnCalculator(2)">2</button>
+                           </td>
+                           <td style="border: 0px solid black;">
+                              <button class="btnCal" (click)="afficherOnCalculator(3)">3</button>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="border: 0px solid black;">
+                              <button class="btnCal" (click)="resetCalculator()">C</button>
+                           </td>
+                           <td style="border: 0px solid black;">
+                              <button class="btnCal" (click)="afficherOnCalculator(0)">0</button>
+                           </td>
+                           <td style="border: 0px solid black;">
+                              <button  class="btnCal" (click)="afficherOnCalculator('.')">.</button>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+</div>
+</div>
+</div>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<!-------------------------------------------------------------->
+<div *ngIf="false">
+   <table border="0" style="width : 100%;margin : 0px;padding :0px;" >
+      <tr>
+         <td width="30%" style="background:#a8dadc">
+            <div style="float:left;width:30%;height :100%;">
+               <table border="5" style="min-height:100%;width:100%;height:100%;">
+                  <tr style="display:block;width:100%;height:100%;">
+                     <td valign="middle" style="display:block;width:100%;height:100%;">						
+                        Total : {{ totalVal }} DH
+                     </td>
+                  </tr>
+               </table>
+            </div>
+            <div width="40%"  style="float:left;width:40%">
+               <table width="100%">
+                  <tr>
+                     <td>
+                        <p style="color:#FFFFFF;margin : 0px;padding : 0px 0px 0px 5px; border:0px solid #00FF00; background:#457b9d;height :100%;min-height: 100% !important;width:100%">Serveur : AHMED</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p style="color:#FFFFFF;margin : 0px;padding : 0px 0px 0px 5px; border:0px solid #00FF00; background:#1d3557;height :100%;min-height: 100% !important;width:100%">
+                           Localité : {{ commande.LibelleLocalite }}
+                        </p>
+                     </td>
+                  </tr>
+               </table>
+            </div>
+            <div width="30%"  style="float:left;width:30%">
+               <table width="100%">
+                  <tr>
+                     <td>
+                        <p style="color:#FFFFFF;margin : 0px;padding : 0px; border:0px solid #00FF00; background:#1d3557;height :100%;min-height: 100% !important;width:100%">N° Com. : {{ commande.Numero }}</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p style="color:#FFFFFF;margin : 0px;padding : 0px; border:0px solid #00FF00; background:#457b9d;height :100%;min-height: 100% !important;width:100%">
+                           Date Com. : {{ commande.DateCommande }}
+                        </p>
+                     </td>
+                  </tr>
+               </table>
+            </div>
+         </td>
+      </tr>
+   </table>
+   <table class="">
+      <tr>
+         <td width="30%" class="">
+            <table width="100%" class="">
+               <tbody>
+                  <tr>
+                     <td colspan="3">
+                        <div class="calcValCadre">
+                           {{ calcVal }}
+                        </div>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <button class="myButton1" (click)="afficherOnCalculator(7)">7</button>
+                     </td>
+                     <td>
+                        <button class="myButton1" (click)="afficherOnCalculator(8)">8</button>
+                     </td>
+                     <td>
+                        <button class="myButton1" (click)="afficherOnCalculator(9)">9</button>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <button class="myButton1" (click)="afficherOnCalculator(4)">4</button>
+                     </td>
+                     <td>
+                        <button class="myButton1" (click)="afficherOnCalculator(5)">5</button>
+                     </td>
+                     <td>
+                        <button class="myButton1" (click)="afficherOnCalculator(6)">6</button>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <button class="myButton1" (click)="afficherOnCalculator(1)">1</button>
+                     </td>
+                     <td>
+                        <button class="myButton1" (click)="afficherOnCalculator(2)">2</button>
+                     </td>
+                     <td>
+                        <button class="myButton1" (click)="afficherOnCalculator(3)">3</button>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <button class="myButton1" (click)="resetCalculator()">C</button>
+                     </td>
+                     <td>
+                        <button class="myButton1" (click)="afficherOnCalculator(0)">0</button>
+                     </td>
+                     <td>
+                        <button  class="myButton1" (click)="afficherOnCalculator('.')">.</button>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </td>
+         <td width="40%" class="myTabListeCommande">
+            <table class="table table-bordered">
+               <tr>
+                  <th>
+                     Art.
+                  </th>
+                  <th>
+                     Qte
+                  </th>
+                  <th>
+                     P.U
+                  </th>
+                  <th>
+                     Tot.
+                  </th>
+               </tr>
+               <tr [ngClass]="{'dataSelected': idxOne === i}" *ngFor="let item of commande.DetailCommandes; index as i;">
+               <td [ngClass]="{'dataSelected': idxOne === i}">{{ item.LibelleArticle }}</td>
+               <td [ngClass]="{'dataSelected': idxOne === i}">{{ item.Quantite }}</td>
+               <td [ngClass]="{'dataSelected': idxOne === i}">{{ item.Montant }}</td>
+               <td [ngClass]="{'dataSelected': idxOne === i}">{{ (item.Quantite * item.Montant) }}</td>
+               </tr>
+            </table>
+            <table>
+               <tr>
+                  <td>
+                     <button (click)="goUp()">UP</button>
+                  </td>
+                  <td>
+                     <button (click)="goDown()">DOWN</button>
+                  </td>
+                  <td>
+                     <button style="background-color: #FF0000" (click)="remove()">X</button>
+                  </td>
+                  <td>
+                     <button style="background-color: #7FFF00" (click)="valider()">VALIDER</button>
+                  </td>
+                  <td>
+                     <button style="background-color: #FF8888" (click)="nouvCommande()">+</button>
+                  </td>
+                  <td>
+                     <button style="background-color: #00CED1" (click)="showListeLocalite()">LOCALITE</button>
+                  </td>
+                  <td>
+                     <button style="background-color: #FFA500"  (click)="showCommandesNonReglees()">COMMANDES</button>
+                  </td>
+                  <td>
+                     <button style="background-color: #0FA500"  (click)="showReglements()">REGLEMENTS</button>
+                  </td>
+               </tr>
+            </table>
+         </td>
+         <td width="30%">
+            <table width="100%" border="1">
+               <tr>
+                  <td><button class="myButton2">C</button></td>
+                  <td><button class="myButton2">C</button></td>
+                  <td><button class="myButton2">C</button></td>
+               </tr>
+               <tr>
+                  <td><button class="myButton2">C</button></td>
+                  <td><button class="myButton2">C</button></td>
+                  <td><button class="myButton2">C</button></td>
+               </tr>
+               <tr>
+                  <td><button class="myButton2">C</button></td>
+                  <td><button class="myButton2">C</button></td>
+                  <td><button class="myButton2">C</button></td>
+               </tr>
+            </table>
+         </td>
+      </tr>
+   </table>
+   <table class="table table-bordered">
+      <tr>
+         <td class="">
+            <button (click)="previousCategorie()"><<</button>
+         </td>
+         <td class="">
+            <table class="table table-bordered myCellCategorieTab">
+               <tr>
+                  <td *ngFor="let item of categories; index as i;">
+                     <div (click)="chargerArticle(item.Identifiant)" >{{ item.Libelle }}</div>
+                  </td>
+               </tr>
+            </table>
+         </td>
+         <td>
+            <button (click)="nextCategorie()">>></button>
+         </td>
+      </tr>
+   </table>
+   <table class="table table-bordered">
+      <tr>
+         <td class="">
+            <button (click)="previousArticle()"><<</button>
+         </td>
+         <td class="">
+            <table class="table table-bordered myCellArticleTab">
+               <tr>
+                  <td *ngFor="let item of articles; index as i;">
+                     <div (click)="selectArticle(item.Identifiant)">{{ item.Libelle }}</div>
+                  </td>
+               </tr>
+            </table>
+         </td>
+         <td>
+            <button (click)="nextArticle()">>></button>
+         </td>
+      </tr>
+   </table>   
+   <!-- commandesNonRegleesModal -->
+   <div class="modal" id="commandesNonRegleesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Commandes non réglées</h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               <table class="table table-bordered">
+                  <tr>
+                     <td class="">
+                        <button (click)="previousCommande()"><<</button>
+                     </td>
+                     <td class="">
+                        <table class="table table-bordered myCellCategorieTab">
+                           <tr>
+                              <td *ngFor="let item of commandes; index as i;">
+                                 <div (click)="selectCommande(item.Identifiant)" >{{ 'N° Com:' + item.Numero + ' / ' + item.LibelleLocalite }} </div>
+                              </td>
+                           </tr>
+                        </table>
+                     </td>
+                     <td>
+                        <button (click)="nextCommande()">>></button>
+                     </td>
+                  </tr>
+               </table>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+               <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- reglementsModal -->
+   <div class="modal" id="reglementsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-fullscreen">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Reglements</h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               <table>
+                  <tr>
+                     <td>
+                        <table border="1" bgcolor="" border-collapse="separate">
+                           <tr>
+                              <th>
+                                 Art.
+                              </th>
+                              <th>
+                                 Qte
+                              </th>
+                              <th>
+                                 P.U
+                              </th>
+                              <th>
+                                 Tot.
+                              </th>
+                           </tr>
+                           <tr [ngClass]="{'dataSelected': idxTwo === i}" *ngFor="let item of commandeReg.DetailCommandesNonRegles; index as i;">
+                           <td [ngClass]="{'dataSelected': idxTwo === i}">{{ item.LibelleArticle }}</td>
+                           <td [ngClass]="{'dataSelected': idxTwo === i}">{{ item.Quantite }}</td>
+                           <td [ngClass]="{'dataSelected': idxTwo === i}">{{ item.Montant }}</td>
+                           <td [ngClass]="{'dataSelected': idxTwo === i}">{{ (item.Quantite * item.Montant) }}</td>
+                           </tr>
+                           <tr>
+                              <td><button (click)="goUpDetComReg()">UP</button></td>
+                              <td><button (click)="goDownDetComReg()">DOWN</button></td>
+                              <td><button (click)="validerArticleToRegler()">SELECT</button></td>
+                              <td><input type="text" [(ngModel)]="quantiteARegler"/></td>
+                           </tr>
+                        </table>
+                     </td>
+                     <td>
+                        <button (click)="moveAllDetailCommande()">>></button>
+                     </td>
+                     <td>
+                        <table border="1" bgcolor="">
+                           <tr>
+                              <th>
+                                 Art.
+                              </th>
+                              <th>
+                                 Qte
+                              </th>
+                              <th>
+                                 P.U
+                              </th>
+                              <th>
+                                 Tot.
+                              </th>
+                           </tr>
+                           <tr *ngFor="let item of detailsCommandeARegles; index as i;">
+                              <td>{{ item.LibelleArticle }}</td>
+                              <td>{{ item.Quantite }}</td>
+                              <td>{{ item.Montant }}</td>
+                              <td>{{ (item.Quantite * item.Montant) }}</td>
+                           </tr>
+                        </table>
+                     </td>
+                     <td>
+                        <button onclick="this.disabled=true;this.value='Submitting...';" (click)="effectuerReglement()">Regler</button>
+                     </td>
+                  </tr>
+               </table>
+               <div>Montant : {{ commandeReg.Montant }} DH</div>
+               <hr/>
+               <div>Reglements existants</div>
+               <hr/>
+               <table>
+                  <tr>
+                     <td>
+                        <table border="1" bgcolor="">
+                           <tr>
+                              <th>
+                                 IdReglement
+                              </th>
+                              <th>
+                                 Numero
+                              </th>
+                              <th>
+                                 Montant
+                              </th>
+                              <th>
+                                 DateReglement
+                              </th>
+                              <th>
+                                 LibelleModeReglement
+                              </th>
+                           </tr>
+                           <tr [ngClass]="{'dataSelected': idxThree === i}" *ngFor="let item of lstReglements; index as i;">
+                           <td [ngClass]="{'dataSelected': idxThree === i}">{{ item.Identifiant }}</td>
+                           <td [ngClass]="{'dataSelected': idxThree === i}">{{ item.Numero }}</td>
+                           <td [ngClass]="{'dataSelected': idxThree === i}">{{ item.Montant }}</td>
+                           <td [ngClass]="{'dataSelected': idxThree === i}">{{ item.DateReglement }}</td>
+                           <td [ngClass]="{'dataSelected': idxThree === i}">{{ item.LibelleModeReglement }}</td>
+                           </tr>
+                        </table>
+                     </td>
+                     <td>
+                        <button (click)="goUpReglement()">UP</button>
+                        <button (click)="goDownReglement()">DOWN</button>
+                     </td>
+                  </tr>
+               </table>
+               <hr/>
+               <div>Details reglement</div>
+               <hr/>
+               <div *ngIf="reglement != null">
+                  <table border="1" bgcolor="">
+                     <tr>
+                        <th>
+                           IdReglement
+                        </th>
+                        <th>
+                           LibelleArticle
+                        </th>
+                        <th>
+                           Quantite
+                        </th>
+                        <th>
+                           Montant
+                        </th>
+                     </tr>
+                     <tr *ngFor="let item of reglement.DetailReglements; index as i;">
+                        <td>{{ item.IdReglement }}</td>
+                        <td>{{ item.LibelleArticle }}</td>
+                        <td>{{ item.Quantite }}</td>
+                        <td>{{ item.Montant }}</td>
+                     </tr>
+                  </table>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+               <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<!-- ##################################################################" -->
+
+<!-- LoaliteModal -->
+   <div class="modal" id="localiteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">LOCALITE</h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+			   
+			   <div style="border:0px solid #ff6d00;height:165px;">
+					<div style="width:100%;background:#2a9d8f;border:0px solid #FF00FF;height:165px">
+					   <div style="width:10%;float:left;border:0px solid #FFFFFF;height:50px">
+						  <button class="btn2" (click)="previousLocalite()"><<</button>
+					   </div>
+					   <div style="background:#2a9d8f;width:80%;float:left;border:0px solid #FF0000;height:160px">
+						  <div (click)="selectLocalite(item.Identifiant)"
+                     style="background:#264653;float:left;border:0px solid #fefae0;width:32%;margin : 5px 0px 0px 5px;" 
+                     *ngFor="let item of localites; index as i;">
+							  <div style="border:1px solid #FFFFFF;color:#FFFFFF;text-align:center;height:50px">{{ item.Libelle }}</div>
+						  </div>
+					</div>
+					<div style="width:10%;float:left;border:0px solid #FFFFFF;height:50px">
+					   <button class="btn2" (click)="nextLocalite()">>></button>
+					</div>
+				 </div>
+			  </div>
+			   
+            </div>
+         </div>
+      </div>
+   </div>
+
+
+   <!-- ServeurModal -->
+   <div class="modal" id="serveurModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">SERVEUR</h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+								
+				<div style="border:0px solid #ff6d00;height:165px;">
+					<div style="width:100%;background:#2a9d8f;border:0px solid #FF00FF;height:165px">
+					   <div style="width:10%;float:left;border:0px solid #FFFFFF;height:50px">
+						  <button class="btn2" (click)="previousServeur()"><<</button>
+					   </div>
+					   <div style="background:#2a9d8f;width:80%;float:left;border:0px solid #FF0000;height:160px">
+						  <div (click)="selectServeur(item.Identifiant)" style="background:#264653;float:left;border:0px solid #fefae0;width:32%;margin : 5px 0px 0px 5px;" *ngFor="let item of serveurs; index as i;">
+							  <div style="border:1px solid #FFFFFF;color:#FFFFFF;text-align:center;height:50px">{{ item.Nom }}</div>
+						  </div>
+					</div>
+					<div style="width:10%;float:left;border:0px solid #FFFFFF;height:50px">
+					   <button class="btn2" (click)="nextServeur()">>></button>
+					</div>
+				 </div>
+			  </div>
+			  
+            </div>
+         </div>
+      </div>
+   </div>
+   
+   <!-- commandesNonRegleesModal -->
+   <div class="modal" id="commandesNonRegleesModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">COMMANDES NON REGLEES</h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+				
+				
+				<div style="border:0px solid #ff6d00;height:165px;">
+					<div style="width:100%;background:#2a9d8f;border:0px solid #FF00FF;height:165px">
+					   <div style="width:10%;float:left;border:0px solid #FFFFFF;height:50px">
+						  <button class="btn2" (click)="previousCommande()"><<</button>
+					   </div>
+					   <div style="background:#2a9d8f;width:80%;float:left;border:0px solid #FF0000;height:160px">
+						  <div (click)="selectCommande(item.Identifiant)" style="background:#264653;float:left;border:1px solid #fefae0;width:32%;margin : 5px 0px 0px 5px;" *ngFor="let item of commandes; index as i;">
+							  <div style="background:#161E54;border:0px solid #FF0000;color:#FFFFFF;text-align:center;height:25">{{ 'N° Com: ' + item.Numero  }}</div>
+							  <div style="background:#FF5151;border:0px solid #FF0000;color:#FFFFFF;text-align:center;height:25px">{{ item.LibelleLocalite }}</div>
+							  <div style="background:#FF9B6A;border:0px solid #FF0000;color:#FFFFFF;text-align:center;height:25">{{ item.NomServeur  }}</div>
+						  </div>
+					</div>
+					<div style="width:10%;float:left;border:0px solid #FFFFFF;height:50px">
+					   <button class="btn2" (click)="nextCommande()">>></button>
+					</div>
+				 </div>
+			  </div>
+			  
+            </div>
+         </div>
+      </div>
+   </div>
+   
+   <!-- recapModal -->
+   <div class="modal" id="recapModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Recap de la session</h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+			
+			
+				<table style="width:100%;height:142px;border:1px solid #264653;border-collapse: collapse;">
+					<tr>
+						<th style="background-color: #264653;color: #ffffff;text-align: center;">Serveur</th>
+						<th style="background-color: #264653;color: #ffffff;text-align: center;">Nombre de commande</th>
+						<th style="background-color: #264653;color: #ffffff;text-align: center;">Montant total (DH)</th>
+					</tr>
+					<tr *ngFor="let item of recaps; index as i;">
+						<td style="text-align: center;">{{ item.NomUtilisateur }}</td>
+						<td style="text-align: center;">{{ item.NombreCommande }}</td>
+						<td style="text-align: center;">{{ item.Montant }}</td>
+					</tr>
+				</table>
+			
+			
+            </div>
+         </div>
+      </div>
+   </div>

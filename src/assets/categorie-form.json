@@ -1,0 +1,50 @@
+{
+  "controls": [
+    {
+      "id": "1",
+      "name": "Libelle",
+      "label": "Libelle:",
+      "value": "",
+      "placeholder":"Libelle",
+      "type": "text",
+      "validators": {
+        "required": true,
+        "minLength": 5
+      }
+    },
+       {
+         "id": "4",
+      "name": "ImageAsString",
+      "label": "Image:",
+      "value": "",
+      "placeholder":"image",
+      "type": "file",
+      "validators": {
+        "required": false
+      }
+    },
+      {
+        "id": "3",
+      "name": "EnActivite",
+      "label": "En-Activite",
+      "value": "true",
+      "placeholder":"",
+      "type": "checkbox",
+      "validators": {}
+    },
+     {
+       "id": "2",
+      "name": "Code",
+      "label": "code",
+      "value": "",
+      "placeholder":"cde",
+     "type": "text",
+      "validators": {
+        "required": true,
+        "minLength": 2
+      }
+    }
+   
+    
+  ]
+}

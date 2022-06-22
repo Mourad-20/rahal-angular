@@ -1,0 +1,263 @@
+<!-- ============================================================== -->
+<!-- wrapper -->
+<!-- ============================================================== -->
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h5 class="text-themecolor">{{ (g.seance != null) ? ('SESSION N°: ' + g.seance.Numero + ' - Ouverture
+                    depuis: ' + (g.seance!.DateDebut |
+                    date:'dd/MM/YYYY HH:mm:ss')) : '' }}
+                </h5>
+            </div>
+            <div class="col-md-7 align-self-center text-end">
+                <div class="d-flex justify-content-end align-items-center">
+                    <ol class="breadcrumb justify-content-end">
+
+                        <li class="breadcrumb-item" ><a href="javascript:void(0)">{{ (g.seance != null) ?
+                                (' Caisse : ' +
+                                g.seance.LibelleCaisse ) : '' }}</a></li>
+                        <li class="breadcrumb-item active">{{ (g.utilisateur != null ?
+                            g.utilisateur!.Nom : '' ) }}</li>
+                    </ol>
+
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-lg-12 col-md-12  chart1">  
+                 <div class="row">
+               <div class="col-md-12 align-self-center text-end">
+    <div class="d-flex justify-content-end align-items-center">
+
+        <button type="button" class="btn btn-info d-none d-lg-block m-l-15 text-white" (click)="NBR()"><i class="fa fa-plus-circle"></i>
+            afficher plus</button>
+    </div>
+</div> 
+            </div></div>
+        <div class="col-md-12">
+  <div class="row">
+                  <div class="col-lg-2 col-md-6 m-b-30 chart1" *ngFor="let item of recaps| slice:0:nbr; index as i;">
+
+                <div class="{{item.IdUtilisateur}} chart"
+                    [ngClass]="item.poucentage<=max? 'easy-pie-chart-1':'easy-pie-chart-2'"
+                    attr.data-percent="{{item.poucentage}}">
+                    <span class="percent">{{item.poucentage}}</span> <br>
+                    <h5>{{item.NomUtilisateur}}</h5>
+                    <h6>({{item.NombreCommande}}){{item.Montant}}DH</h6><canvas height="200" width="200"
+                        style="height: 100px; width: 100px;"></canvas>
+                </div>
+            </div>
+            </div>
+
+        </div>
+          
+
+          
+
+        </div>
+        <div class="row">
+            <div class="col-12">
+
+                <div class="card">
+                    <div>
+                        <div class="form-group row">
+                            <label for="example-datetime-local-input" class="col-md-auto col-form-label">Serveur&nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <div class="col col-lg-2">
+                                <select class="form-select col-12" id="example-month-input2" [(ngModel)]="serveur" name="Serveur"
+                                    (change)="refrechtable()">
+                                    <option selected="" value="">Choose...</option>
+                                    <option *ngFor="let item of serveurs; index as i;">{{item.Nom}}</option>
+                            
+                                </select>
+                            
+                            
+                            </div>
+                            <!-- <label for="example-datetime-local-input" class="col-md-auto col-form-label">Date and
+                                time</label>
+                            <div class="col col-lg-2">
+                                <input class="form-control" type="datetime-local" id="example-datetime-local-input"
+                                    [(ngModel)]="datedebut">
+                            </div> -->
+
+                            <label for="example-datetime-local-input" class="col-md-auto col-form-label">Etat
+                                Commande</label>
+                            <div class="col col-lg-2">
+                                <select class="form-select col-12" id="example-month-input2" [(ngModel)]="etatCommande"
+                                    name="EtatCommande" (change)="refrechtable()">
+                                    ()">
+                                    <option selected="" value="">Choose...</option>
+                                    <option *ngFor="let item of etatCommandes; index as i;">{{item.Code}}</option>
+
+                                </select>
+                            </div>
+
+
+                        </div>
+                        <div class="form-group row">
+                          <!--   <label for="example-datetime-local-input" class="col-md-auto col-form-label">Date and
+                                time</label>
+                            <div class="col col-lg-2">
+                                <input class="form-control" type="datetime-local" [(ngModel)]="datefin"
+                                    id="example-datetime-local-input">
+                            </div> -->
+
+                          
+                           <!--  <div class="col col-lg-3"> <button type="submit" class="btn btn-primary text-white"
+                                  (click)="chargerCommandes()">Submit</button></div>
+
+                        </div>  --> 
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>-</th>
+                                        <th>-</th>
+                                       
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Nombre Commande</td>
+                                        <td>
+                                           <!--  <div class="progress progress-xs margin-vertical-10 ">
+                                                <div class="progress-bar bg-danger" style="width: 35% ;height:6px;"></div>
+                                            </div> -->{{(commandes.length)}}
+                                        </td>
+                                      
+                                      
+                                    </tr>
+                                    <tr>
+                                        <td>Totale (DH)</td>
+                                        <td>
+                                            <!-- <div class="progress progress-xs margin-vertical-10 ">
+                                                <div class="progress-bar bg-warning" style="width: 50%; height:6px;"></div>
+                                            </div> -->{{(sum)}}
+                                        </td>
+                                       
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table-responsive m-t-40">
+                            <table class="table table-striped table-bordered table-sm row-border hover"
+                                id="datatableexample">
+                                <thead>
+                                    <tr>
+                                        <th>Date/Heur</th>
+                                        <th>Num de Commande</th>
+                                        <th>Montant</th>
+                                        <th>Serveur</th>
+                                        <th>Etat</th>
+                                        <th>Table</th>
+                                        <th>Option</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr *ngFor="let item of commandes; index as i;">
+                                        <td>{{(item!.DateCommande |
+                                            date:'dd/MM/YYYY HH:mm:ss')}}</td>
+                                        <td>{{item.Numero}}</td>
+                                        <td>{{item.Montant}}</td>
+                                        <td>{{item.NomServeur}}</td>
+                                        <td>{{item.CodeEtatCommande}}</td>
+                                        <td>{{item.LibelleLocalite}}</td>
+                                        <td><i class="ti-settings" (click)="modale(item.Identifiant)"></i> </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================DetailcommandeModale================================== -->
+    <div id="grid-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="grid-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="grid-title">Detail Commande</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div id="table-wrapper">
+                            <div id="table-scroll">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 55%;"><span style="width: 70%;" class="text ">Name</span>
+                                            </th>
+                                            <th style="width: 15%;"><span style="width: 15%;" class="text">Qut</span>
+                                            </th>
+                                            <th style="width: 15%;"><span style="width: 15%;" class="text">P.U</span>
+                                            </th>
+                                            <th style="width: 15%;"><span style="width: 15%;" class="text">minute</span>
+                                            </th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        <tr *ngFor="let item of commande.DetailCommandes; index as i;"
+                                            [ngClass]="idxOne === i ?'table-danger01':'table-init'">
+
+                                            <td style="width: 55%;"> {{ item.LibelleArticle }} </td>
+                                            <td style="width: 15%;"> {{ item.Quantite }} </td>
+                                            <td style="width: 15%;"> {{ item.Montant }} </td>
+                                            <td style="width: 15%;"> {{ datedif(item)}}min </td>
+
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info waves-effect text-white"
+                        data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+</div>

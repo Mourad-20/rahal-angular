@@ -1,0 +1,23 @@
+CLOTURE DE LA SEANCE<br>
+<table border="1">
+	<tr>
+		<td>montantDebut</td>
+		<td>{{ montantDebut }}</td>
+	</tr>
+	<tr>
+		<td>Montant reglée au cours de la séance</td>
+		<td>{{ montantSeance }}</td>
+	</tr>
+	<tr>
+		<td>Total en caisse</td>
+		<td>{{ montantTotal }}</td>
+	</tr>
+	<tr>
+		<td>Montant</td>
+		<td><input type="text" [(ngModel)]="g.seance!.MontantFin"/></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><button (click)="cloturerSeance()">Cloturer</button></td>
+	</tr>
+</table>

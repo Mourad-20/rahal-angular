@@ -1,0 +1,136 @@
+<div class="card-body">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-body">
+            <!--      <h3 class="card-title">Formulaire</h3> -->
+            <hr>
+
+            <div class="row p-t-20">
+
+                <div *ngFor="let control of jsonFormData?.controls" class="col-md-6">
+                    <div class="form-group" [ngClass]="{'has-danger': submit==true && myForm.controls[control.name].status ==='INVALID'}">
+
+
+                        <div class="form-check" *ngIf="control.type === 'checkbox'">
+                            <input type="checkbox" [value]="control.value" name="styled_checkbox" [formControlName]="control.name" class="form-check-input" id="customCheck2" aria-invalid="false">
+                            <label class="form-check-label" for="customCheck2">{{ control.label }}</label>
+                        </div>
+                        <label class="form-label" *ngIf="control.label !== '' && control.type != 'checkbox'">{{ control.label }}</label>
+
+                        <input placeholder="{{ control.placeholder }}" class="form-control" *ngIf="
+                                        [
+                                          'text',
+                                          'password',
+                                          'email',
+                                          'number',
+                                          'search',
+                                          'tel',
+                                          'url'
+                                        ].includes(control.type) " [type]="control.type" [formControlName]="control.name" [value]="control.value">
+
+                        <div class="col-10" *ngIf="control.type === 'color'">
+                            <input class="form-control d-block" [type]="control.type" [value]="control.value" id="example-color-input" [formControlName]="control.name">
+                        </div>
+
+                        <select class="form-control form-select" [formControlName]="control.name" *ngIf="control.type === 'select'" [value]='control.value'>
+                            
+                            <option value="" disabled selected>select...</option>
+                            <option *ngFor="let option of control?.option" [ngValue]="option.value" >
+                                {{option.text}}</option>
+
+                        </select>
+
+
+                        <div class="dropify-wrapper has-preview" *ngIf="control.type === 'file'">
+                            <div class="dropify-message"><span class="file-icon"></span>
+                                <p>Drag and drop a file here or click</p>
+                                <p class="dropify-error">Ooops, something wrong appended.</p>
+                            </div>
+                            <div class="dropify-loader" style="display: none;"></div>
+                            <div class="dropify-errors-container">
+                                <ul></ul>
+                            </div>
+                            <input [value]='control.value' [formControlName]="control.name" [type]="control.type" id="input-file-now-custom-1" class="dropify" (change)="fileChangeEvent($event)" data-default-file="../assets/node_modules/dropify/src/images/test-image-1.jpg">
+
+                            <button type="button" class="dropify-clear">Remove</button>
+                            <div class="dropify-preview" style="display: block;">
+                                <span class="dropify-render" *ngIf="control.value != ''">
+                            <img id="yourImgTag" src="data:image/png;base64,{{control.value}}"></span>
+                                <span class="dropify-render" *ngIf="control.value === ''">
+                                <img id="yourImgTag" src="../assets/node_modules/dropify/src/images/test-image-1.jpg"></span>
+                                <div class="dropify-infos">
+                                    <div class="dropify-infos-inner">
+                                        <p class="dropify-filename"><span class="file-icon"></span> <span class="dropify-filename-inner">test-image-1.jpg</span></p>
+                                        <p class="dropify-infos-message">Drag and drop or click to replace</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+                    </div>
+                    <!-- <small class="form-control-feedback"> This is inline help </small> -->
+                </div>
+
+
+            </div>
+
+
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn btn-success text-white"> <i class="fa fa-check"></i>
+                Save</button>
+            <button type="cancel" class="btn btn-inverse">Cancel</button>
+        </div>
+    </form>
+</div>
+
+<!-- <div class="col-lg-2 col-md-6 " >
+
+    <div class="card"  style="background-color: {{(color1)}}">
+        <img class="card-img-top img-circle img-fluid img-center"  src="data:image/png;base64"  id="yourImgTag1">
+        <div class="card-body col-10 " style="background-color: {{(color1)}}">
+            <h3 class="font-medium relative text-center">
+               {{libelle}}
+            </h3>
+        </div>
+    </div>
+
+</div> -->
+
+<!-- <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+<div *ngFor="let control of jsonFormData?.controls">
+    <label class="form-label"*ngIf="control.label !== ''">{{ control.label }}</label>
+    <input  class="form-control" *ngIf="
+        [
+          'text',
+          'password',
+          'email',
+          'number',
+          'search',
+          'tel',
+          'url'
+        ].includes(control.type)
+      "
+      [type]="control.type"
+      [formControlName]="control.name"
+      [value]="control.value">
+
+   <select  class="form-control form-select" *ngIf="control.type === 'select'">
+    <option  value="">select...</option>
+       <option *ngFor="let option of control?.option; index as i;" value="{{i}}">{{option.text}}</option>
+
+   </select>
+    <small  *ngIf=" submit && myForm!=undefined  && myForm.controls[control.name].status =='INVALID'"
+        class="form-control-feedback">"INVALID"</small>
+
+</div>
+<button expand="full" type="submit">Submit</button>
+</form>
+ -->

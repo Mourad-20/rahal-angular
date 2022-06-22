@@ -1,0 +1,721 @@
+<!-- ============================================================== -->
+<!-- wrapper -->
+<!-- ============================================================== -->
+
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Bread crumb and right sidebar toggle -->
+        <!-- ============================================================== -->
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h5 class="text-themecolor">{{ (g.seance != null) ? ('SESSION N°: ' + g.seance.Numero + ' - Ouverture depuis: ' + (g.seance!.DateDebut | date:'dd/MM/YYYY HH:mm:ss')) : '' }}
+                </h5>
+            </div>
+            <div class="col-md-7 align-self-center text-end">
+                <div class="d-flex justify-content-end align-items-center">
+                    <ol class="breadcrumb justify-content-end">
+
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">{{ (g.seance != null) ? (' Caisse : ' + g.seance.LibelleCaisse ) : '' }}</a></li>
+                        <li class="breadcrumb-item active">{{ (g.utilisateur != null ? g.utilisateur!.Nom : '' ) }}</li>
+                    </ol>
+
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+
+        <!-- <div class="right-page-header">
+   <div class="d-flex">
+
+
+
+      <div class="ms-auto mb-2"><button type="button" class="btn btn-success btn-circle  me-auto">
+            <i class="ti-angle-double-right"></i>
+         </button>
+
+      </div>
+
+   </div>
+</div>  
+ -->
+
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <div class="row">
+
+            <div class="col-md-6 col-lg-3 col-xlg-2">
+
+                <div class="card">
+                    <div class={{totalColor}}>
+                        <h4 class="font-light text-white">{{ totalVal }} DH</h4>
+                        <h6 class="text-white">Total</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 col-xlg-2">
+
+                <div class="card">
+                    <div class={{totalColor}}>
+                        <h4 class="font-light text-white">{{ totalVal }} DH</h4>
+                        <h6 class="text-white">A Payer</h6>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-md-6 col-lg-3 col-xlg-2" *ngIf="utilisateurSvc.isUtilisateurOnGroupes([GroupeCode.CAISSIER])">
+                <div class="card">
+                    <div class={{serveurColor}} (click)="show('serveur')">
+                        <h4 class="font-light text-white">&nbsp;{{ commande.NomServeur }}</h4>
+                        <h6 class="text-white">Serveur</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 col-xlg-2" *ngIf="utilisateurSvc.isUtilisateurOnGroupes([GroupeCode.SERVEUR])">
+                <div class="card">
+                    <div class={{serveurColor}}>
+                        <h4 class="font-light text-white">&nbsp;{{ commandeCount }}</h4>
+                        <h6 class="text-white">Nombre Commande</h6>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-md-6 col-lg-3 col-xlg-2">
+                <div class="card">
+                    <div class={{tableColor}} (click)="show('localite')">
+                        <h4 class="font-light text-white">&nbsp;{{ commande.LibelleLocalite }}</h4>
+                        <h6 class="text-white">Table</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-3" *ngIf="showlocale">
+
+            <!-- .left-right-aside-column-->
+            <div class="col-md-6 col-lg-3 col-xlg-2" *ngFor="let item of codelocalites; index as i;">
+
+                <div class="card">
+                    <a href="javascript:void(0)" (click)="showListeLocalite(item)">
+
+                        <div [ngClass]="localeactive==item? 'box bg-info text-center':'box bg-dark text-center'">
+                            <h4 class="font-light text-white"> {{item}}</h4>
+                            <h6 class="text-white">&nbsp;</h6>
+                        </div>
+                    </a>
+                </div>
+
+
+
+            </div>
+            <br>
+
+
+            <br>
+
+
+        </div>
+        <div class="row  pt-3" *ngIf="showlocale">
+            <div class="col-md-6 col-lg-3 col-xlg-2" *ngFor="let item of localites; index as i;">
+
+                <div class="card">
+                    <a href="javascript:void(0)" (click)="selectLocalite(item.Identifiant)">
+
+                        <div class="xxx" class={{totalColor}}>
+                            <h4 class="font-light text-white">{{ item.Libelle }}</h4>
+                            <h6 class="text-white">&nbsp;</h6>
+                        </div>
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row  pt-3" *ngIf="showserveur">
+            <div class="col-md-6 col-lg-3 col-xlg-2" *ngFor="let item of serveurs; index as i;">
+
+                <div class="card">
+                    <a href="javascript:void(0)" (click)="selectServeur(item.Identifiant)">
+
+                        <div class="xxx" class={{totalColor}}>
+                            <h4 class="font-light text-white">{{ item.Nom }}</h4>
+                            <h6 class="text-white">&nbsp;</h6>
+                        </div>
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="row" *ngIf="showcaisse">
+            <div class="col-12">
+                <div class="card">
+                    <!-- .left-right-aside-column-->
+                    <div class="contact-page-aside">
+                        <!-- .left-aside-column-->
+                        <div class="left-aside bg-light-part">
+                            <div class="card-body">
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="nav-item" (click)="getnavIndex(1)"> <a class="nav-link  " [ngClass]="{'active': idnav === 1}" data-bs-toggle="tab" href="#home8"><span><i class="ti-home"></i></span></a> </li>
+
+                                    <li class="nav-item" (click)="showListeServeur()"> <a class="nav-link" [ngClass]="{'active': idnav === 2}" data-bs-toggle="tab" href="#profile8" role="tab"><span><i class="ti-user"></i></span></a> </li>
+
+                                    <li class="nav-item" (click)="showListeLocalite('')"> <a class="nav-link" [ngClass]="{'active': idnav === 3}" data-bs-toggle="tab" href="#messages8" role="tab"><span><i class="ti-email"></i></span></a> </li>
+                                </ul>
+                                <!-- Tab panes -->
+                                <div class="tab-content tabcontent-border">
+                                    <div class="tab-pane " [ngClass]="{'active': idnav === 1}" id="home8" role="tabpanel">
+                                        <!--==================================================================================-->
+                                        <div id="table-wrapper">
+                                            <div id="table-scroll">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="width: 5%;"><span style="width: 5%;" class="text ">-</span></th>
+                                                            <th style="width: 60%;"><span style="width: 58%;" class="text ">Name</span></th>
+                                                            <th style="width: 15%;"><span style="width: 15%;" class="text">Qut</span></th>
+                                                            <th style="width: 10%;"><span style="width: 10%;" class="text">U</span></th>
+                                                            <th style="width: 10%;"><span style="width: 10%;" class="text">P.U</span></th>
+
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody *ngFor="let item of commande.DetailCommandes; index as i;">
+
+                                                        <tr (click)="getRowIndex(i)" [ngClass]="idxOne === i ?'table-danger01':'table-init'">
+                                                            <td style="width: 5%;"><span class="profile-status " [ngClass]="{'offline': item.IdCreePar === 0,
+                                    'attend': item.QuantiteServi===0 && item.IdCreePar > 0,
+                                    'online': item.QuantiteServi > 0
+                                 }"></span></td>
+                                                            <td style="width: 60%;"> {{ item.LibelleArticle }} </td>
+                                                            <td style="width: 15%;"> {{ item.Quantite }} </td>
+                                                            <td style="width: 10%;"> {{ item.LibelleTypeUnite }} </td>
+                                                            <td style="width: 10%;"> {{ item.Montant }} </td>
+                                                        </tr>
+                                                        <tr *ngFor="let el of item.AffectationMessages; index as j;" [ngClass]="{'dataSelected': idxOne === j}">
+                                                            <td colspan="5" style="background:#D3ECA7;color:#2a9d8f;border: 0px solid black">. . . . . . . . . . . . . {{ el.LibelleMessage }}</td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!--==================================================================================-->
+                                        <!-- <div class="card-body">
+                                 <div class="table-responsive">
+                                    <table id="montab"  data-bs-toggle="table" data-height="350"  >
+                                    
+                                       <thead>
+                                          <tr>
+                                             <th>Name</th>
+                                             <th>Qut</th>
+                                             <th>P.U</th>
+                                       
+                                          </tr>
+                                       </thead>
+                                       
+                                     
+                                       
+                                       <tbody   *ngFor="let item of commande.DetailCommandes; index as i;">
+                                     
+                                         
+                                             <tr (click)="getRowIndex(i)" [ngClass]="{'table-danger': idxOne === i } " >
+                                                <td class="col-md-7" [ngClass]="{'dataSelected': idxOne === i}"> {{ item.LibelleArticle }} </td>
+                                                <td [ngClass]="{'dataSelected': idxOne === i}"> {{ item.Quantite }} </td>
+                                                <td [ngClass]="{'dataSelected': idxOne === i}"> {{ item.Montant }} </td>
+                                             
+                                             </tr>
+                                            </tbody>
+                                       <tbody>
+                                          <tr>
+                                             <td class="col-md-7"></td>
+                                             <td></td>
+                                             <td></td>
+                                          </tr>
+                                       </tbody>
+                                      
+                                       
+                                    </table>
+                                 </div>
+                              </div>  -->
+                                    </div>
+
+
+                                    <!-- serveurmodal -->
+                                    <div class="tab-pane  p-20" [ngClass]="{'active': idnav === 2}" id="profile8" role="tabpanel">
+
+                                        <!-- Column -->
+
+                                        <div (click)="selectServeur(item.Identifiant)" class="col-xlg-4" *ngFor="let item of serveurs; index as i;">
+                                            <div class="card">
+                                                <div class="box bg-info text-center">
+                                                    <h6 class="font-light text-white">{{ item.Nom }}</h6>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Column -->
+
+                                        <!-- Column -->
+
+                                        <!-- Column -->
+
+                                        <!-- Column -->
+
+                                        <!-- Column -->
+
+
+                                    </div>
+
+                                    <!-- tablemodal -->
+                                    <div class="tab-pane p-20" [ngClass]="{'active': idnav === 3}" id="messages8" role="tabpanel">
+                                        <div class="row">
+                                            <div (click)="selectLocalite(item.Identifiant)" class="col-xlg-4" *ngFor="let item of localites; index as i;">
+                                                <div class="card">
+                                                    <div class="box bg-success text-center">
+                                                        <h6 class="font-light text-white">{{ item.Libelle }}</h6>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-12" *ngIf="type!='CONTROLE'">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex no-block align-items-center">
+                                            <div>
+                                                <button (click)="nouvCommande()" type="button" class="btn btn-outline-info btn-circle  "><i class="ti-plus"></i> </button> &nbsp;
+                                                <button (click)="remove()" type="button" class="btn btn-outline-danger btn-circle  "><i class="ti-trash"></i> </button> &nbsp;
+                                                <button (click)="showListeMessage()" type="button" class="btn btn-outline-info btn-circle  "><i class="ti-comment-alt"></i></button>
+
+                                            </div>
+
+                                            <div class="ms-auto">
+                                                <button (click)="imprimerPreparation()" type="button" class=" btn btn-outline-primary btn-circle  ">
+                                 <i class="icons-Printer"></i> </button> &nbsp;
+                                                <button *ngIf="utilisateurSvc.isUtilisateurOnGroupes([GroupeCode.CAISSIER])" (click)="showReglements()" type="button" class=" btn btn-outline-warning btn-circle " >
+                                 <i class="icons-Dollar-Sign2"></i> </button> &nbsp;
+                                                <button (click)="valider()" type="button" class=" btn btn-outline-success btn-circle  "><i class="ti-check"></i> </button>
+                                            </div>
+                                        </div>
+
+
+
+
+                                        <br>
+
+                                        <input type="text" [(ngModel)]="calcVal" id="demo-input-search2" placeholder="0" disabled><br>
+
+                                        <input type="button" class="btn btn-secondary btn-circle btn-lg" (click)="afficherOnCalculator(1)" value="1" name="next" />
+                                        <input type="button" class="btn btn-secondary btn-circle btn-lg" (click)="afficherOnCalculator(2)" value="2" name="next" />
+                                        <input type="button" class="btn btn-secondary btn-circle btn-lg" (click)="afficherOnCalculator(3)" value="3" name="next" />
+                                        <input type="button" class="btn btn-secondary btn-circle btn-lg" (click)="afficherOnCalculator(4)" value="4" name="next" />
+
+                                        <input type="button" class="btn btn-secondary btn-circle btn-lg" (click)="afficherOnCalculator(5)" value="5" name="next" />
+                                        <input type="button" class="btn btn-secondary btn-circle btn-lg" (click)="afficherOnCalculator(6)" value="6" name="next" />
+                                        <br>
+                                        <input type="button" class="btn btn-secondary btn-circle btn-lg" (click)="afficherOnCalculator(7)" value="7" name="next" />
+                                        <input type="button" class="btn btn-secondary btn-circle btn-lg" (click)="afficherOnCalculator(8)" value="8" name="next" />
+                                        <input type="button" class="btn btn-secondary btn-circle btn-lg" (click)="afficherOnCalculator(9)" value="9" name="next" />
+                                        <input type="button" class="btn btn-secondary btn-circle btn-lg" (click)="afficherOnCalculator(0)" value="0" name="next" />
+                                        <input type="button" class="btn btn-secondary btn-circle btn-lg" (click)="afficherOnCalculator('.')" value="." name="next">
+                                        <input type="button" class="btn btn-secondary btn-circle btn-lg" (click)="resetCalculator()" value="C" name="next">
+
+
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" *ngIf="type=='CONTROLE'">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex no-block align-items-center">
+
+                                            <div class="ms-auto">
+
+                                                &nbsp;<button (click)="controler()" type="button" class=" btn btn-outline-success btn-circle  "><i
+                                       class="ti-check"></i> </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.left-aside-column-->
+                        <div class="right-aside ">
+                            <div class="right-page-header">
+                                <div class="d-flex mb-2">
+                                    <button *ngIf="type!='CAT'&& type!='CONTROLE'" type="button" class="btn btn-info btn-circle " (click)="chargercat()"><i 
+                              class="icon-action-undo"></i> </button>
+
+                                    <button *ngIf="type=='CONTROLE'" type="button" class="btn btn-info btn-circle " (click)="initcaisse()"><i
+                               class="btn-close"></i> </button>
+
+                                    <!--   <div class="align-self-center">
+                              <h4 class="card-title m-t-10">Contacts / Employee List </h4>
+                           </div> -->
+
+                                    <div class="ms-auto ">
+                                        <input type="text" [(ngModel)]="searchTerm" (ngModelChange)="chargerArticlebyname()" id="demo-input-search2" placeholder="search " class="form-control ">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="right-page-header">
+                                <div class="d-flex">
+
+
+                                    <div class="ml-auto mb-2">
+                                        <button type="button" class="btn btn-success btn-circle  my-lg-0" (click)="previousbutton()">
+                                 <i class="ti-angle-double-left "></i> </button>
+                                    </div>
+                                    <div class="ms-auto mb-2"><button type="button" class="btn btn-success btn-circle  me-auto" (click)="nextbutton()">
+                                 <i class="ti-angle-double-right"></i>
+                                                               </button>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- .left-aside-column-->
+                        <!--     <div class="row" *ngIf="type=='CAT'">
+                                <div class="col-lg-2 col-md-6" *ngFor="let item of categories; index as i;">
+                                    <div class="card" style="background-color:#3b5998" (click)="chargerArticle(item.Identifiant)">
+                                        <div class="row ">
+
+                                            <div class="col-10 text-center">
+                                                <h3 class="font-medium relative">
+                                                    {{ item.Libelle }}
+                                                </h3>
+                                                <div >
+
+                                                    <img [src]="item.PathImage" width="90" alt="user" class="img-circle img-fluid img-center" >
+                                                </div>
+                                              
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div> -->
+
+                            <div class="row" *ngIf="type=='COM'">
+                                <div class="col-lg-2 col-md-6" *ngFor="let item of commandes; index as i;">
+                                    <div class="card" style="background-color:#98ac25b9" (click)="selectCommande(item.Identifiant)">
+                                        <div class="row ">
+
+                                            <div class="col-10">
+                                                <h3 class="font-medium text-center">
+                                                    {{ item.Numero }}
+                                                </h3>
+                                                <h3 class="font-medium text-center">
+                                                    {{ item.NomServeur }} &nbsp;&nbsp;
+                                                </h3>
+                                                <h3 class="font-medium text-center">
+                                                    {{ item.LibelleLocalite }} &nbsp;&nbsp;
+                                                </h3>
+                                                <!--  <div class="col-md-4 col-lg-3 text-center">
+                                                      <img [src]="imageSrcArt" width="90" alt="user" class="img-circle img-fluid">
+                                                   </div> -->
+                                                <h5 class="text-muted text-center">
+                                                    {{ item.Montant }} DH
+                                                </h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row" *ngIf="type=='CONTROLE'">
+                                <div class="col-lg-2 col-md-6" *ngFor="let item of commandes; index as i;">
+                                    <div class="card" style="background-color:#f34e38e1" (click)="selectCommande(item.Identifiant)">
+                                        <div class="row ">
+
+                                            <div class="col-10">
+                                                <h3 class="font-medium text-center">
+                                                    {{ item.Numero }}
+                                                </h3>
+                                                <h3 class="font-medium text-center">
+                                                    {{ item.NomServeur }} &nbsp;&nbsp;
+                                                </h3>
+                                                <h3 class="font-medium text-center">
+                                                    {{ item.LibelleLocalite }} &nbsp;&nbsp;
+                                                </h3>
+                                                <!--  <div class="col-md-4 col-lg-3 text-center">
+                                                                           <img [src]="imageSrcArt" width="90" alt="user" class="img-circle img-fluid">
+                                                                        </div> -->
+                                                <h5 class="text-muted text-center">
+                                                    {{ item.Montant }} DH
+                                                </h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row" *ngIf="type=='MESSAGE'">
+                                <div class="col-lg-1 col-md-6" *ngFor="let item of affectationMessageVMs; index as i;">
+                                    <div class="card" [ngStyle]="styleObject(i)" (click)="actionMessage(i)">
+                                        <div class="row ">
+
+                                            <div class="col-10">
+
+                                                <h3 class="font-medium text-center">
+                                                    {{ item.LibelleMessage }} &nbsp;&nbsp;
+                                                </h3>
+                                                <h3 class="font-medium text-center">
+                                                    &nbsp;&nbsp;
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- //======================================================= -->
+                                <!-- <div class="col-lg-2 col-md-6" *ngFor="let item of commande.DetailCommandes[idxOne].AffectationMessages ; index as i;">
+   <div class="card" style="background-color:#d4262698" (click)="removeMessage(i)">
+      <div class="row ">
+
+         <div class="col-10">
+
+            <h3 class="font-medium text-center">
+               {{ item.LibelleMessage }} &nbsp;&nbsp;
+            </h3>
+            <h3 class="font-medium text-center">
+               &nbsp;&nbsp;
+            </h3>
+
+         </div>
+      </div>
+   </div>
+</div> -->
+                            </div>
+                            <div class="row" *ngIf="type=='ARTICLE'">
+                                <div class="col-lg-1 col-md-3 col-sm-2" *ngFor="let item of articles; index as i;">
+                                
+                                    <div class="card" style="background-color:#C34A36" (click)="selectArticle(item.Identifiant)">
+                                        <img class="card-img-top img-circle img-fluid img-center" [src]="item.PathImage">
+                                        <div class="card-body col-10 " style="background-color:#C34A36">
+                                            <h3 class="font-medium relative text-center">
+                                                {{ item.Libelle }}
+                                            </h3>
+                                            <h5 class="text-muted relative">
+                                                {{ item.Montant }} DH
+                                            </h5>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                            <!--     <div class="col-lg-2 col-md-6" *ngFor="let item of articles; index as i;">
+                                    <div class="card" style="background-color:#983b66" (click)="selectArticle(item.Identifiant)">
+                                        <div class="row ">
+
+                                            <div class="col-10">
+                                                <h3 class="font-medium relative">
+                                                    {{ item.Libelle }}
+                                                </h3>
+                                                <div class="col-md-4 col-lg-3 text-center">
+                                                    <img [src]="imageSrcArt" width="90" alt="user" class="img-circle img-fluid">
+                                                </div>
+                                                <h5 class="text-muted relative">
+                                                    {{ item.Montant }} DH
+                                                </h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+
+                            </div>
+
+                             <div class="row">
+                                <div class="col-12">
+                                   
+
+
+                                    <div class="row" *ngIf="type=='CAT'">
+                                       
+                                        <div class="col-lg-1 col-md-6 " *ngFor="let item of categories; index as i;">
+                                           
+                                            <div class="card" [ngStyle]="getstyle(item)" (click)="chargerArticle(item.Identifiant)">
+                                                <img class="card-img-top img-circle img-fluid img-center" [src]="item.PathImage" >
+                                                <div class="card-body col-10 " [ngStyle]="getstyle(item)">
+                                                    <h3 class="font-medium relative text-center">
+                                                        {{ item.Libelle }}
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+
+                                    </div>
+
+                                   
+                                </div>
+                            </div> 
+
+
+
+                        </div>
+                        <!-- /.left-right-aside-column-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- End PAge Content -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Container fluid  -->
+    <!-- ============================================================== -->
+    <!-- reglementModal -->
+    <div class="modal" id="responsive-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Reglements</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="card">
+                                <div class="card-body">
+
+                                    <div class="table-responsive">
+                                        <table class="table color-table info-table">
+
+                                            <thead>
+                                                <tr>
+
+                                                    <th>QTE</th>
+                                                    <th>Article</th>
+                                                    <th>Montant</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody *ngFor="let item of detailReglementsNonRegle; index as i;">
+                                                <tr (click)="getRowIdxSix(i)" [ngClass]="{'table-danger': idxSix === i } ">
+
+                                                    <td [ngClass]="{'dataSelected': idxSix === i}">{{ item.Quantite }}</td>
+                                                    <td [ngClass]="{'dataSelected': idxSix === i}">{{ item.LibelleArticle }}</td>
+                                                    <td [ngClass]="{'dataSelected': idxSix === i}">{{ item.Montant }}</td>
+
+                                                </tr>
+                                            </tbody>
+
+                                        </table>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label class="form-label">User Name</label>
+                                        <div class="input-group mb-0">
+                                            <span class="input-group-text"><i class="mdi mdi-minus"></i></span>
+                                            <input type="number" class="form-control" aria-label="quantite" [(ngModel)]="quantiteToRegler" style="-moz-appearance: textfield">
+                                            <span class="input-group-text"><i class="mdi mdi-plus"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="input-group mb-2">
+                                        <button type="button" class="btn w-25 btn-lg btn-info " (click)="untagToReglement()"><i class="mdi mdi-arrow-left"></i></button>&nbsp;
+
+                                        <button type="button" class="btn w-70 btn-lg btn-success" (click)="tagToReglement()">Ligne<i class="mdi mdi-arrow-right"></i></button></div>
+
+                                    <div class="input-group mb-2">
+                                        <button type="button" class="btn w-70 btn-lg btn-success" (click)="untagAllToReglement()"><i class="mdi mdi-arrow-left"></i>Ticket</button>&nbsp;
+                                        <button type="button" class="btn w-25 btn-lg btn-info" (click)="tagAllToReglement()"><i class="mdi mdi-arrow-right"></i></button></div>
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="card">
+                                <div class="card-body">
+
+                                    <div class="table-responsive">
+                                        <table class="table color-table warning-table">
+
+                                            <thead>
+                                                <tr>
+
+                                                    <th>QTE</th>
+                                                    <th>Article</th>
+                                                    <th>Montant</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody *ngFor="let item of detailReglementsToRegler; index as i;">
+                                                <tr (click)="getRowIdxSix(i)" [ngClass]="{'table-danger': idxSeven === i } ">
+                                                    <td [ngClass]="{'dataSelected': idxSeven === i}">{{ item.Quantite }}</td>
+                                                    <td [ngClass]="{'dataSelected': idxSeven === i}">{{ item.LibelleArticle }}</td>
+                                                    <td [ngClass]="{'dataSelected': idxSeven === i}">{{ item.Montant }}</td>
+
+                                                </tr>
+                                            </tbody>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="col-md-7"></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn w-70 btn-lg btn-success" (click)="effectuerReglement()">Effectuer reglement<i class="icons-Dollar-Sign2"></i></button>
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

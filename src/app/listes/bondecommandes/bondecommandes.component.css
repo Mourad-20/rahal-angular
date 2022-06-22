@@ -1,0 +1,27 @@
+.odd.table-danger01 {
+    background-color: #e46a76;
+    --bs-table-hover-color: #000000;
+    --bs-table-hover-bg: #e46a76;
+}
+
+.even.table-danger01 {
+    background-color: #e46a76;
+    --bs-table-hover-color: #000000;
+    --bs-table-hover-bg: #e46a76;
+}
+
+.m-t-40 {
+    margin-top: 5px;
+}
+
+.table {
+
+    --bs-table-hover-color: #e46a76;
+    /* --bs-table-hover-bg: #303641; */
+
+}
+
+.card {
+    margin-bottom: 10px;
+    margin-left: 10px;
+}

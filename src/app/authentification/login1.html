@@ -1,0 +1,180 @@
+<div >
+
+<div >
+	<div *ngIf="methode=='STANDARD'">
+	<br><br><br><br>
+		<table >
+			<tr>
+				<td>
+					<select id="login" [(ngModel)]="loginValue" >			
+						<option *ngFor="let item of loginVMs; index as i;">{{ item.Login }}</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="text" [(ngModel)]="passwordValue" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<table >
+						<tr>
+							<td>
+								<button class="btn6" (click)="afficher(7)">7</button>
+							</td>
+							<td>
+								<button class="btn6" (click)="afficher(8)">8</button>
+							</td>
+							<td>
+								<button class="btn6" (click)="afficher(9)">9</button>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<button class="btn6" (click)="afficher(4)">4</button>
+							</td>
+							<td>
+								<button class="btn6" (click)="afficher(5)">5</button>
+							</td>
+							<td>
+								<button class="btn6" (click)="afficher(6)">6</button>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<button class="btn6" (click)="afficher(1)">1</button>
+							</td>
+							<td>
+								<button class="btn6" (click)="afficher(2)">2</button>
+							</td>
+							<td>
+								<button class="btn6" (click)="afficher(3)">3</button>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<button class="btn6" >-</button>
+							</td>
+							<td>
+								<button class="btn6" (click)="reset()">C</button>
+							</td>
+							<td>
+								<button class="btn6" (click)="afficher(0)">0</button>
+							</td>
+						</tr>
+						<tr>
+							<td col="3">
+								<button class="btn6" (click)="authentification()">OK</button>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		
+		
+
+
+
+
+
+
+
+
+	</div>
+	<div *ngIf="methode=='JETON'" style="text-align:center;border: 0px solid #FF0000;height:100%;margin:auto;padding-top : 150px;" (click)="selectJetonMethode('JETON')">		
+	<img style="border:0px solid #000000;width:300px;height:300px;margin:auto;" [src]= "imageRfidSrc" />
+	</div>
+
+</div>
+
+<div >	
+	<div >
+		<button class="btn5" (click)="selectJetonMethode('STANDARD')">STANDARD</button>
+	</div>
+	<div  (click)="selectJetonMethode('JETON')">
+		<input  type="text" id="txtJeton" (keydown.enter)="authentification()" [(ngModel)]="jetonValue"/>
+	</div>
+	<div style="text-align:right;border:0px solid #ff5544;width:20%;float:left;;height:100%">
+		<button class="btn5" (click)="selectJetonMethode('JETON')">JETON</button>
+	</div>
+	
+</div>
+
+</div>
+
+
+
+
+<div *ngIf="false">
+<h4>POUR DESKTOP</h4>
+
+<select id="login" [(ngModel)]="loginValue">
+    <option>admin</option>
+	<option>gerant</option>
+	<option>serveur</option>
+	<option>boucher</option>
+</select>
+
+
+<input type="text" [(ngModel)]="passwordValue"/>
+
+
+<table class="table table-bordered">
+	<tr>
+		<td>
+			<button (click)="afficher(7)">7</button>
+		</td>
+		<td>
+			<button (click)="afficher(8)">8</button>
+		</td>
+		<td>
+			<button (click)="afficher(9)">9</button>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<button (click)="afficher(4)">4</button>
+		</td>
+		<td>
+			<button (click)="afficher(5)">5</button>
+		</td>
+		<td>
+			<button (click)="afficher(6)">6</button>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<button (click)="afficher(1)">1</button>
+		</td>
+		<td>
+			<button (click)="afficher(2)">2</button>
+		</td>
+		<td>
+			<button (click)="afficher(3)">3</button>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<button></button>
+		</td>
+		<td>
+			<button (click)="reset()">C</button>
+		</td>
+		<td>
+			<button (click)="afficher(0)">0</button>
+		</td>
+	</tr>
+	<tr>
+		<td col="3">
+			<button (click)="authentification()">OK</button>
+		</td>
+	</tr>
+</table>
+
+<button (click)="selectJetonMethode('JETON')">Jeton</button>
+<button (click)="selectJetonMethode('STANDARD')">Standard</button>
+<input style="border:0px;color:#FFFFFF;width:0px;height:0px" type="text" id="txtJeton" (keydown.enter)="authentification()" [(ngModel)]="jetonValue"/>
+<!--<input type="text" (keydown.enter)="search($event.target.value)" [(ngModel)]="jetonValue"/>--> 
+</div>
