@@ -7,29 +7,9 @@
             <div class="col-lg-12 col-xlg-9 col-md-7">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row" *ngFor="let item of Rapportfilter; index as i;">
-                            <h4 class="card-title m-t-20 p-b-10 border-bottom ">{{item.Libelle}}
-                            </h4>
-                            <div class="col-md-3 col-xs-6 border-end"> <strong>Totale Article </strong>
-                                <br>
-                                <p class="text-muted">{{item.Quantite}}</p>
-                            </div>
-
-                            <div class="col-md-3 col-xs-6"> <strong>Quantite BienTot Expire</strong>
-                                <br>
-                                <p class="text-muted">{{item.expirer| date:'dd/MM/YYYY'}}</p>
-                            </div>
-                            <div class="col-md-3 col-xs-6"> <strong>Option</strong>
-                                <br>
-                                <p class="text-muted">
-                                    <button type="button" class="btn btn-info waves-effect text-white" data-bs-dismiss="modal" (click)="setid(item.IdStock)">Option</button>
-                                </p>
-                            </div>
-                        </div>
-                        <hr>
 
                         <!-- Education -->
-                        <h4 class="card-title m-t-20 p-b-10 border-bottom">Détail</h4>
+                        <h4 class="card-title m-t-20 p-b-10 border-bottom">Lot</h4>
 
                         <div class="container-fluid">
                             <div class="row">
@@ -40,9 +20,8 @@
                                             <thead>
                                                 <tr>
                                                     <td>Numero</td>
-                                                    <th>Categorie de projet</th>
+                                                    <th>Projet</th>
                                                     <th *ngIf="lot.Metre">Metrage</th>
-                                                    <th>Prix</th>
                                                     <th>Etat</th>
 
                                                 </tr>
@@ -52,9 +31,9 @@
                                                 <tr>
                                                     <td>{{(lot.Numero)}}</td>
                                                     <td>{{(lot.LibelleProjet)}}</td>
-                                                    <td *ngIf="lot.Metre">{{(lot.Metre)}} M²</td>
+                                                    <td *ngIf="lot.Metre">{{lot.Metre}} M²</td>
                                                     <td>{{lot.Etat}}</td>
-                                                    <td>{{lot.Prix}}</td>
+
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -66,9 +45,9 @@
                         </div>
 
                         <!-- Certification -->
-                        <h4 class="card-title m-t-20 p-b-10 border-bottom" *ngIf="idstock==null">Repture</h4>
+                        <h4 class="card-title m-t-20 p-b-10 border-bottom">Détails de vente</h4>
 
-                        <div class="container-fluid" *ngIf="idstock==null">
+                        <div class="container-fluid">
                             <div class="row">
                                 <!-- .left-aside-column-->
                                 <div class="col-lg-12">
@@ -76,86 +55,29 @@
                                         <table datatable [dtOptions]="dtOptions" class="display nowrap table table-hover table-striped border" id="datatableexample2">
                                             <thead>
                                                 <tr>
-                                                    <th>#</th>
-                                                    <th>Referance</th>
-                                                    <th>Libelle</th>
-                                                    <th>Categorie</th>
-                                                    <th>Qut</th>
+                                                    <th>N° commande</th>
+                                                    <th>Date validation</th>
+                                                    <th>Achteur</th>
+                                                    <th>Montant declarer</th>
+                                                    <th>Montant restant</th>
+                                                    <th>Valider par</th>
 
                                                 </tr>
                                             </thead>
                                             <tbody>
 
-                                                <tr *ngFor="let item of repture; index as i;">
-                                                    <td>{{i+1}}</td>
-                                                    <td>{{(item.Referance)}}</td>
-                                                    <td>{{(item.Libelle)}}</td>
-                                                    <td>{{item.LibelleCategorie}}</td>
-                                                    <td>{{item.QuantiteDisponible}}</td>
-
-
-
+                                                <tr>
+                                                    <td>522</td>
+                                                    <td>23 juin 2022</td>
+                                                    <td>Ahmed</td>
+                                                    <td>450000 MAD</td>
+                                                    <td>200000 MAD</td>
+                                                    <td>Morad</td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
-
-
                                 </div>
-                            </div>
-                        </div>
-                        <!-- Subjects -->
-                        <div class="container-fluid" *ngIf="idstock!=null">
-                            <div class="row">
-                                <!-- .left-aside-column-->
-                                <div class="row" *ngFor="let item of inventaire; index as i;">
-
-                                    <div class="col-md-1 col-xs-6 border-end align-self-center"> <strong>{{item.Referance}} </strong>
-
-                                    </div>
-
-                                    <div class="col-md-2 col-xs-6 border-end align-self-center"> <strong>{{item.Libelle}}</strong>
-
-                                    </div>
-                                    <div class="col-md-2 col-xs-6 border-end align-self-center"> <strong>{{item.LibelleCategorie}} </strong>
-
-                                    </div>
-
-                                    <div class="col-md-1 col-xs-6 border-end align-self-center">
-                                        <span class="align-self-center">{{item.QuantiteDisponible}}</span>
-
-                                    </div>
-                                    <div class="col-md-6 col-xs-6"> <strong>Detail</strong>
-                                        <div class="col-lg-12">
-
-                                            <div class="table-responsive">
-                                                <table class=" table table-striped table-bordered table-sm row-border hover " id="datatabledc ">
-                                                    <thead>
-                                                        <tr>
-
-                                                            <th>N.Lot</th>
-                                                            <th>Quantite dispo</th>
-                                                            <th>date Expiration</th>
-
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-
-                                                        <tr *ngFor="let item1 of item.detailCommandes; index as i; ">
-
-                                                            <td>{{(item1.NumerodeLot)}}</td>
-                                                            <td>{{item1.Quantite-item1.QuantiteServi}}</td>
-                                                            <td>{{(item1.DateExpiration| date:'dd/MM/YYYY')}}</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <hr>
-                                </div>
-                                <hr>
                             </div>
                         </div>
                     </div>
