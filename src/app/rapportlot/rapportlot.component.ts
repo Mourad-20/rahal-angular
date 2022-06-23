@@ -111,6 +111,7 @@ export class RapportlotComponent implements OnInit {
                     this.rapport.modeRegelement = reg.LibelleModeReglement;
                     this.rapport.montantDeclarer = reg.Montant;
                     console.log(this.rapport);
+                    this.g.showLoadingBlock(false);   
                   }
                 )
                 

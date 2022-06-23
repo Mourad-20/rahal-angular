@@ -1,1 +1,16 @@
 
+::ng-deep .dataTables_info, .dataTables_length {
+    display: none;
+}
+
+::ng-deep  div.dataTables_paginate{
+    display: none;
+}
+
+::ng-deep  .dataTables_length {
+    display: none;
+}
+
+::ng-deep  .dataTables_filter {
+    display: none;
+}
