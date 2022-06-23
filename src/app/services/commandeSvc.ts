@@ -53,7 +53,8 @@ export class CommandeSvc {
 		let data = JSON.stringify(paramDate);
 		return this.http.post(this.g.baseUrl +  '/api/commande/getMouvement', data, options);
 	}
-		getDetailCommandesstockparam(idArticle: number|any) {
+
+	getDetailCommandesstockparam(idArticle: number|any) {
 		let paramInt = {"Valeur" : idArticle};
 		let options = {	headers: this.headers,withCredentials: true	};
 		let data = JSON.stringify(paramInt);
@@ -77,7 +78,7 @@ export class CommandeSvc {
 		return this.http.post(this.g.baseUrl +  '/api/commande/getCommandes', data, options);
 	}
 
-		getCommandeSeance(idSeance: number) {
+	getCommandeSeance(idSeance: number) {
 		let paramInt = {"Valeur" : idSeance};	
 		let options = {	headers: this.headers,withCredentials: true	};
 		let data = JSON.stringify(paramInt);
@@ -92,7 +93,7 @@ export class CommandeSvc {
 		return this.http.post(this.g.baseUrl +  '/api/commande/getCommandes', data, options);
 	}
 
-		getCommandesbycodes(datedebut: string,datefin: string,_code:string) {
+	getCommandesbycodes(datedebut: string,datefin: string,_code:string) {
 		let paramDate = {"_datedebut" : datedebut,"_datefin":datefin,"_code":_code};	
 		let options = {	headers: this.headers,withCredentials: true	};
 		let data = JSON.stringify(paramDate);
@@ -128,7 +129,7 @@ export class CommandeSvc {
 		return this.http.post(this.g.baseUrl +  '/api/commande/getDetailCommandesNonReglees', data, options);
 	}
 	
-		controlerCommande(commande: any) {
+	controlerCommande(commande: any) {
 		let options = {	headers: this.headers,withCredentials: true	};
 		let data = JSON.stringify(commande);
 		return this.http.post(this.g.baseUrl +  '/api/commande/controlerCommande', data, options);

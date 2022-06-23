@@ -35,6 +35,7 @@
                                         <th>Metre carre</th>
                                         <th>Prix</th>
                                         <th>Projet</th>
+                                        <th>Etat</th>
                                         <th>Option</th>
                                     </tr>
                                 </thead>
@@ -45,7 +46,9 @@
                                         <td>{{item.Metre}}</td>
                                         <td>{{item.Prix}}</td>
                                         <td>{{item.LibelleProjet}}</td>
-
+                                        <td>
+                                            <span [ngClass]="item.Etat == 'complete' ? 'complete' : 'encours'"></span>
+                                        </td>
                                         <td>
                                             <div class="input-group-prepend">
                                                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -53,15 +56,16 @@
                                                 <div class="dropdown-menu">
                                                     <a class="dropdown-item" href="javascript:void(0)" (click)="update(item.Identifiant)">Modifier</a>
                                                     <div role="separator" class="dropdown-divider"></div>
-                                                    <!-- <a class="dropdown-item" href="javascript:void(0)"
-                                                        (click)="param(item,'association')">Message</a> -->
+                                                    <a class="dropdown-item" href="javascript:void(0)"
+                                                        (click)="rapportLot(item.Identifiant)">Rapport</a>
                                                     <!-- <div role="separator" class="dropdown-divider"></div>
                                                     <a class="dropdown-item" href="javascript:void(0)" (click)="update(item[0],'affectation')">Affectation</a>
                                                     <div role="separator" class="dropdown-divider"></div>
                                                     <a class="dropdown-item" href="javascript:void(0)" (click)="update(item[0],'presence')">Presence</a>
                                                -->  </div>
                                             </div>
-                                           <!--  <i (click)="update(item.Identifiant)" class="ti-settings"></i> --> </td>
+                                           <!--  <i (click)="update(item.Identifiant)" class="ti-settings"></i> --> 
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

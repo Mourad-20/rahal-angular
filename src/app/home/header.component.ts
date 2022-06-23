@@ -30,8 +30,5 @@ fullscreen(){
   goHome(){
 	  this.router.navigate(['home']);	  
   }
-  
-
-
 
 }

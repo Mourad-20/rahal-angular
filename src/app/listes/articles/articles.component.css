@@ -1,0 +1,17 @@
+.complete {
+    height: 15px;
+    width: 15px;
+    background-color: rgb(247, 59, 59);
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 50%;
+}
+
+.encours {
+    height: 15px;
+    width: 15px;
+    background-color: rgb(29, 138, 62);
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 50%;
+}

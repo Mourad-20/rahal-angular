@@ -1,163 +1,118 @@
-<div >
+<div>
 <section id="wrapper" class="step-register">
 	
 	<div class="register-box">
 		<div class="">
-			<a href="javascript:void(0)" class="text-center m-b-40"><img src="../assets/images/logo-light-icon.png"
-					alt="Home" /><br />
-					<img src="../assets/images/logo-light-text.png" alt="Home" /></a>
-			<!-- multistep form -->
 
-<div class="navbar-header card-row col-lg-12" *ngIf="g.typelogin==''">
-	<a class="navbar-brand2 card-row col-lg-12" href="index.html">
-		<!-- Logo icon --><b>
-			<!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-			<!-- Dark Logo icon -->
-<!-- 			<img src="../assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
- -->			<!-- Light Logo icon -->
-		 	<img src="../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" /> 
-		</b>
-		<!--End Logo icon -->
-		<!-- Logo text --><span>
-			<!-- dark Logo text -->
-			<!-- <img src="../assets/images/logo-text.png" alt="homepage" class="dark-logo" /> -->
-			<!-- Light Logo text -->
-			<img src="../assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
-		</span>
-	</a>
-</div>
 
-<div class="card-row col-lg-12" *ngIf="g.typelogin==''">
-	<div class="row homecaisse">
-			<div class="card-home " (click)="showlogin('admin')">
-				
-				<img [src]="imageCaisse" class="img-circle img-fluid"  />
-					<h4 class="card-title m-t-10">Gestion</h4>
+		<div class="navbar-header card-row col-lg-12" *ngIf="g.typelogin==''">
+			<a class="navbar-brand2 card-row col-lg-12" href="index.html">
+				<!-- Logo icon --><b>
+					<!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+					<!-- Dark Logo icon -->
+		<!-- 			<img src="../assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
+		-->			<!-- Light Logo icon -->
+					<img src="../assets/images/logo-light-icon.png" alt="homepage" class="light-logo" /> 
+				</b>
+				<!--End Logo icon -->
+				<!-- Logo text --><span>
+					<!-- dark Logo text -->
+					<!-- <img src="../assets/images/logo-text.png" alt="homepage" class="dark-logo" /> -->
+					<!-- Light Logo text -->
+					<img src="../assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
+				</span>
+			</a>
+		</div>
+
+		<!-- <div class="card-row col-lg-12" *ngIf="g.typelogin==''">
+			<div class="row homecaisse">
+				<div class="card-home " (click)="showlogin('admin')">
 					
-			</div>
-
-			<div class="card-home " (click)="showlogin('admin')">
-			
-				<img [src]="imageRapport" class="img-circle img-fluid" />
-				<h4 class="card-title m-t-10">Rapports</h4>
-			
-			</div>
-			<div class="card-home " (click)="showlogin('admin')">
-			
-				<img [src]="imageParametre" class="img-circle img-fluid" />
-				<h4 class="card-title m-t-10">Parametre</h4>
-			
-			</div>
-		<!-- 		<div class="card-home ">
-				
-					<img src="../assets/images/users/5.jpg" class="img-circle img-fluid" />
-					<h4 class="card-title m-t-10">Hanna Gover</h4>
-				
-				</div>
-				
-				<div class="card-home ">
-				
-					<img src="../assets/images/users/5.jpg" class="img-circle img-fluid" />
-					<h4 class="card-title m-t-10">Hanna Gover</h4>
-				
-				</div>
-				<div class="card-home ">
-				
-					<img src="../assets/images/users/5.jpg" class="img-circle img-fluid" />
-					<h4 class="card-title m-t-10">Hanna Gover</h4>
-				
-				</div> -->
-</div>
-
-</div>
-
-		<div *ngIf="g.typelogin=='caisse'">
-
-			<form id="msform" >
-				<!-- progressbar -->
-				<fieldset >
-					<h2 class="fs-title">Logine</h2>
-
-					<div *ngIf="methode=='STANDARD'"> 
+					<img [src]="imageCaisse" class="img-circle img-fluid"  />
+						<h4 class="card-title m-t-10">Gestion</h4>
 						
-					<select id="login" [(ngModel)]="loginValue" name="select">
-						<option *ngFor="let item of loginVMs; index as i;">{{ item.Login }}</option>
-					</select>
+				</div>
+
+				<div class="card-home " (click)="showlogin('admin')">
+				
+					<img [src]="imageRapport" class="img-circle img-fluid" />
+					<h4 class="card-title m-t-10">Rapports</h4>
+				
+				</div>
+				<div class="card-home " (click)="showlogin('admin')">
+				
+					<img [src]="imageParametre" class="img-circle img-fluid" />
+					<h4 class="card-title m-t-10">Parametre</h4>
+				
+			</div>
+		</div> -->
+
+		</div>
+
+	<!-- <div *ngIf="g.typelogin=='caisse'"> -->
+<!-- 	<div *ngIf="g.typelogin=='caisse'">
+
+		<form id="msform" >
+			<fieldset >
+				<h2 class="fs-title">Logine</h2>
+
+				<div *ngIf="methode=='STANDARD'"> 
 					
-					<input type="password" [(ngModel)]="passwordValue"  name="pass" disabled />
-					<!--======================================================================-->
-					<input type="button" class="next action-button" (click)="afficher(7)" value="7" name="next" />
-					<input type="button" class="next action-button" (click)="afficher(8)" value="8" name="next" />
-					<input type="button" class="next action-button" (click)="afficher(9)" value="9" name="next" />
-					<br>
-<input type="button" class="next action-button" (click)="afficher(4)" value="4" name="next" />
-<input type="button" class="next action-button" (click)="afficher(5)" value="5" name="next" />
-<input type="button" class="next action-button" (click)="afficher(6)" value="6" name="next" />
-<br>
-<input type="button" class="next action-button" (click)="afficher(1)" value="1" name="next" />
-<input type="button" class="next action-button" (click)="afficher(2)" value="2" name="next" />
-<input type="button" class="next action-button" (click)="afficher(3)" value="3" name="next" />
+				<select id="login" [(ngModel)]="loginValue" name="select">
+					<option *ngFor="let item of loginVMs; index as i;">{{ item.Login }}</option>
+				</select>
+				
+				<input type="password" [(ngModel)]="passwordValue"  name="pass" disabled />
+				<input type="button" class="next action-button" (click)="afficher(7)" value="7" name="next" />
+				<input type="button" class="next action-button" (click)="afficher(8)" value="8" name="next" />
+				<input type="button" class="next action-button" (click)="afficher(9)" value="9" name="next" />
+				<br>
+				<input type="button" class="next action-button" (click)="afficher(4)" value="4" name="next" />
+				<input type="button" class="next action-button" (click)="afficher(5)" value="5" name="next" />
+				<input type="button" class="next action-button" (click)="afficher(6)" value="6" name="next" />
+				<br>
+				<input type="button" class="next action-button" (click)="afficher(1)" value="1" name="next" />
+				<input type="button" class="next action-button" (click)="afficher(2)" value="2" name="next" />
+				<input type="button" class="next action-button" (click)="afficher(3)" value="3" name="next" />
 
-<br>
-<input type="button" class="next action-button"  value="/" name="next" />
-<input type="button" class="next action-button" (click)="afficher(0)" value="0" name="next" />
-<input type="button" class="next action-button" (click)="reset()" value="C" name="next" />
+				<br>
+				<input type="button" class="next action-button"  value="/" name="next" />
+				<input type="button" class="next action-button" (click)="afficher(0)" value="0" name="next" />
+				<input type="button" class="next action-button" (click)="reset()" value="C" name="next" />
 
 
-<br>
-					<!--======================================================================-->
+				<br>
 
+				<input type="submit" class="submit action-button" (click)="authentification()" value="OK" name="submit"/><br>
+				<input type="button" class="next action-button jeton" (click)="selectJetonMethode('JETON')" value="" name="JETON" />
+				</div>
 
-					<input type="submit" class="submit action-button" (click)="authentification()" value="OK" name="submit"/><br>
-					<input type="button" class="next action-button jeton" (click)="selectJetonMethode('JETON')" value="" name="JETON" />
-					</div>
+				<div *ngIf="methode=='JETON'" >
+					<img src="../assets/images/users/nfc.jpg" class="img-circle" width="350"><br>
 
-					<div *ngIf="methode=='JETON'" >
-<img src="../assets/images/users/nfc.jpg" class="img-circle" width="350"><br>
-
-<input type="button" class="previous action-button code" (click)="selectJetonMethode('STANDARD')" value="" name="prev" />
-					</div>
+					<input type="button" class="previous action-button code" (click)="selectJetonMethode('STANDARD')" value="" name="prev" />
+				</div>
+			</fieldset>
+			
+		</form>
+	</div> -->
+	<!-- <div *ngIf="g.typelogin=='admin'"> -->
+		<div>
+			<form id="msform">
+				
+				<fieldset>
+					<h2 class="fs-title">authentification</h2>
+			<!-- 		<h3 class="fs-subtitle">We will never sell it</h3>
+			-->		<input type="text" [(ngModel)]="loginValue" name="login" placeholder="login" />
+					<input type="password"  [(ngModel)]="passwordValue"  name="lname" placeholder="mot de pass" />
+					
+				<!-- 	<input type="button" name="previous" class="previous action-button" value="Previous" /> -->
+					<input type="submit" name="submit" class="submit action-button2" value="Submit" (click)="authentification()"/>
 				</fieldset>
-				
-				
-				<!-- fieldsets -->
-				<!-- <fieldset *ngIf="methode=='STANDARD'">
-					<h2 class="fs-title">Logine</h2>
-					<select id="login" [(ngModel)]="loginValue">
-						<option *ngFor="let item of loginVMs; index as i;">{{ item.Login }}</option>
-					</select>
-					<input type="password"  [(ngModel)]="passwordValue" />
-
-					 <input type="button"  class="next action-button" (click)="selectJetonMethode('JETON')" value="Next" />
-					<input type="submit"  class="submit action-button" (click)="authentification()" value="Submit" /> 
-				</fieldset> -->
-
-				<!--<fieldset *ngIf="methode=='JETON'">
-					<h2 class="fs-title">Logine</h2>
-					<img src="../assets/images/users/nfc.jpg" class="img-circle" width="150">
-					<input type="text" id="txtJeton"  (keydown.enter)="authentification()" [(ngModel)]="jetonValue" />
-					<input type="button"  class="previous action-button" (click)="selectJetonMethode('STANDARD')" value="Previous" />
-				</fieldset>-->
-
 			</form>
 		</div>
-			<div *ngIf="g.typelogin=='admin'">
-<form id="msform">
-	
-	<fieldset>
-		<h2 class="fs-title">authentification Admin</h2>
-<!-- 		<h3 class="fs-subtitle">We will never sell it</h3>
- -->		<input type="text" [(ngModel)]="loginValue" name="login" placeholder="login" />
-		<input type="password"  [(ngModel)]="passwordValue"  name="lname" placeholder="mot de pass" />
 		
-	<!-- 	<input type="button" name="previous" class="previous action-button" value="Previous" /> -->
-		<input type="submit" name="submit" class="submit action-button2" value="Submit" (click)="authentification()"/>
-	</fieldset>
-</form>
-			</div>
-			
-			<div class="clear"></div>
-		</div>
+		<div class="clear"></div>
 	</div>
 </section>
 

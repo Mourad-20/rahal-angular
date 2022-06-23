@@ -3,6 +3,7 @@ export class Lot {
     IdProjet: number = 0;
     Prix: number = 0;
     TF: string = "";
+    Etat: string = "";
     Metre:number=0;
 	LibelleProjet: string = "";
 	Numero: string = "";

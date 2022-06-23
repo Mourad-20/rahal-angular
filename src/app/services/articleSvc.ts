@@ -26,7 +26,7 @@ export class ArticleSvc {
 		return this.http.post(this.g.baseUrl +  '/api/article/AddArticle', data, options);
 	}
 
-updateArticle(article:any){
+	updateArticle(article:any){
 	console.log("okok")
 		let options = {	headers: this.headers,withCredentials: true	};
 		let data = JSON.stringify(article);

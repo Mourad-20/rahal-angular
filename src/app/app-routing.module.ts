@@ -41,6 +41,7 @@ import{AchatComponent}from './achat/achat.component';
 import { listeallimentationsComponent } from './listes/allimentation/allimentations.component';
 import { BondecommandesComponent } from './listes/bondecommandes/bondecommandes.component';
 import { BctransfertComponent } from './bctransfert/bctransfert.component';
+import { RapportlotComponent } from './rapportlot/rapportlot.component';
 const routes: Routes = [
 
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -95,6 +96,7 @@ const routes: Routes = [
 { path: 'clotureSeance', component: FermetureSeanceComponent },
 { path: 'rapport/:id', component: SeancerapportComponent },
 { path: 'rapportdate', component: DaterapportComponent },
+{ path: 'rapportlot/:idlot', component: RapportlotComponent },
 
 { path: 'rapportarticle', component: ArticlerapportComponent },
 { path: 'rapportcaisse', component: CaisserapportComponent },

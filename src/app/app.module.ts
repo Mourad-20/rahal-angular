@@ -85,6 +85,7 @@ import { DetailstockComponent } from './detailstock/detailstock.component';
 import { AchatsComponent } from './listes/achats/achats.component';
 import { BondecommandesComponent } from './listes/bondecommandes/bondecommandes.component';
 import { BctransfertComponent } from './bctransfert/bctransfert.component';
+import { RapportlotComponent } from './rapportlot/rapportlot.component';
 @NgModule({
   declarations: [
   PercentComponent,
@@ -130,7 +131,8 @@ import { BctransfertComponent } from './bctransfert/bctransfert.component';
   DetailstockComponent,
   AchatsComponent,
   BondecommandesComponent,
-  BctransfertComponent
+  BctransfertComponent,
+  RapportlotComponent
 
   ],
   imports: [
