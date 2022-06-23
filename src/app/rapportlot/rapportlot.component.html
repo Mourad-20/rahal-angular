@@ -56,10 +56,11 @@
                                             <thead>
                                                 <tr>
                                                     <th>N° commande</th>
-                                                    <th>Date validation</th>
-                                                    <th>Achteur</th>
+                                                    <th>Mode reglement</th>
+                                                    <th>Date reglement</th>
                                                     <th>Montant declarer</th>
                                                     <th>Montant restant</th>
+                                                    <th>Date validation</th>
                                                     <th>Valider par</th>
 
                                                 </tr>
@@ -67,12 +68,13 @@
                                             <tbody>
 
                                                 <tr>
-                                                    <td>522</td>
-                                                    <td>23 juin 2022</td>
-                                                    <td>Ahmed</td>
-                                                    <td>450000 MAD</td>
-                                                    <td>200000 MAD</td>
-                                                    <td>Morad</td>
+                                                    <td>{{ rapport.nCommande}}</td>
+                                                    <td>{{ rapport.modeRegelement}}</td>
+                                                    <td>{{ rapport.dateRegelement | date}}</td>
+                                                    <td>{{ rapport.montantDeclarer}} MAD</td>
+                                                    <td>{{ rapport.montantRestant}} MAD</td>
+                                                    <td>{{ rapport.dateValidation | date}}</td>
+                                                    <td>{{ rapport.validerPar}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>

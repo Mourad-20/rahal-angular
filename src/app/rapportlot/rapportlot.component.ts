@@ -8,14 +8,22 @@ import { DetailCommande } from '../entities/DetailCommande';
 import{CommandeSvc}from '../services/commandeSvc';
 import { LotSvc } from '../services/lotSvc';
 import { Lot } from '../entities/Lot';
+import { UtilisateurSvc } from '../services/utilisateurSvc';
+import { Utilisateur } from '../entities/Utilisateur';
+import { tap } from 'rxjs/operators';
+import { map } from 'jquery';
+import { ReglementSvc } from '../services/reglementSvc';
+import { Reglement } from '../entities/Reglement';
 
-interface Rapport {
-  nCommande : number;
-  DateValidation : string;
-  Achteur : string;
-  MontantDeclarer : number;
-  MontantRestant :  number;
-  ValiderPar : string;
+class Rapport {
+  nCommande : number = 0;
+  dateValidation : string = "";
+  montantDeclarer : number = 0;
+  montantRestant :  number = 0;
+  validerPar : string = "";
+  modeRegelement : string = "";
+  dateRegelement : string = "";
+  montantRegelement : string = "";
 }
 
 @Component({
@@ -25,21 +33,22 @@ interface Rapport {
 })
 export class RapportlotComponent implements OnInit {
 
-  public items : DetailCommande[] = [];
-  public detailCommandes:DetailCommande[]=[];
+  public rapport = new Rapport();
   public lot : Lot = new Lot();
-  public repport : Lot = new Lot();
   public dtOptions: any = {};
   
-  constructor(public CaisseSvc:CaisseSvc,
+  constructor(	private utilisateurSvc:UtilisateurSvc,
+    public CaisseSvc:CaisseSvc,
+    public reglement: ReglementSvc,
     public CommandeSvc:CommandeSvc,
     public router:Router,
     public route:ActivatedRoute,
     private lotSvc:LotSvc,
-    public g:Globals) {}
-
+    public g:Globals) {
+    }
 
   ngOnInit(): void {
+      
     let id = this.route.snapshot.paramMap.get('idlot')
 
     this.g.title=""
@@ -78,26 +87,35 @@ export class RapportlotComponent implements OnInit {
               console.log(res);
               
               if(etatReponse.Code == this.g.EtatReponseCode.SUCCESS) {
-                this.detailCommandes=res["detailCommandeVMs"]
-                this.detailCommandes= this.detailCommandes.filter(x=>x.IdValiderPar!=null)
-                this.detailCommandes.sort(
-                  function (a:any, b:any) {
-                    return new Date(a.DateExpiration).getTime() - new Date(b.DateExpiration).getTime();
+                               
+                console.log(res['detailCommandeVMs']);
+                let detail : DetailCommande = res['detailCommandeVMs'][0];
+                this.rapport.nCommande = detail.IdCommande;
+                this.rapport.dateValidation = detail.DateValidation;
+                // this.rapport.montantDeclarer = detail.MontantDeclaration;
+                this.rapport.montantRestant = detail.Montant;
+
+                this.utilisateurSvc.getListeUtilisateurs().subscribe(
+                  res => {
+                    let user : Array<Utilisateur> = res['utilisateurVMs'];
+                    this.rapport.validerPar = user.find(e => e.Identifiant == detail.IdValiderPar)?.Nom + ' ' + user.find(e => e.Identifiant == detail.IdValiderPar)?.Prenom;
                   }
-                );
+                )
 
-                this.detailCommandes.sort(
-                  function (a:any, b:any) {
-                  return new Date(a.DateExpiration).getTime() - new Date(b.DateExpiration).getTime();
-                  } 
-                );
-
-                for(let a of this.detailCommandes){
-                  a.PathImageArticle = this.g.baseUrl + '/api/Article/showImageArticle?identifiant=' + a.Identifiant;
-                }
-
-                this.items = this.detailCommandes;       
+                this.reglement.getReglementsByIdCommande(detail.IdCommande).subscribe(
+                  res => {
+                    console.log(res);
+                    let reg : Reglement = res['reglementVMs'][0];
+                    
+                    this.rapport.dateRegelement = reg.DateReglement;
+                    this.rapport.modeRegelement = reg.LibelleModeReglement;
+                    this.rapport.montantDeclarer = reg.Montant;
+                    console.log(this.rapport);
+                  }
+                )
+                
               }
+              
             }
           );
         } else { 

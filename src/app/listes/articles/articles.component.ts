@@ -55,8 +55,10 @@ export class ArticlesComponent implements OnInit {
     //this.g.showLoadingBlock(true);  
     await this.lotSvc.getlots().subscribe(
       (res:any) => {
+        console.log(res);
         let etatReponse = res["EtatReponse"];
 
+        
         if(etatReponse.Code == this.g.EtatReponseCode.SUCCESS) {
 
           this.lots = res["lotVMs"];

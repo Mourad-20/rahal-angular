@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Globals } from '../globals';
 
 import Swal from 'sweetalert2';
+import { Observable } from 'rxjs';
 
 
 @Injectable()
@@ -41,7 +42,7 @@ export class UtilisateurSvc {
 		return this.http.post(this.g.baseUrl +  '/api/utilisateur/modifierUtilisateur', data, options);
 	}
 	
-	getListeUtilisateurs(){
+	getListeUtilisateurs() :Observable<any>{
 		let options = {	headers: this.headers,withCredentials: true	};
 		let data = {};
 		return this.http.post(this.g.baseUrl +  '/api/utilisateur/getListeUtilisateurs', data, options);

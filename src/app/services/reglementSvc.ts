@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient,	HttpErrorResponse,	HttpHeaders} from '@angular/common/http';
 import { CookieService  } from 'ngx-cookie-service';
 import { Globals } from '../globals';
+import { Observable } from 'rxjs';
+import { Reglement } from '../entities/Reglement';
 declare var Swal: any;
 
 
@@ -33,7 +35,7 @@ export class ReglementSvc {
 		return this.http.post(this.g.baseUrl +  '/api/reglement/getReglementById', data, options);
 	}
 
-	getReglementsByIdCommande(idCommande: number) {
+	getReglementsByIdCommande(idCommande: number) : Observable<any>{
 		let paramInt = {"Valeur" : idCommande};
 		let options = {	headers: this.headers,withCredentials: true	};
 		let data = JSON.stringify(paramInt);
@@ -53,7 +55,7 @@ export class ReglementSvc {
 		let data = JSON.stringify(paramInt);
 		return this.http.post(this.g.baseUrl +  '/api/reglement/getMontantTotalReglementForSeance', data, options);
 	}
-		getMontantTotalReglementForCaisse(IdCaisse: number) {
+	getMontantTotalReglementForCaisse(IdCaisse: number) {
 		let paramInt = {"Valeur" : IdCaisse};
 		let options = {	headers: this.headers,withCredentials: true	};
 		let data = JSON.stringify(paramInt);
