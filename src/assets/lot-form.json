@@ -8,10 +8,10 @@
             "type": "text",
             "validators": {
                 "required": true,
-                "minLength": 5
+                "minLength": 3
             }
         },
-        
+
         {
             "id": 2.2,
             "name": "Metre",
@@ -21,7 +21,7 @@
             "type": "text",
             "validators": {
                 "required": true,
-                "minLength": 5
+                "minLength": 3
             }
         },
         {
@@ -47,16 +47,7 @@
                 "required": false,
                 "minLength": 1
             }
-        },
-    
-        {
-            "id": 8,
-            "name": "EnActivite",
-            "label": "En-Activite",
-            "value": "true",
-            "placeholder": "",
-            "type": "checkbox",
-            "validators": {}
         }
+
     ]
 }

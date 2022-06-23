@@ -22,5 +22,6 @@ export class DetailCommande {
     IdCaisse:number=0
     IdTypeUnite :number=0
     AffectationMessages : AffectationMessage[] = [];
-	LibelleCaisse: string = "";
+    LibelleCaisse: string = "";
+    public MontantDeclaration: number = 0;
 }

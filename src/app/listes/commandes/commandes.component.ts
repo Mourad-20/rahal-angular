@@ -224,7 +224,7 @@ return list;
   }
 
   ngOnInit(): void {
-  this.g.title="Listes/Commandes"
+  this.g.title="Listes/Vents"
       this.dtOptions = {
  pagingType: 'full_numbers',
       pageLength: 5,

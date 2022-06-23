@@ -8,7 +8,7 @@
             "type": "text",
             "validators": {
                 "required": true,
-                "minLength": 5
+                "minLength": 3
             }
         },
         {
@@ -23,13 +23,13 @@
                 "minLength": 3
             }
         },
-   
+
         {
             "id": 3,
             "name": "Adresse1",
-            "label": "Adresse-1:",
+            "label": "Adresse-1 :",
             "value": "",
-            "placeholder": "Adresse-1",
+            "placeholder": "Adresse",
             "type": "text",
             "validators": {
                 "required": true,
@@ -39,9 +39,9 @@
         {
             "id": 4,
             "name": "Adresse2",
-            "label": "Adresse-2:",
+            "label": "Adresse-2 :",
             "value": "",
-            "placeholder": "Adresse-2",
+            "placeholder": "Adresse",
             "type": "text",
             "validators": {
                 "required": false,
@@ -57,7 +57,7 @@
             "type": "text",
             "validators": {
                 "required": true,
-                "minLength": 5
+                "minLength": 10
             }
         },
         {
