@@ -9,6 +9,15 @@ import{CommandeSvc}from '../services/commandeSvc';
 import { LotSvc } from '../services/lotSvc';
 import { Lot } from '../entities/Lot';
 
+interface Rapport {
+  nCommande : number;
+  DateValidation : string;
+  Achteur : string;
+  MontantDeclarer : number;
+  MontantRestant :  number;
+  ValiderPar : string;
+}
+
 @Component({
   selector: 'app-rapportlot',
   templateUrl: './rapportlot.component.html',
@@ -19,6 +28,7 @@ export class RapportlotComponent implements OnInit {
   public items : DetailCommande[] = [];
   public detailCommandes:DetailCommande[]=[];
   public lot : Lot = new Lot();
+  public repport : Lot = new Lot();
   public dtOptions: any = {};
   
   constructor(public CaisseSvc:CaisseSvc,
