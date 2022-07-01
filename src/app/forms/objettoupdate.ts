@@ -6,9 +6,6 @@ import { Categorie } from '../entities/Categorie';
 import { ArticleSvc } from '../services/articleSvc';
 import { LocaliteSvc } from '../services/localiteSvc';
 import { LocaliteCode } from '../entities/LocaliteCode';
-import { ClientSvc } from '../services/ClientSvc';
-import { LotSvc } from '../services/lotSvc';
-import { ProjetSvc } from '../services/projetSvc';
 import Swal from 'sweetalert2';
 import { JsonFormData } from '../components/json-form/json-form.component';
 import { ActivatedRoute } from '@angular/router';
@@ -19,9 +16,6 @@ import { FormGroup } from '@angular/forms';
 import { CategorieSvc } from '../services/categorieSvc';
 import { Caisse } from '../entities/Caisse';
 import { Localite } from '../entities/Localite';
-import{Client}from '../entities/Client';
-import { Lot } from '../entities/Lot';
-import { Projet } from '../entities/Projet';
 import { CaisseSvc } from '../services/caisseSvc';
 import{GroupeCode}from '../entities/GroupeCode'; 
 import { HttpClient } from '@angular/common/http';
@@ -33,9 +27,6 @@ import {TypeArticleCode}from '../entities/TypeArticleCode';
 export class Objettoupdate{
     public sub:any
     public id:number|any=null
-    public Client:Client=new Client()
-    public Lot:Lot=new Lot()
-    public Projet:Projet=new Projet()
     public LocaliteCode:LocaliteCode=new LocaliteCode()
     public utilisateur:Utilisateur|any
     public GroupeCode : GroupeCode = new GroupeCode();
@@ -51,7 +42,7 @@ public groupe :any= {
       "validators": {"required": true,
         }
     };
-  constructor(public ProjetSvc:ProjetSvc,public ClientSvc:ClientSvc,public LotSvc:LotSvc,public TypeUniteSvc:TypeUniteSvc,public LocaliteSvc:LocaliteSvc,private http: HttpClient,public zoneSvc:ZoneSvc ,public CaisseSvc:CaisseSvc,public CategorieSvc:CategorieSvc,public ArticleSvc:ArticleSvc,public GroupeSvc:GroupeSvc,public route:ActivatedRoute,private g: Globals,public utilisateurSvc:UtilisateurSvc) {
+  constructor(public TypeUniteSvc:TypeUniteSvc,public LocaliteSvc:LocaliteSvc,private http: HttpClient,public zoneSvc:ZoneSvc ,public CaisseSvc:CaisseSvc,public CategorieSvc:CategorieSvc,public ArticleSvc:ArticleSvc,public GroupeSvc:GroupeSvc,public route:ActivatedRoute,private g: Globals,public utilisateurSvc:UtilisateurSvc) {
   this.sub = this.route.params.subscribe(params => {
       if(params['id']!=null) {
         this.id=params['id']}
@@ -64,76 +55,6 @@ public groupe :any= {
 
      var subject = new Subject<string>();
 switch (this.g.typeform) {
-      case 'client':
-      
-       this.ClientSvc.getclients().subscribe(
-       (res:any) => {
-        let etatReponse = res["EtatReponse"];
-
-        if(etatReponse.Code == this.g.EtatReponseCode.SUCCESS) {
-             // console.log("resultat==",res["utilisateurVMs"])
-
-          let client:Client[] = res["clientVMs"];
-        let objet:Client=client.filter(x => x.Identifiant==this.id)[0]
-      
-
-            subject.next (JSON.stringify(objet)) 
-          
-        }else{ 
-          Swal.fire({ text: etatReponse.Message , icon: 'error'});
-        }
-        //this.g.showLoadingBlock(false);    
-      }
-    );
-        break;
-//==============================================================================================
-    case 'projet':
-      
-       this.ProjetSvc.getprojets().subscribe(
-       (res:any) => {
-        let etatReponse = res["EtatReponse"];
-
-        if(etatReponse.Code == this.g.EtatReponseCode.SUCCESS) {
-             // console.log("resultat==",res["utilisateurVMs"])
-
-          let projet:Projet[] = res["projetVMs"];
-        let objet:Projet=projet.filter(x => x.Identifiant==this.id)[0]
-      
-
-            subject.next (JSON.stringify(objet)) 
-          
-        }else{ 
-          Swal.fire({ text: etatReponse.Message , icon: 'error'});
-        }
-        //this.g.showLoadingBlock(false);    
-      }
-    );
-        break;
-//==============================================================================================
-    case 'lot':
-      
-       this.LotSvc.getlots().subscribe(
-       (res:any) => {
-        let etatReponse = res["EtatReponse"];
-
-        if(etatReponse.Code == this.g.EtatReponseCode.SUCCESS) {
-             // console.log("resultat==",res["utilisateurVMs"])
-
-          let lot:Lot[] = res["lotVMs"];
-        let objet:Lot=lot.filter(x => x.Identifiant==this.id)[0]
-      
-
-            subject.next (JSON.stringify(objet)) 
-          
-        }else{ 
-          Swal.fire({ text: etatReponse.Message , icon: 'error'});
-        }
-        //this.g.showLoadingBlock(false);    
-      }
-    );
-        break;
-//==============================================================================================
-
     case 'utilisateur':
       
        this.utilisateurSvc.getListeUtilisateurs().subscribe(
@@ -391,65 +312,7 @@ rechargercategorieformdata(formData: JsonFormData|any):Observable<string>{
 return form.asObservable();
 
 }
-//=======================================================================================
-rechargerprojetformdata(formData: JsonFormData|any):Observable<string>{
-  
-  var form = new Subject<string>();
-       formData.controls.sort(function (a:any, b:any) {
-  return a.id - b.id;
-});
-        this._objettoupdate().subscribe(
-      async (res:Projet|any)=>{ 
-     try{
-        let objet=JSON.parse(res)
-     this.setobjetfrom(formData,objet)
-}
-     catch{}
-    form.next(JSON.stringify(formData.controls)) 
-  })
-return form.asObservable();
 
-}
-
-rechargerclientformdata(formData: JsonFormData|any):Observable<string>{
-  var form = new Subject<string>();
-   formData.controls.sort(function (a:any, b:any) {
-      return a.id - b.id;
-    } );
-         this._objettoupdate().subscribe(
-      (res:Client|any)=>{
-try{   
- let objet = JSON.parse(res)
-  this.setobjetfrom(formData,objet)
-}
-catch{
-}
-     form.next(JSON.stringify(formData.controls)) 
-    })
- return form.asObservable();
- }
-
-
-rechargerlotformdata(formData: JsonFormData|any):Observable<string>{
-  var form = new Subject<string>();
-    
-      formData.controls.sort(function (a:any, b:any) {
-  return a.id - b.id;
-});
- this._objettoupdate().subscribe(
-       (res:Article|any)=>{
-try{  
-  let objet=JSON.parse(res)
-     this.setobjetfrom(formData,objet)
-}
-catch{}
-      form.next(JSON.stringify(formData.controls)) })
-  
-return form.asObservable();
-}
-
-
-//=======================================================================================
 
 
 
@@ -499,32 +362,11 @@ getobjetfromsubmit(forms: FormGroup|any,objet:Article|Categorie|Utilisateur|Cais
 }
    return objet  
 }
-async getlot(forms: FormGroup|any){
-  let lot1:Lot=new Lot()
- let lot:Lot= this.getobjetfromsubmit(forms,lot1)
-    
-
- return lot
-}
-async getprojet(forms: FormGroup|any){
-
-   let projet1:Projet= new Projet();
-  let projet:Projet= this.getobjetfromsubmit(forms,projet1)
-    
-
-  return projet
-}
-async getClient(forms: FormGroup|any){
-  let client1:Client= new Client();
-  let client:Client= this.getobjetfromsubmit(forms,client1)
-     return client
-
-}
 
 async getarticle(forms: FormGroup|any){
   let article1:Article=new Article()
  let article:Article= this.getobjetfromsubmit(forms,article1)
-    article.ImageAsString=forms.controls.ImageAsString.value
+  //  article.ImageAsString=forms.controls.ImageAsString.value
 
  return article
 }
@@ -786,39 +628,6 @@ for(const taux in this.TauxTva){
          });
       }
       groupestring.next(JSON.stringify(categorie))
-      }
-     
-      )
-     
-        //return this.groupe;
-        return groupestring.asObservable();
-}
- getProjet():Observable<string>{
-
-  var groupestring = new Subject<string>();
-  let projet:any= {
-    "id": 2,
-        "name": "IdProjet",
-      "label": "Projet:",
-      "value": "",
-      "type": "select",
-      "option":[],
-      "validators": {"required": true
-        }
-    }
-  
-
-        this.ProjetSvc.getprojets().subscribe(
-		   (res:any) => {
-			let etatReponse = res["EtatReponse"];
-			if(etatReponse.Code == this.g.EtatReponseCode.SUCCESS) {
-			   let resultat=res["projetVMs"];
-         console.log(resultat)
-         resultat.forEach( (element: any) => {
-            projet.option.push({"text":element.Libelle,"value":element.Identifiant,"selected":false})
-         });
-      }
-      groupestring.next(JSON.stringify(projet))
       }
      
       )

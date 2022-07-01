@@ -45,7 +45,8 @@ public listeIdCaisse:number[]=[]
 public serveursOrg : Utilisateur[] = [];
 public commande : Commande = new Commande();
 public commandeReg : Commande = new Commande();
-  constructor(public caisseSvc:CaisseSvc,public route:ActivatedRoute,public EtatCommandeSvc:EtatCommandeSvc, public g: Globals,private commandeSvc:CommandeSvc,private reglementSvc:ReglementSvc,public utilisateurSvc:UtilisateurSvc,private router: Router) {
+  constructor(public caisseSvc:CaisseSvc,public route:ActivatedRoute,public EtatCommandeSvc:EtatCommandeSvc,
+     public g: Globals,private commandeSvc:CommandeSvc,private reglementSvc:ReglementSvc,public utilisateurSvc:UtilisateurSvc,private router: Router) {
  
  this.g.showLoadingBlock(true);
 
@@ -126,13 +127,11 @@ setTimeout(()=>{
   }, 100);
 }
 async getcommandebyparam(){
-  
-
   let liste=this.commandesOrg.filter( item=>
              ((this.etatCommande!=undefined && this.etatCommande.length>0)?item.CodeEtatCommande==this.etatCommande:item)
           && ((this.serveur!=undefined && this.serveur.length>0)?item.NomServeur==this.serveur:item)
         
-        ) 
+        )
 return liste;
   }
 
@@ -170,7 +169,6 @@ if (index !== -1) {
                  
                                 
      this.dropdownList.push({ item_id: x.Identifiant, item_text: x.Libelle })
-                  console.log(this.serveurs)
                }
                 
                 );

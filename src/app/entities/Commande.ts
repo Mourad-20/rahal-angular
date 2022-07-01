@@ -15,7 +15,7 @@ export class Commande {
     public LibelleCaisse:string="";
     public CodeCommande:string="";
     public IdSource: number|any = null;
-    public MontantDeclaration: number = 0;
+    
     
     public DetailCommandes : DetailCommande[] = [];	
 }

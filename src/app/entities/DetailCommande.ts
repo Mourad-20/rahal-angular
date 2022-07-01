@@ -22,6 +22,10 @@ export class DetailCommande {
     IdCaisse:number=0
     IdTypeUnite :number=0
     AffectationMessages : AffectationMessage[] = [];
-    LibelleCaisse: string = "";
-    public MontantDeclaration: number = 0;
+	LibelleCaisse: string = "";
+      TF : string = "";
+                            TM : string = "";
+                            SPF :number=0
+                            SPI :number=0
+                            MontantDeclaration :number=0
 }

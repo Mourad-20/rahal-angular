@@ -28,9 +28,6 @@ import { PercentComponent } from './rapport/percent.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
-import { ClientSvc } from './services/ClientSvc';
-import { LotSvc } from './services/lotSvc';
-import { ProjetSvc } from './services/projetSvc';
 
 import { UtilisateurSvc } from './services/utilisateurSvc';
 import { CategorieSvc } from './services/categorieSvc';
@@ -85,7 +82,6 @@ import { DetailstockComponent } from './detailstock/detailstock.component';
 import { AchatsComponent } from './listes/achats/achats.component';
 import { BondecommandesComponent } from './listes/bondecommandes/bondecommandes.component';
 import { BctransfertComponent } from './bctransfert/bctransfert.component';
-import { RapportlotComponent } from './rapportlot/rapportlot.component';
 @NgModule({
   declarations: [
   PercentComponent,
@@ -131,8 +127,7 @@ import { RapportlotComponent } from './rapportlot/rapportlot.component';
   DetailstockComponent,
   AchatsComponent,
   BondecommandesComponent,
-  BctransfertComponent,
-  RapportlotComponent
+  BctransfertComponent
 
   ],
   imports: [
@@ -170,9 +165,6 @@ import { RapportlotComponent } from './rapportlot/rapportlot.component';
     ZoneSvc,
     MessageSvc,
     AssociationMessageSvc,
-    ProjetSvc,
-    ClientSvc,
-    LotSvc,
     ],
   bootstrap: [AppComponent]
 })

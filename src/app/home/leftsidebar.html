@@ -46,13 +46,14 @@
                 <!-- <li (click)="goto('clotureSeance')" *ngIf="utilisateurSvc.isUtilisateurOnGroupes([GroupeCode.CAISSIER])"> <a href="javascript:void(0)"><i class="icon-speedometer"></i>
             <span class="hide-menu">Fermeture_Seance </span></a>
     </li> -->
-<!--                 <li *ngIf="utilisateurSvc.isUtilisateurOnGroupes([GroupeCode.GERANT,GroupeCode.ADMIN])">
+                <li *ngIf="utilisateurSvc.isUtilisateurOnGroupes([GroupeCode.GERANT,GroupeCode.ADMIN])">
                     <a [ngClass]="collapse==1?'has-arrow waves-effect waves-dark active':'has-arrow waves-effect waves-dark'"
                         href="javascript:void(0)" aria-expanded="false" (click)="Collapse(5)">
                         <i class="icon-speedometer"></i>
                         <span class="hide-menu">Bon de Commande </span></a>
                 
                     <ul aria-expanded="false" class="collapse" [ngClass]="collapse==5?'collapse in':'collapse'">
+                        <!--   <li (click)="goto('liste/seances')"><a href="javascript:void(0)">Seances </a></li> -->
                         <li (click)='goto("bondecommande")'><a href="javascript:void(0)">Nouveau </a></li>
                         <li (click)='goto("liste/bondecommandes")'><a href="javascript:void(0)">Liste</a></li>
                 
@@ -65,18 +66,20 @@
                         <span class="hide-menu">Achat </span></a>
                 
                     <ul aria-expanded="false" class="collapse" [ngClass]="collapse==5?'collapse in':'collapse'">
+                        <!--   <li (click)="goto('liste/seances')"><a href="javascript:void(0)">Seances </a></li> -->
                         <li (click)='goto("achat")'><a href="javascript:void(0)">Nouveau </a></li>
                         <li (click)='goto("liste/Achats")'><a href="javascript:void(0)">Liste</a></li>
                 
                     </ul>
                 </li>
 
-                <li *ngIf="utilisateurSvc.isUtilisateurOnGroupes([GroupeCode.GERANT,GroupeCode.ADMIN])">
+    <li *ngIf="utilisateurSvc.isUtilisateurOnGroupes([GroupeCode.GERANT,GroupeCode.ADMIN])">
                     <a [ngClass]="collapse==1?'has-arrow waves-effect waves-dark active':'has-arrow waves-effect waves-dark'" href="javascript:void(0)" aria-expanded="false" (click)="Collapse(5)">
                         <i class="icon-speedometer"></i>
                         <span class="hide-menu">Commande </span></a>
 
                     <ul aria-expanded="false" class="collapse" [ngClass]="collapse==5?'collapse in':'collapse'">
+                        <!--   <li (click)="goto('liste/seances')"><a href="javascript:void(0)">Seances </a></li> -->
                         <li (click)='goto("vente")'><a href="javascript:void(0)">Nouveau </a></li>
                         <li (click)='goto("liste/commande")'><a href="javascript:void(0)">Liste</a></li>
 
@@ -89,6 +92,7 @@
                         <span class="hide-menu">Devis </span></a>
 
                     <ul aria-expanded="false" class="collapse" [ngClass]="collapse==6?'collapse in':'collapse'">
+                        <!--   <li (click)="goto('liste/seances')"><a href="javascript:void(0)">Seances </a></li> -->
                         <li (click)='goto("devis")'><a href="javascript:void(0)">Nouveau </a></li>
                         <li (click)='goto("liste/devis")'><a href="javascript:void(0)">Liste</a></li>
 
@@ -100,6 +104,7 @@
                         <span class="hide-menu">Allimentation Stock </span></a>
 
                     <ul aria-expanded="false" class="collapse" [ngClass]="collapse==6?'collapse in':'collapse'">
+                        <!--   <li (click)="goto('liste/seances')"><a href="javascript:void(0)">Seances </a></li> -->
                         <li (click)='goto("caisse")'><a href="javascript:void(0)">Nouveau </a></li>
                         <li (click)='goto("liste/allimentation")'><a href="javascript:void(0)">Liste</a></li>
 
@@ -112,14 +117,15 @@
                         <span class="hide-menu">Rapports </span></a>
 
                     <ul aria-expanded="false" class="collapse" [ngClass]="collapse==1?'collapse in':'collapse'">
+                        <!--   <li (click)="goto('liste/seances')"><a href="javascript:void(0)">Seances </a></li> -->
                         <li (click)='goto("rapportcaisse")'><a href="javascript:void(0)">Stock</a></li>
                         <li (click)='goto("rapportarticle")'><a href="javascript:void(0)">Articles</a></li>
 
                     </ul>
-                </li> -->
+                </li>
                 <li *ngIf="utilisateurSvc.isUtilisateurOnGroupes([GroupeCode.GERANT,GroupeCode.ADMIN])">
                     <a [ngClass]="collapse==1?'has-arrow waves-effect waves-dark active':'has-arrow waves-effect waves-dark'" href="javascript:void(0)" aria-expanded="false" (click)="Collapse(1)">
-                        <i class="icon-user"></i>
+                        <i class="icon-speedometer"></i>
                         <span class="hide-menu">Utilisateur <!-- <span
                     class="badge rounded-pill bg-cyan ms-auto">4</span> --></span>
                     </a>
@@ -134,13 +140,13 @@
 
                 <li *ngIf="utilisateurSvc.isUtilisateurOnGroupes([GroupeCode.GERANT,GroupeCode.ADMIN])">
                     <a [ngClass]="collapse==2?'has-arrow waves-effect waves-dark active':'has-arrow waves-effect waves-dark'" href="javascript:void(0)" aria-expanded="false" (click)="Collapse(2)">
-                        <i class="icon-people"></i><span class="hide-menu">Client
+                        <i class="icon-speedometer"></i><span class="hide-menu">Societes
                             <!-- <span
                                                 class="badge rounded-pill bg-cyan ms-auto">4</span> -->
                         </span>
                     </a>
                     <ul aria-expanded="false" class="collapse" [ngClass]="collapse==2?'collapse in':'collapse'">
-                        <li (click)='forme("client")'><a href="javascript:void(0)">Nouveau </a></li>
+                        <li (click)='forme("localite")'><a href="javascript:void(0)">Nouveau </a></li>
                         <li (click)='liste("localites")'><a href="javascript:void(0)">Liste</a></li>
 
                     </ul>
@@ -149,13 +155,13 @@
 
                 <li *ngIf="utilisateurSvc.isUtilisateurOnGroupes([GroupeCode.GERANT,GroupeCode.ADMIN])">
                     <a [ngClass]="collapse==2?'has-arrow waves-effect waves-dark active':'has-arrow waves-effect waves-dark'" href="javascript:void(0)" aria-expanded="false" (click)="Collapse(2)">
-                        <i class="icon-briefcase"></i><span class="hide-menu">Projet
+                        <i class="icon-speedometer"></i><span class="hide-menu">Categorie
                             <!-- <span
                                                 class="badge rounded-pill bg-cyan ms-auto">4</span> -->
                         </span>
                     </a>
                     <ul aria-expanded="false" class="collapse" [ngClass]="collapse==2?'collapse in':'collapse'">
-                        <li (click)='forme("projet")'><a href="javascript:void(0)">Nouveau </a></li>
+                        <li (click)='forme("categorie")'><a href="javascript:void(0)">Nouveau </a></li>
                         <li (click)='liste("categories")'><a href="javascript:void(0)">Liste</a></li>
 
                     </ul>
@@ -163,22 +169,24 @@
                 <!--=======================================================================================================================================-->
                 <li *ngIf="utilisateurSvc.isUtilisateurOnGroupes([GroupeCode.GERANT,GroupeCode.ADMIN])">
                     <a [ngClass]="collapse==3?'has-arrow waves-effect waves-dark active':'has-arrow waves-effect waves-dark'" href="javascript:void(0)" aria-expanded="false" (click)="Collapse(3)">
-                        <i class="icon-basket-loaded"></i><span class="hide-menu">Lot
+                        <i class="icon-speedometer"></i><span class="hide-menu">Article
                                 <!-- <span
                                                     class="badge rounded-pill bg-cyan ms-auto">4</span> -->
                         </span>
                     </a>
                     <ul aria-expanded="false" class="collapse" [ngClass]="collapse==3?'collapse in':'collapse'">
-                        <li (click)='forme("lot")'><a href="javascript:void(0)">Nouveau </a></li>
+                        <li (click)='forme("article")'><a href="javascript:void(0)">Nouveau </a></li>
                         <li (click)='liste("articles")'><a href="javascript:void(0)">Liste</a></li>
 
                     </ul>
                 </li>
                 <!--=======================================================================================================================================-->
 
-<!--                 <li *ngIf="utilisateurSvc.isUtilisateurOnGroupes([GroupeCode.GERANT,GroupeCode.ADMIN])">
+                <li *ngIf="utilisateurSvc.isUtilisateurOnGroupes([GroupeCode.GERANT,GroupeCode.ADMIN])">
                     <a [ngClass]="collapse==4?'has-arrow waves-effect waves-dark active':'has-arrow waves-effect waves-dark'" href="javascript:void(0)" aria-expanded="false" (click)="Collapse(4)">
-                        <i class="icon-home"></i><span class="hide-menu">Stock
+                        <i class="icon-speedometer"></i><span class="hide-menu">Stock
+                        <!-- <span
+                                                                class="badge rounded-pill bg-cyan ms-auto">4</span> -->
                         </span>
                     </a>
                     <ul aria-expanded="false" class="collapse" [ngClass]="collapse==4?'collapse in':'collapse'">
@@ -186,21 +194,8 @@
                         <li (click)='liste("caisses")'><a href="javascript:void(0)">Liste</a></li>
 
                     </ul>
-                </li> -->
-                <!--=======================================================================================================================================-->
-
-                <li *ngIf="utilisateurSvc.isUtilisateurOnGroupes([GroupeCode.GERANT,GroupeCode.ADMIN])">
-                    <a [ngClass]="collapse==1?'has-arrow waves-effect waves-dark active':'has-arrow waves-effect waves-dark'" href="javascript:void(0)" aria-expanded="false" (click)="Collapse(5)">
-                        <i class="icon-home"></i>
-                        <span class="hide-menu">Commande </span></a>
-
-                    <ul aria-expanded="false" class="collapse" [ngClass]="collapse==5?'collapse in':'collapse'">
-                        <!--   <li (click)="goto('liste/seances')"><a href="javascript:void(0)">Seances </a></li> -->
-                        <li (click)='goto("vente")'><a href="javascript:void(0)">Nouveau </a></li>
-                        <li (click)='goto("liste/commande")'><a href="javascript:void(0)">Liste</a></li>
-
-                    </ul>
                 </li>
+                <!--=======================================================================================================================================-->
 
             </ul>
         </nav>

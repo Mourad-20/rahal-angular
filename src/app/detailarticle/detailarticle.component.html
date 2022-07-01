@@ -79,8 +79,23 @@
                             </div>
                         </div>
                         <hr>
+                
                         <div class="table-responsive m-t-40">
-                            <h4 class="card-title p-b-10 border-bottom">Accessoire</h4>
+                          
+        <div class="row ">
+            <div class="col-md-5 align-self-center">
+                <h4 class="text-themecolor">Accessoire</h4>
+            </div>
+            <div class="col-md-7 align-self-center text-end">
+                <div class="d-flex justify-content-end align-items-center">
+        
+                    <button type="button" class="btn btn-info d-none d-lg-block m-l-15 text-white" (click)="setmodal('Accessoire')"><i
+                            class="fa fa-plus-circle"></i> Create New</button>
+                </div>
+            </div>
+        </div>
+                          
+                            
                             <table class="table table-striped table-bordered table-sm row-border hover" id="datatableexample">
                                 <thead>
                                     <tr>
@@ -88,6 +103,7 @@
 
 
                                         <th>Quantite</th>
+                                        <th>Option</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -96,25 +112,43 @@
                                         <td>{{(item.LibelleArticle)}}</td>
 
                                         <td> {{(item.Quantite)}}</td>
+                                        <td><button (click)="remove(i)" type="button" class="btn btn-outline-danger btn-circle  "><i class="ti-trash"></i>
+                                            </button></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                         <hr>
                         <div class="table-responsive m-t-40">
-                            <h4 class="card-title p-b-10 border-bottom">Recette</h4>
-                            <table class="table table-striped table-bordered table-sm row-border hover" id="datatableexample">
+
+                            <div class="row ">
+                                <div class="col-md-5 align-self-center">
+                                    <h4 class="text-themecolor">Recette</h4>
+                                </div>
+                                <div class="col-md-7 align-self-center text-end">
+                                    <div class="d-flex justify-content-end align-items-center">
+                            
+                                        <button type="button" class="btn btn-info d-none d-lg-block m-l-15 text-white" (click)="setmodal('Recette')"><i
+                                                class="fa fa-plus-circle"></i> Create New</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                           
+                            <table class="table table-striped table-bordered table-sm row-border hover" id="datatableexample2">
                                 <thead>
                                     <tr>
                                         <th>Libelle</th>
-
+<th>Option</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
                                     <tr *ngFor="let item of Recette; index as i;">
                                         <td>{{(item.LibelleArticle)}}</td>
-
+<td><button (click)="remove(i)" type="button" class="btn btn-outline-danger btn-circle  "><i class="ti-trash"></i>
+    </button></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -266,30 +300,44 @@
 
                         <div class="col-lg-12">
                             <div class="card">
-                               <!--<form *ngIf="mode">
-<form >
-                                    <div class="form-body">
-                                        <div class="row p-t-20">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
+                               
 
-                                                    <label class="form-label">Libelle</label>
-
-                                                    <input placeholder="Libelle" class="form-control" type="text" [(ngModel)]="libelle" name="libelle">
-
+                                <form   >
+                                    <div class="row ">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label">Articles</label>
+                                                <div class="col-10">
+                                                    <ng-multiselect-dropdown [settings]="dropdownSettings" [(ngModel)]="listeIdArticle" [data]="dropdownList" formControlName="myItems"
+                                                        (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)" (onDeSelect)="onItemDeSelect($event)"
+                                                        (onDeSelectAll)="onUnSelectAll()">
+                                                    </ng-multiselect-dropdown>
+                                                  
                                                 </div>
-                                              
                                             </div>
                                         </div>
-
-
+                                        <!-- ======================================================================================================
+                                 -->
+                                        <div class="col-md-6" *ngIf="addAccessoire">
+                                            <div class="form-group">
+                                                <label class="form-label">Quantite</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="number" class="form-control" placeholder="Quantite" aria-label="Password"[(ngModel)]="Quantite"
+                                                         name="quantite">
+                                
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="form-actions">
-                                        <button type="button" class="btn btn-success text-white" (click)="valider()"> <i class="fa fa-check"></i>
-                                            Save</button>
-                                        <button type="cancel" class="btn btn-inverse" (click)="afficherforme()">Cancel</button>
-                                    </div>
-                                </form>--> 
+                                   
+                                
+                                
+                                    
+                                  
+                                
+                                    <button type="submit" class="btn btn-success me-2 text-white" (click)="valider()">Submit</button>
+                                    <button type="submit" class="btn btn-dark" >Cancel</button>
+                                </form>
                             </div>
 
                         </div>

@@ -5,4 +5,8 @@ export class Message {
     LibelleArticle:string = "";
     LibelleType:string = "";
     Quantite:number = 0;
+    IdArticle:number=0;
+IdArticleSrc:number=0;
+IdTypeMessage:number=0;
+     
 }

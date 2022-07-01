@@ -51,16 +51,16 @@
                                 <thead>
                                     <tr>
                                         <th>Libelle</th>
-                                    <th>Nombre de Lots</th>
+                                       
 
                                         <th>Option</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    <tr *ngFor="let item of projets; index as i;">
+                                    <tr *ngFor="let item of categories; index as i;">
                                         <td>{{(item.Libelle)}}</td>
-                                    <td>{{(item.Nbrlot)}}</td>
+                                      
                                         <td><i (click)="update(item.Identifiant)" class="ti-settings"></i> </td>
                                     </tr>
                                 </tbody>

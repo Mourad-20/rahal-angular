@@ -117,6 +117,13 @@ public numcommande:string=""
 public caisses:Caisse[]=[]
 public caissesOrg:Caisse[]=[]
 public Unite:number=0
+//===================================
+ public TF : string = "";
+ public  TM : string = "";
+  public SPF :number=0
+  public SPI :number=0
+  public MontantDeclaration :number=0
+public Montant :number=0
 //--------------------------------------
 public lstReglements : Reglement[] = [];
 public idxThree : number = -1
@@ -552,8 +559,7 @@ nextArticle(){
   
 
   selectArticle(){
-	//this.scrollToBottom();
-//console.log(idArticle)
+debugger
 	if(this.commande.CodeEtatCommande != this.EtatCommandeCode.REGLEE){
 		if(this.calcVal == '0'){
       this.calcVal = '1';
@@ -563,13 +569,20 @@ nextArticle(){
       detailCommande.LibelleArticle = this.article.Libelle;
       detailCommande.IdTypeUnite=this.article.IdTypeUnite;
       detailCommande.Quantite = Number(this.quantite);
-      detailCommande.Montant = this.article.Montant;
+      detailCommande.Montant = this.Montant;
       detailCommande.TauxTVA=this.article.TauxTva;
       detailCommande.LibelleTypeUnite=this.article.LibelleTypeUnite
       detailCommande.DateExpiration=this.dateexpiration
       detailCommande.Description=this.description
       detailCommande.NumerodeLot=this.numlot
       detailCommande.IdCaisse=this.caisse.Identifiant
+
+      detailCommande.TF=this.TF
+      detailCommande.TM=this.TM
+      detailCommande.SPF=this.SPF
+      detailCommande.SPI=this.SPF
+      detailCommande.MontantDeclaration=this.MontantDeclaration
+
 if(this.validatepush(detailCommande)){
   this.commande.DetailCommandes.push(detailCommande);
       this.calcVal = '0';
@@ -585,22 +598,7 @@ if(detailCommande.IdArticle==0){
 res= false
 this.Message="selectioner article"
 }
-else if(detailCommande.Quantite==0 ){
-res=false
-this.Message="erreur de quanite saisie"
-}
-else if(detailCommande.DateExpiration=="" ){
-res=false
-this.Message="erreur date expiration"
-}
-else if(detailCommande.IdTypeUnite==0 ){
-  res=false
-  this.Message="erreur Unite"
-  }
-  else if(detailCommande.IdCaisse==0 ){
-    res=false
-    this.Message="erreur Stock"
-    }
+
 else{
   res=true
 }
@@ -611,6 +609,12 @@ return res
     this.description=''
     this.numlot=''
     this.dateexpiration=""
+    this.TM=""
+    this.TF=""
+    this.SPF=0
+    this.SPI=0
+    this.Montant=0
+    this.MontantDeclaration=0
     this.article=new Article()
     this.caisse=new Caisse()
   }

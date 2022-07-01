@@ -31,24 +31,21 @@
                             <table class="table table-striped table-bordered table-sm row-border hover" id="datatableexample">
                                 <thead>
                                     <tr>
-                                        <th>numero</th>
-                                        <th>Metre carre</th>
-                                        <th>Prix</th>
-                                        <th>Projet</th>
-                                        <th>Etat</th>
+                                        <th>Libelle</th>
+                                        <th>Categorie</th>
+                                        <th>Montant</th>
+
                                         <th>Option</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    <tr *ngFor="let item of lots; index as i;">
-                                        <td>{{(item.Numero)}}</td>
-                                        <td>{{item.Metre}}</td>
-                                        <td>{{item.Prix}}</td>
-                                        <td>{{item.LibelleProjet}}</td>
-                                        <td>
-                                            <span [ngClass]="item.Etat == 'complete' ? 'complete' : 'encours'"></span>
-                                        </td>
+                                    <tr *ngFor="let item of articles; index as i;">
+                                        <td>{{(item.Libelle)}}</td>
+                                        <td>{{item.LibelleCategorie}}</td>
+                                        <td>{{item.Montant}}</td>
+
+
                                         <td>
                                             <div class="input-group-prepend">
                                                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
@@ -57,15 +54,14 @@
                                                     <a class="dropdown-item" href="javascript:void(0)" (click)="update(item.Identifiant)">Modifier</a>
                                                     <div role="separator" class="dropdown-divider"></div>
                                                     <a class="dropdown-item" href="javascript:void(0)"
-                                                        (click)="rapportLot(item.Identifiant)">Rapport</a>
+                                                        (click)="param(item,'association')">Message</a>
                                                     <!-- <div role="separator" class="dropdown-divider"></div>
                                                     <a class="dropdown-item" href="javascript:void(0)" (click)="update(item[0],'affectation')">Affectation</a>
                                                     <div role="separator" class="dropdown-divider"></div>
                                                     <a class="dropdown-item" href="javascript:void(0)" (click)="update(item[0],'presence')">Presence</a>
                                                -->  </div>
                                             </div>
-                                           <!--  <i (click)="update(item.Identifiant)" class="ti-settings"></i> --> 
-                                        </td>
+                                           <!--  <i (click)="update(item.Identifiant)" class="ti-settings"></i> --> </td>
                                     </tr>
                                 </tbody>
                             </table>

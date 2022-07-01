@@ -15,6 +15,7 @@
                             <input type="checkbox" [value]="control.value" name="styled_checkbox" [formControlName]="control.name" class="form-check-input" id="customCheck2" aria-invalid="false">
                             <label class="form-check-label" for="customCheck2">{{ control.label }}</label>
                         </div>
+                        
                         <label class="form-label" *ngIf="control.label !== '' && control.type != 'checkbox'">{{ control.label }}</label>
 
                         <input placeholder="{{ control.placeholder }}" class="form-control" *ngIf="

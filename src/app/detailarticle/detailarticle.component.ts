@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { RouterModule, Routes, Router } from '@angular/router';
 import { Article } from '../entities/Article';
 import { Globals } from '../globals';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute } from '@angular/router';
+import {  IDropdownSettings } from 'ng-multiselect-dropdown';
+import { TypeArticleCode } from '../entities/TypeArticleCode';
 import Swal from 'sweetalert2'
 import { ArticleSvc } from '../services/articleSvc';
 import { MessageSvc } from '../services/messageSvc';
@@ -34,6 +36,15 @@ interface mouvementchart {
   styleUrls: ['./detailarticle.component.css']
 })
 export class DetailarticleComponent implements OnInit {
+   dropdownList:any = [];
+  selectedItems = [];
+  dropdownSettings:IDropdownSettings= {};
+  public idarticle:number=0
+public listeIdArticle:number[]=[]
+public ArticleRecette:Article[]=[]
+public ArticleAccessoire:Article[]=[]
+TypeArticleCode=new TypeArticleCode()
+public  selecttype:boolean|any=true
   public id:number=0
   sub: any;
   public mouvements:mouvement[]=[]
@@ -45,10 +56,11 @@ public detailCommandesMouvement:DetailCommande[]=[]
 public detailCommandesOrg:DetailCommande[]=[]
 public inventaire:number=0;
 public purcentinventaire:number=0;
-
+public addRecette=false;
+public addAccessoire=false;
 public commande:number=0;
 public purcentcommande:number=0;
-
+public Quantite:number=0
 public maxpurcent:number=0;
 
 public typecommande:string="VENT"
@@ -74,6 +86,8 @@ public datefin:string=format(new Date(),'yyyy-MM-dd')+"T23:59:59";
    }
 
   ngOnInit(): void {
+ 
+
     let x=1;
     this.g.showLoadingBlock(true);
     this.articleSvc.getArticles().subscribe(
@@ -81,12 +95,16 @@ public datefin:string=format(new Date(),'yyyy-MM-dd')+"T23:59:59";
       let etatReponse = res["EtatReponse"];
       if(etatReponse.Code == this.g.EtatReponseCode.SUCCESS) {
       this.g.articlesOrg = res["articleVMs"];
+      console.log(this.g.articlesOrg)
       for(let a of this.g.articlesOrg){
           a.PathImage = this.g.baseUrl + '/api/Article/showImageArticle?identifiant=' + a.Identifiant;
         }
+        this.ArticleRecette= this.g.articlesOrg.filter(x=>x.LibelleTypeArticle==this.TypeArticleCode.Code_MP);
+        this.ArticleAccessoire= this.g.articlesOrg.filter(x=>x.LibelleTypeArticle==this.TypeArticleCode.Code_EM);
         this.sub = this.route.params.subscribe(params => {
           //this.g.showLoadingBlock(true)
              if(params['id']!=null && params['id']!=0) {
+              this.idarticle=params['id']
                this.Article=this.g.articlesOrg.filter(x=>x.Identifiant==params['id'])[0]
 
 
@@ -143,8 +161,32 @@ this.Accessoire=this.Message.filter(x=>x.LibelleType==this.MessageCode.ACCESSOIR
       this.g.showLoadingBlock(false);    
     }
     );
-  }
 
+   
+  }
+onItemSelect(item: any) {
+    console.log(item.item_id)
+    if(this.selecttype){
+ this.listeIdArticle=[]
+  this.listeIdArticle.length=0
+    }
+    this.listeIdArticle.push(item.item_id)
+  }
+  onSelectAll(items: any) {
+    items.forEach((x: number|any)=>
+      this.listeIdArticle.push(x.item_id)
+      )
+  }
+    onUnSelectAll() {
+    this.listeIdArticle=[];
+}
+  onItemDeSelect(item: any) {
+    const index: number = this.listeIdArticle.indexOf(item.item_id);
+if (index !== -1) {
+    this.listeIdArticle.splice(index, 1);
+}
+    console.log(this.listeIdArticle);
+}
   async chargerCommandes(){
     var datedebut:string=format(this.addMonths(new Date(), -3),'yyyy-MM-dd')+"T00:00:00";
     console.log(datedebut)
@@ -177,27 +219,19 @@ console.log("commandesOrg==",commandesOrg)
                 mouvement.CodeCommande=this.commandesMouvement[i].CodeCommande
                mouvement.quantitestock=0
                mouvement.DetailCommande=[]
+                x.forEach((y:any)=>{
+                let mouvement1 = <mouvement>{ };
+                mouvement1=mouvement
+                var detailCommandesMouvement:DetailCommande[]= []
+                detailCommandesMouvement.push(y);
+                mouvement1.DetailCommande=detailCommandesMouvement;
+                this.mouvements.push( mouvement1)
 
-
-
-                 x.forEach((y:any)=>{
-                   let mouvement1 = <mouvement>{ };
-                   mouvement1=mouvement
-                  var detailCommandesMouvement:DetailCommande[]= []
-                  detailCommandesMouvement.push(y);
-
-                  mouvement1.DetailCommande=detailCommandesMouvement;
-
-                   this.mouvements.push( mouvement1)
-
-                   
                                  })
                 
                }
                
             } 
-         
-           console.log( "xx==",  this.mouvements)
            // console.log('res==',this.commandesOrg)
           //  this.refrechtable()
           }else{ 
@@ -208,6 +242,58 @@ console.log("commandesOrg==",commandesOrg)
       );
      
     }
+setmodal(type:string){
+ 
+  
+     this.listeIdArticle .length=0
+type=="Recette"?(this.addRecette=true,this.addAccessoire=false,this.selecttype=false):(this.addRecette=false,this.addAccessoire=true,this.selecttype=true);
+this.showmodal()
+}
+showmodal(){
+  this.chargerarticle()
+}
+chargerarticle(){
+  
+if(this.addRecette){
+
+      this.dropdownList=[]; 				
+      this.ArticleRecette.forEach(x=>{
+     this.dropdownList.push({ item_id: x.Identifiant, item_text: x.Libelle })
+               });
+}
+else{
+  
+     this.dropdownList=[]; 
+							
+               this.ArticleAccessoire.forEach(x=>{
+             this.dropdownList.push({ item_id: x.Identifiant, item_text: x.Libelle })
+               });
+}
+
+       this.listeIdArticle = [
+     
+    ];
+      this.selectedItems = [
+     
+    ];
+         this.dropdownSettings = {
+      singleSelection:this.selecttype,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+
+    setTimeout(() => {
+      ($('#Recette-modal') as any).modal('show');
+       this.onUnSelectAll()
+    }, 500);
+    
+
+
+}
 
  addMonths(date:Date, months:number) {
       date.setMonth(date.getMonth() + months);
@@ -264,6 +350,51 @@ console.log("commandesOrg==",commandesOrg)
     );
 
     
+  }
+  valider(){
+  
+      if(this.listeIdArticle.length!=0){
+        for(let id of this.listeIdArticle){
+          console.log(id+"  "+this.listeIdArticle)
+ let _Message =new Message()
+      _Message.IdArticleSrc= id
+      _Message.IdTypeMessage=this.addRecette?1:2
+      _Message.IdArticle=this.idarticle
+      _Message.Quantite=this.Quantite
+       this.addMessage(_Message)
+        }
+
+         var datatable = $('#datatableexample2').DataTable();
+              //datatable reloading 
+                datatable.destroy();
+
+       ($('#Recette-modal') as any).modal('hide');
+      }
+     
+
+      else{
+         Swal.fire({ text: "liste article Vide" , icon: 'error'});
+      }
+     
+     
+   
+  }
+  remove(index:number){
+
+  }
+  addMessage(_message:Message){
+this.MessageSvc.ajouterMessage(_message).subscribe(
+      (res:any) => {
+        let etatReponse = res["EtatReponse"];
+        if(etatReponse.Code == this.g.EtatReponseCode.SUCCESS) {
+_message.Identifiant=res["idMessage"];
+_message.LibelleArticle=this.g.articlesOrg.filter(x=>x.Identifiant==_message.IdArticleSrc)[0].Libelle
+this.addRecette?this.Recette.push(_message):this.Accessoire.push(_message)
+        }
+      else{ 
+          Swal.fire({ text: "erreur back" , icon: 'error'});
+        }
+      });
   }
   async chargerCommandeexpirer(){
 

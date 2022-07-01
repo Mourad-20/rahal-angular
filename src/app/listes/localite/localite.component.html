@@ -29,27 +29,23 @@
 
 
                         <div class="table-responsive m-t-40">
-                            <table class="table table-striped table-bordered table-sm row-border hover" id="datatableexample">
+                            <table class="table table-striped table-bordered table-sm row-border hover"
+                                id="datatableexample">
                                 <thead>
                                     <tr>
-                                        <th>Nom</th>
-                                        <th>CIN</th>
-                                        <th>Adresse 1</th>
-                                        <th>Adresse 2</th>
-                                        <th>Tel 1</th>
-                                        <th>Tel 2</th>
+                                        <th>Libelle</th>
+                                        <th>Code</th>
+                                       
+
                                         <th>Option</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    <tr *ngFor="let item of clients; index as i;">
-                                        <td>{{(item.Nom)}}</td>
-                                        <td>{{item.CIN}}</td>
-                                        <td>{{(item.Adresse1)}}</td>
-                                        <td>{{(item.Adresse2)}}</td>
-                                        <td>{{item.Tel1}}</td>
-                                        <td>{{(item.Tel2)}}</td>
+                                    <tr *ngFor="let item of localites; index as i;">
+                                        <td>{{(item.Libelle)}}</td>
+                                        <td>{{item.Code}}</td>
+                                      
 
 
                                         <td><i (click)="update(item.Identifiant)" class="ti-settings"></i> </td>

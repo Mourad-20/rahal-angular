@@ -5,8 +5,7 @@ import { Article } from 'src/app/entities/Article';
 import { Categorie } from 'src/app/entities/Categorie';
 import { ArticleSvc } from 'src/app/services/articleSvc';
 import { CategorieSvc } from 'src/app/services/categorieSvc';
-import { Projet } from 'src/app/entities/Projet';
-import { ProjetSvc } from 'src/app/services/projetSvc';
+
 import {Subscription} from 'rxjs'
 import { Rxjs } from '../../services/rxjs';
 import Swal from 'sweetalert2'
@@ -17,13 +16,13 @@ import Swal from 'sweetalert2'
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
-public projets : Projet[] = [];
-public projetsOrg : Projet[] = [];
-  constructor(public ProjetSvc:ProjetSvc,public CategorieSvc:CategorieSvc,public sharedService:Rxjs, public g: Globals,public articleSvc:ArticleSvc,private router: Router) { }
+public categories : Categorie[] = [];
+public categoriesOrg : Categorie[] = [];
+  constructor(public CategorieSvc:CategorieSvc,public sharedService:Rxjs, public g: Globals,public articleSvc:ArticleSvc,private router: Router) { }
 
   ngOnInit(): void {
-this.g.title="Liste/Projet"
-    this.chargerProjet()
+this.g.title="Liste/Categories"
+    this.chargerCategorie()
   }
 
    async refrechtable(){
@@ -42,9 +41,9 @@ this.g.title="Liste/Projet"
 
 } 
 
-async update(idprojet:any){
-  await this.g.settype("projet")
- this.router.navigate(['/forms/'+idprojet]);}
+async update(idcategorie:any){
+  await this.g.settype("categorie")
+ this.router.navigate(['/forms/'+idcategorie]);}
 
 
 async chargerCategorie(){
@@ -57,8 +56,8 @@ async chargerCategorie(){
         if(etatReponse.Code == this.g.EtatReponseCode.SUCCESS) {
               console.log("resultat==",res["categorieVMs"])
 
-          //this.categories = res["categorieVMs"];
-          //this.categoriesOrg=res["categorieVMs"];
+          this.categories = res["categorieVMs"];
+          this.categoriesOrg=res["categorieVMs"];
            this.refrechtable()
 
          
@@ -68,28 +67,6 @@ async chargerCategorie(){
         //this.g.showLoadingBlock(false);    
       }
     );
-  // return this.categories
-  }
-  async chargerProjet(){
-
-   //this.g.showLoadingBlock(true);  
-   await this.ProjetSvc.getprojets().subscribe(
-       (res:any) => {
-        let etatReponse = res["EtatReponse"];
-
-        if(etatReponse.Code == this.g.EtatReponseCode.SUCCESS) {
-
-          this.projets = res["projetVMs"];
-          this.projetsOrg=res["projetVMs"];
-           this.refrechtable()
-
-         
-        }else{ 
-          Swal.fire({ text: etatReponse.Message , icon: 'error'});
-        }
-        //this.g.showLoadingBlock(false);    
-      }
-    );
-   return this.projets
+   return this.categories
   }
 }
