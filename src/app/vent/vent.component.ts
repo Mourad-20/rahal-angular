@@ -324,46 +324,48 @@ this.localeactive=""
         },0)
       
     }	
-show(showparam:string){
-  //console.log(showparam)
-switch (showparam){
-  case "localite":
-    if(this.showlocale==false){
-this.showcaisse=false
-this.showlocale=true
-this.showserveur=false
-    }
-    else{
-      this.showcaisse=true
-this.showlocale=false
-this.showserveur=false
-    }
+  show(showparam:string){
+    //console.log(showparam)
+  switch (showparam){
+    case "localite":
+      if(this.showlocale==false){
+  this.showcaisse=false
+  this.showlocale=true
+  this.showserveur=false
+      }
+      else{
+        this.showcaisse=true
+  this.showlocale=false
+  this.showserveur=false
+      }
 
-    break;
-     case "serveur":
-    if(this.showserveur==false){
-      this.showListeServeur()
-this.showcaisse=false
-this.showserveur=true
-this.showlocale=false
-    }
-    else{
-      this.showcaisse=true
-this.showlocale=false
-this.showserveur=false
-    }
+      break;
+      case "serveur":
+      if(this.showserveur==false){
+        this.showListeServeur()
+  this.showcaisse=false
+  this.showserveur=true
+  this.showlocale=false
+      }
+      else{
+        this.showcaisse=true
+  this.showlocale=false
+  this.showserveur=false
+      }
 
-    break;
-}
+      break;
+  }
 
-}
-setarticle(item:Article){
- 
+  }
 
-this.getdetailcommandes(item)
-//($('#responsive-modal') as any).modal('hide');
-//console.log(this.article)
-}
+  setarticle(item:Article){
+  
+
+  this.getdetailcommandes(item)
+  //($('#responsive-modal') as any).modal('hide');
+  //console.log(this.article)
+  }
+
 //===================================================================
 setdc(item:DetailCommande){
   console.log(this.article)
@@ -413,6 +415,7 @@ updatetotale(){
   
 
 }
+
 afficherOnCalculator(x : any){
     if(this.calcVal == "0" && x != "."){
       this.calcVal = "";
@@ -424,13 +427,16 @@ afficherOnCalculator(x : any){
     }
     this.calcVal = this.calcVal + x;
   }
+
   resetCalculator(){
     
     this.calcVal = "0";
   }
+
   calculatePagesCountCat(elementPerPage : number, totalCount : number) {
     return totalCount < elementPerPage ? 1 : Math.ceil(totalCount / elementPerPage);
   }
+  
   chargerListeCat(){
       this.categories.length = 0;
       console.log(this.categories)
@@ -458,50 +464,53 @@ afficherOnCalculator(x : any){
 
   }
 
-    chargerArticle(event :any) {
-     
-     
+  chargerArticle(event :any) {
+
     this.type="ARTICLE";
-   if(event){
-    let id:number= event.target.value   
-if(id!=0){
- this.articles = this.g.articlesOrg.filter(x=>x.IdCategorie==id)
-}
-else{
-  this.articles = this.g.articlesOrg;
-}
-   }
-   else{
-    this.articles = this.g.articlesOrg;
-   }
+    if(event){
+      let id:number= event.target.value   
+      if(id!=0){
+      this.articles = this.g.articlesOrg.filter(x=>x.IdCategorie==id)
+      }
+      else{
+        this.articles = this.g.articlesOrg;
+      }
+    }
+    else{
+      this.articles = this.g.articlesOrg;
+    }
     this.refrechtable()
     //this.totalPageArt = this.calculatePagesCountArt(this.pageSizeArt,this.g.articles.length);
     //this.chargerListeArt();
   }
-showarticle(){
-  this.searchTerm="";
-   ($('#responsive-modal') as any).modal('show');
-   this.chargerArticle(null)
-   
-}
-showcomercial(){
-  this.searchTerm="";
-   ($('#responsive-modal') as any).modal('show');
-   this.chargerArticle(null)
-   
-}
 
-   chargerArticlebyname() {
+  showarticle(){
+    this.searchTerm="";
+    ($('#responsive-modal') as any).modal('show');
+    this.chargerArticle(null)
+    
+  }
+
+  showcomercial(){
+    this.searchTerm="";
+    ($('#responsive-modal') as any).modal('show');
+    this.chargerArticle(null)
+    
+  }
+
+  chargerArticlebyname() {
      console.log('this.searchTerm')
     this.type="ARTICLE";
     this.articles = this.g.articlesOrg.filter(x => x.Libelle.toLowerCase().includes(this.searchTerm.toLowerCase()));
   }
-chargerlocalbyname(){
-  this.localites=this.localitesOrg.filter(x=>x.Libelle.toLowerCase().includes(this.searchTerm.toLowerCase()))
-}
-calculatePagesCountArt(elementPerPage : number, totalCount : number) {
-    return totalCount < elementPerPage ? 1 : Math.ceil(totalCount / elementPerPage);
+
+  chargerlocalbyname(){
+    this.localites=this.localitesOrg.filter(x=>x.Libelle.toLowerCase().includes(this.searchTerm.toLowerCase()))
   }
+
+  calculatePagesCountArt(elementPerPage : number, totalCount : number) {
+      return totalCount < elementPerPage ? 1 : Math.ceil(totalCount / elementPerPage);
+    }
 
   chargerListeArt(){
 	  this.articles = [];
@@ -592,79 +601,80 @@ nextArticle(){
 
   
  validatepush(detailCommande:DetailCommande){
-   let res:boolean
-if(detailCommande.IdArticle==0){
-res= false
-this.Message="selectioner projet"
-}
-
-else{
-  res=true
-}
-return res
-}
-  selectArticle(){
-	//this.scrollToBottom();
-console.log("ok12")
-	if(this.commande.CodeEtatCommande != this.EtatCommandeCode.REGLEE){
-		if(this.calcVal == '0'){
-      this.calcVal = '1';
+    let res:boolean
+    if(detailCommande.IdArticle==0){
+    res= false
+    this.Message="selectioner projet"
     }
 
-    /* if(this.commande.DetailCommandes.filter(x => x.IdArticle === idArticle).length > 0) {
-      //alert('Existe déja');
-      let detailCommande = this.commande.DetailCommandes.filter(x => x.IdArticle === idArticle)[0];
-      detailCommande.Quantite = detailCommande.Quantite + Number(this.calcVal);
-    }else{ */
-
-     // let article = this.g.articlesOrg.filter(x => x.Identifiant === idArticle)[0];
-      console.log("dc=",this.detailCommande)
-     
-      let detailCommande2 = new DetailCommande();
-      detailCommande2=JSON.parse(JSON.stringify(this.detailCommande))
-      //detailCommande2.IdArticle = this.article.Identifiant;
-      //detailCommande2.LibelleArticle = this.article.Libelle;
-      detailCommande2.Quantite = Number(this.quantite);
-      detailCommande2.Montant = this.article.Montant;
-      //detailCommande2.LibelleTypeUnite=this.detailCommande.LibelleTypeUnite
-     // detailCommande2.IdTypeUnite=this.detailCommande.IdTypeUnite
-      //detailCommande2.IdCaisse=this.detailCommande.IdCaisse
-      detailCommande2.Montant=this.prix
-      detailCommande2.TauxTVA=this.tva
-    
-      detailCommande2.Description=this.description
-      //detailCommande2.NumerodeLot=this.numlot
-     
-if(this.validatepush(detailCommande2)){
-  console.log("dc2=",detailCommande2)
-  this.commande.DetailCommandes.push(detailCommande2);
-   this.TotaleHT+= detailCommande2.Montant*detailCommande2.Quantite
-  this.TotaleTVA+= detailCommande2.Montant*detailCommande2.Quantite*detailCommande2.TauxTVA/100
-      this.calcVal = '0';
-    this.initdetailcommande()
-}
-else{
-  console.log("Message1")
-   Swal.fire({ text: this.Message , icon: 'error'});
-   this.Message=""
-}
-
-    
-     //  console.log("article",detailCommande)
-    //}    
-   // this.commande.DetailCommandes = this.commande.DetailCommandes;
-
-    //this.idxOne = this.commande.DetailCommandes.length - 1;
-  
-	//console.log(this.commande.DetailCommandes.length);
-    //this.updateTotalVal();
-  
-	//this.scrollToBottom();
-	}
-
-    
-
+    else{
+      res=true
+    }
+    return res
   }
+
+  selectArticle(){
+    //this.scrollToBottom();
+  console.log("ok12")
+    if(this.commande.DetailCommandes.length == 0) {
+      if(this.commande.CodeEtatCommande != this.EtatCommandeCode.REGLEE){
+        if(this.calcVal == '0'){
+          this.calcVal = '1';
+        }
+  
+        /* if(this.commande.DetailCommandes.filter(x => x.IdArticle === idArticle).length > 0) {
+          //alert('Existe déja');
+          let detailCommande = this.commande.DetailCommandes.filter(x => x.IdArticle === idArticle)[0];
+          detailCommande.Quantite = detailCommande.Quantite + Number(this.calcVal);
+        }else{ */
+  
+        // let article = this.g.articlesOrg.filter(x => x.Identifiant === idArticle)[0];
+          console.log("dc=",this.detailCommande)
+        
+          let detailCommande2 = new DetailCommande();
+          detailCommande2=JSON.parse(JSON.stringify(this.detailCommande))
+          //detailCommande2.IdArticle = this.article.Identifiant;
+          //detailCommande2.LibelleArticle = this.article.Libelle;
+          detailCommande2.Quantite = Number(this.quantite);
+          detailCommande2.Montant = this.article.Montant;
+          //detailCommande2.LibelleTypeUnite=this.detailCommande.LibelleTypeUnite
+        // detailCommande2.IdTypeUnite=this.detailCommande.IdTypeUnite
+          //detailCommande2.IdCaisse=this.detailCommande.IdCaisse
+          detailCommande2.Montant=this.prix
+          detailCommande2.TauxTVA=this.tva
+        
+          detailCommande2.Description=this.description
+          //detailCommande2.NumerodeLot=this.numlot
+        
+      if(this.validatepush(detailCommande2)){
+        console.log("dc2=",detailCommande2)
+        this.commande.DetailCommandes.push(detailCommande2);
+        this.TotaleHT+= detailCommande2.Montant*detailCommande2.Quantite
+        this.TotaleTVA+= detailCommande2.Montant*detailCommande2.Quantite*detailCommande2.TauxTVA/100
+            this.calcVal = '0';
+          this.initdetailcommande()
+      }
+      else{
+        console.log("Message1")
+        Swal.fire({ text: this.Message , icon: 'error'});
+        this.Message=""
+      }
+  
+        
+        //  console.log("article",detailCommande)
+        //}    
+      // this.commande.DetailCommandes = this.commande.DetailCommandes;
+  
+        //this.idxOne = this.commande.DetailCommandes.length - 1;
+      
+      //console.log(this.commande.DetailCommandes.length);
+        //this.updateTotalVal();
+      
+      //this.scrollToBottom();
+      }
+    }
+  }
+
   initdetailcommande(){
     this.quantite=0
     this.description=''
@@ -688,7 +698,7 @@ else{
 	  
   }
 
-    scrollToBottom () {		
+  scrollToBottom () {		
 		setTimeout(function(){
 			var mydiv = $("#montab");
 			mydiv.scrollTop(mydiv.prop("scrollHeight"));
@@ -706,28 +716,30 @@ else{
       this.idxOne++;
     }
   }
-chargercat(){
-  this.type="CAT";
-}
+
+  chargercat(){
+    this.type="CAT";
+  }
+  
   remove(index:number) {
-         Swal.fire({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes!'
-}).then((result) => {
-     if( result.isConfirmed &&  this.commande.DetailCommandes.length > 0 && this.commande.DetailCommandes[index].QuantiteServi==0 
-      &&  this.commande.CodeEtatCommande != this.EtatCommandeCode.REGLEE){
-      this.commande.DetailCommandes.splice(index, 1);
-      if(this.idxOne == this.commande.DetailCommandes.length){
-        this.idxOne--;
-      }
-    }
-    this.updatetotale()
-})
+    Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes!'
+    }).then((result) => {
+        if( result.isConfirmed &&  this.commande.DetailCommandes.length > 0 && this.commande.DetailCommandes[index].QuantiteServi==0 
+          &&  this.commande.CodeEtatCommande != this.EtatCommandeCode.REGLEE){
+          this.commande.DetailCommandes.splice(index, 1);
+          if(this.idxOne == this.commande.DetailCommandes.length){
+            this.idxOne--;
+          }
+        }
+        this.updatetotale()
+    })
 
   }
 
@@ -868,6 +880,7 @@ chargercat(){
      
     }
   }
+
   Messageisexiste(y:any){
 
     	if(this.commande.DetailCommandes[this.idxOne].AffectationMessages.filter(x => x.IdMessage === this.affectationMessageVMs[y].IdMessage).length == 0){
@@ -877,12 +890,13 @@ chargercat(){
   return true
   }
 
-styleObject(x:any){
-if(this.Messageisexiste(x)){
-  return {'background-color': "#98ac25b9"}
-}
- return {'background-color': "#ac3525b9"}
-}
+  styleObject(x:any){
+  if(this.Messageisexiste(x)){
+    return {'background-color': "#98ac25b9"}
+  }
+  return {'background-color': "#ac3525b9"}
+  }
+
   chargerListLocalite(){
 
   console.log("liste commande dispo")
@@ -975,10 +989,11 @@ this.localitesOrg=this.localitesOrg.filter(x => x.Code === "CLIENT")
    
   }
 
-nextLocalite(){
+  nextLocalite(){
     this.currentPageLoc++;
     this.chargerListLocalite();
   }
+
   previousLocalite(){
     this.currentPageLoc--;
     this.chargerListLocalite();
@@ -995,6 +1010,7 @@ nextLocalite(){
     this.currentPageServ++;
     this.chargerListServeur();
   }
+
   previousServeur(){
     this.currentPageServ--;
     this.chargerListServeur();
@@ -1385,7 +1401,7 @@ this.commandes.splice(idx, 1)
 	  }
   }
 
-  	showListeMessage(){
+  showListeMessage(){
       console.log("ccccccc")
       this.type="MESSAGE";
 		this.affectationMessageVMs = [];
@@ -1440,7 +1456,8 @@ this.commandes.splice(idx, 1)
 			//this.affectationMessageVMs.splice(x, 1);
 		}
   }
-removeMessage(x : any){
+
+  removeMessage(x : any){
 	  
 	  this.idxFive = x;
     let y:any
@@ -1465,6 +1482,7 @@ else{
 	  affectationMessage.IdMessage = affectationMessageTemp.IdMessage;
 	  affectationMessage.LibelleMessage = affectationMessageTemp.LibelleMessage;
   }
+
   initcaisse(){
     this.type="CAT"
     this.commandes=[]
@@ -1472,6 +1490,7 @@ else{
     this.getCommandeById(0);
     this.currentPageCat=0
   }
+
   controler(){
 
  this.g.showLoadingBlock(true);
@@ -1505,10 +1524,12 @@ this.commandes.splice(idx, 1)
       }
     );
   }
+
   getstyle(item:Categorie){
  return    {'background-color': item.Background}
   }
-    chargerCommandesNonControler(){
+
+  chargerCommandesNonControler(){
 
     //this.g.showLoadingBlock(true);  
    this.searchTerm=""

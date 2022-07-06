@@ -94,7 +94,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="table-responsive">
+<!--                                         <div class="table-responsive">
                                             <table class="table table-hover no-wrap">
                                                 <thead>
 
@@ -108,7 +108,7 @@
                                                         <th>P.U HT</th>
                                                         <th>TVA</th>
                                                         <th>Totale HT</th>
-                                                        <th>Totale TTC</th>
+                                                        <th>Totale TTC 99</th>
                                                         <th>Description</th>
                                                         <th>Option</th>
                                                     </tr>
@@ -130,10 +130,49 @@
                                                         <td><span class="text-success">{{ item.Description }}</span>
                                                         </td>
                                                         <td><button (click)="remove(i)" type="button" class="btn btn-outline-danger btn-circle  "><i class="ti-trash"></i>
-    </button></td>
+                                                             </button></td>
 
                                                     </tr>
-                                                    <!--      -->
+                                                </tbody>
+                                            </table>
+                                        </div> -->
+                                        
+                                        <div class="table-responsive">
+                                            <table class="table table-hover no-wrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">#</th>
+                                                        <th>Libelle</th>
+                                                        <th>SP initiale</th>
+                                                        <th>SP finale</th>
+                                                        <th>P.Client</th>
+                                                        <th>P.Declaration</th>
+                                                        
+                                                        <th>P vent.Client</th>
+                                                        <th>P vent.Declaration</th>
+
+                                                        <th>Option</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let item of commande.DetailCommandes; index as i;">
+                                                        <td class="text-center">{{i+1}}</td>
+                                                        <td class="txt-oflo">{{ item.LibelleArticle }}</td>
+
+                                                        <td><span class="badge bg-success rounded-pill">{{ item.SPI
+                                                                }}</span> </td>
+                                                        <td class="txt-oflo">{{ item.SPF }}</td>
+                                                        <td class="txt-oflo">{{ item.Montant }}</td>
+                                                        <td class="txt-oflo">{{ item.MontantDeclaration}}</td>
+                                                        <td class="txt-oflo"></td>
+                                                        <td class="txt-oflo"></td>
+                                                        <td><span class="text-success">{{ item.Description }}</span>
+                                                        </td>
+                                                        <td><button (click)="remove(i)" type="button" class="btn btn-outline-danger btn-circle  "><i class="ti-trash"></i>
+                                                        </button></td>
+
+                                                    </tr>
+                                                    <!--       -->
                                                 </tbody>
                                             </table>
                                         </div>
@@ -310,7 +349,7 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Select Article</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Select Article99</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

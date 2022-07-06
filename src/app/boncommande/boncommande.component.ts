@@ -559,19 +559,15 @@ else{
 return res
 }
   selectArticle(){
-	
-	if(this.commande.CodeEtatCommande != this.EtatCommandeCode.REGLEE){
-		if(this.calcVal == '0'){
-      this.calcVal = '1';
-    }
-
-   
-    
+    if(this.commande.CodeEtatCommande != this.EtatCommandeCode.REGLEE){
+      if(this.calcVal == '0'){
+        this.calcVal = '1';
+      }
       let detailCommande = new DetailCommande();
       detailCommande.IdArticle = this.article.Identifiant;
       detailCommande.LibelleArticle = this.article.Libelle;
       detailCommande.Quantite = Number(this.quantite);
-     // detailCommande.Montant = this.article.Montant;
+      // detailCommande.Montant = this.article.Montant;
       detailCommande.LibelleTypeUnite=this.article.LibelleTypeUnite
       detailCommande.IdTypeUnite=this.article.IdTypeUnite
       detailCommande.Montant=this.prix
@@ -579,32 +575,18 @@ return res
     
       detailCommande.Description=this.description
       detailCommande.NumerodeLot=this.numlot
-if(this.validatepush(detailCommande)){
 
-  
-
-  this.commande.DetailCommandes.push(detailCommande);
-      this.calcVal = '0';
-    this.initdetailcommande()
-    this.updatetotale()
-}
-else{
-   Swal.fire({ text: this.Message , icon: 'error'});
-   this.Message=""
-}
-
-    
-     //  console.log("article",detailCommande)
-    //}    
-   // this.commande.DetailCommandes = this.commande.DetailCommandes;
-
-    //this.idxOne = this.commande.DetailCommandes.length - 1;
-  
-	//console.log(this.commande.DetailCommandes.length);
-    //this.updateTotalVal();
-  
-	//this.scrollToBottom();
-	}
+      if(this.validatepush(detailCommande)){
+        this.commande.DetailCommandes.push(detailCommande);
+        this.calcVal = '0';
+        this.initdetailcommande()
+        this.updatetotale()
+      }
+      else{
+        Swal.fire({ text: this.Message , icon: 'error'});
+        this.Message=""
+      }
+    }
  }
 
  updatetotale(){

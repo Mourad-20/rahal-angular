@@ -111,7 +111,7 @@ this.jetonValue=this.jetonValue+event.key ;
 
 
   authentification(){
-	  	this.g.openFullscreen()
+	  	// this.g.openFullscreen()
     this.g.showLoadingBlock(true);
 	if(this.methode == "STANDARD"){
 	
@@ -129,7 +129,7 @@ this.jetonValue=this.jetonValue+event.key ;
 				}else{
 				  Swal.fire({ text: etatReponse.Message , icon: 'error'});
 				}
-				this.g.showLoadingBlock(false);    
+				this.g.showLoadingBlock(false);    	
 			  }
 			);
 	}else if(this.methode == "JETON"){
