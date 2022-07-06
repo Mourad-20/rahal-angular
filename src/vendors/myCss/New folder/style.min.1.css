@@ -18919,7 +18919,7 @@
 
 .skin-default-dark .sidebar-nav>ul>li.active>a {
     color: #fb9678;
-    border-left: 3px solid #fb9678
+    border-left: 3px solid #009688
 }
 
 .skin-default-dark .sidebar-nav>ul>li.active>a i {
@@ -44398,7 +44398,7 @@ a.list-group-item {
 .sidebar-nav>ul>li.active>a {
     color: #fb9678;
     font-weight: 500;
-    border-left: 3px solid #fb9678
+    border-left: 3px solid #009688
 }
 
 .sidebar-nav>ul>li.active>a i {

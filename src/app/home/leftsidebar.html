@@ -32,15 +32,16 @@
                 </li> -->
 
 
-                <li (click)='showCommandesNonReglees()' *ngIf="utilisateurSvc.isUtilisateurOnGroupes([GroupeCode.CAISSIER,GroupeCode.SERVEUR])">
+<!--                 <li (click)='showCommandesNonReglees()' *ngIf="utilisateurSvc.isUtilisateurOnGroupes([GroupeCode.CAISSIER,GroupeCode.SERVEUR])">
                     <a href="javascript:void(0)"><i class="ti-layout-grid2" target="_self"></i>
+                        <i class="icon-calendar"></i>
                     <span class="hide-menu">Commandes</span></a>
 
                 </li>
                 <li (click)='showCommandesNonControler()' *ngIf="utilisateurSvc.isUtilisateurOnGroupes([GroupeCode.CAISSIER])"> <a href="javascript:void(0)"><i class="ti-layout-grid2"
                             target="_self"></i><span class="hide-menu">Controle</span></a>
 
-                </li>
+                </li> -->
                 
 <!--                 <li *ngIf="utilisateurSvc.isUtilisateurOnGroupes([GroupeCode.GERANT,GroupeCode.ADMIN])">
                     <a [ngClass]="collapse==1?'has-arrow waves-effect waves-dark active':'has-arrow waves-effect waves-dark'"
